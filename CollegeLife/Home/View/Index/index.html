@@ -1,0 +1,104 @@
+<div id="modify_index">
+	<div class="content_right_img_1">
+		<img src="__PUBLIC__/images/bg_1.jpg" width="1200" height="400">
+	</div>
+	<div class="content_right_img_2">
+		<img src="__PUBLIC__/images/bg_2.jpg" width="1200" height="400">
+	</div>
+	<div class="content_right_img_3">
+		<img src="__PUBLIC__/images/bg_3.jpg" width="1200" height="400">
+	</div>
+</div>
+
+<!-- 登录弹框 -->
+<div id="loginBox" style="position:absolute; left:400px; top:150px; z-index:1;display: none;" >
+    <div class="title" id="Mdown">
+        <span class="t1">登录</span>
+        <span class="t2" title="关闭" onClick="loginBox.style.display='none';bgDiv.style.display='none'">X</span>
+    </div>
+    <div class="login">
+    	<div class="content_left_style">
+	        <form method="post" action="deal/login_deal.php">
+	        	  <p>登录昵称：<input type="text" name="name" class="bar" id="login_name"></p>
+		          <p>登录密码：<input type="password" name="password" class="bar" id="login_psd"></p>
+		          <p>验&nbsp;证&nbsp;码&nbsp;：<input type="text" id="input1" class="bar" style="width:135px">
+		            <input type="button" id="checkCode" class="code" style="width:60px" onClick="createCode()" /> <a href="#" onClick="createCode()">看不清楚</a>
+		          </p>
+		          <div id="psd_forget">
+		              <div class="psd_forget_style" style="margin-left:200px">还没有账号？请 <a href="#" onClick="loginBox.style.display='none';bgDiv.style.display='none';loginBox1.style.display='';bgDiv1.style.display=''">注册</a></div>
+
+		              <!-- 已经注册了的情况下 <div class="psd_forget_style" style="margin-left:257px">您已经登录</div> -->
+		          </div>
+		          <p>
+		            <input type="submit" name="submit" value="登录" class="btn" onclick="return check_login()">
+		            <input type="reset" name="reset" value="重置" class="btn" style="margin-left:10px">
+		          </p>
+	        </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- 注册弹框 -->
+<div id="loginBox1" style="position:absolute; left:400px; top:80px; z-index:1;display: none;" >
+    <div class="title" id="Mdown1">
+        <span class="t1">注册</span>
+        <span class="t2" title="关闭" onClick="loginBox1.style.display='none';bgDiv1.style.display='none'">X</span>
+    </div>
+    <div class="login">
+    	<div class="content_left_style">
+	        <form method="post" action="deal/reg_deal.php">
+	        	  <p>您的昵称：<input type="text" name="name" class="bar" id="reg_name"> <span style="color:yellow">*</span></p>
+		          <p>您的密码：<input type="password" name="password" class="bar" id="reg_psd" onkeydown="index_show(4)"> <span style="color:yellow">*</span></p>
+		          <div id="psd_forget" class="hide">
+		            <div class="psd_forget_style">[密码长度为6-20位]</div>
+		          </div>
+		          <p>重复密码：<input type="password" name="password_2" class="bar" id="reg_psd2"> <span style="color:yellow">*</span></p>
+		          <p>电子邮箱：<input type="text" name="email" class="bar" id="reg_email"> <span style="color:yellow">*</span></p>
+		          <p>您的年级：<select name="classes" class="bar">
+		            <option value="2009">2009</option>
+		            <option value="2010">2010</option>
+		            <option value="2011">2011</option>
+		            <option value="2012">2012</option>
+		            <option value="2013">2013</option>
+		          </select></p>
+		          <p>真实姓名：<input type="text" name="realname" class="bar" id="reg_realname"> <span style="color:yellow">*</span></p>
+		          <p>联系方式：<br />
+		          <select name="mobile" class="bar" style="width:60px">
+		            <option value="移动">移动</option>
+		            <option value="联通">联通</option>
+		          </select>
+		          长号：<input type="text" name="long_num" class="bar" style="width:100px">
+		          短号：<input type="text" name="short_num" class="bar" style="width:68px">
+		          </p>
+		          <p>宿舍地址：<select name="add" class="bar" style="width:80px">
+		            <?php
+		            for($i=1;$i<=41;$i++){
+		            ?>
+		              <option value="<?php echo $i; ?>栋"><?php echo $i; ?>栋</option>
+		            <?php
+		            }
+		            ?>
+		          </select>
+		          宿舍号：<input type="text" name="dnum" class="bar" style="width:115px">
+		          </p>
+		          <div id="psd_forget">
+		              <div class="psd_forget_style">已有账号？请 <a href="#" onClick="loginBox1.style.display='none';bgDiv1.style.display='none';loginBox.style.display='';bgDiv.style.display=''">登录</a></div>
+						
+					<!-- 已登录情况下
+		              <div class="psd_forget_style" style="margin-left:257px">您已经登录</div>
+					-->
+		          </div>
+		          <p>
+		            <input type="submit" name="submit" value="注册" class="btn" onclick="return check_reg()">
+		            <input type="reset" name="reset" value="重置" class="btn" style="margin-left:10px">
+		          </p>
+	        </form>
+        </div>
+    </div>
+</div>
+
+<!-- 弹框函数调用 -->
+<script type="text/javascript">
+login_box_show();
+</script>

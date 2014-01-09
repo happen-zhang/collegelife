@@ -1,0 +1,37 @@
+<div id="bgDiv" style="display:none;">
+         
+</div>
+
+<div id="bgDiv1" style="display:none;">
+         
+</div>
+<div id="top">
+	<div id="top_msg">
+		<div class="top_box_style">
+			欢迎回来 <a href='info.php' title='查看个人账户'>HappenZhangH</a>&nbsp;&nbsp;
+		</div>
+	</div>
+	<div id="top_box">	
+		<div class="top_box_style">
+			<a href="msg_watch.php?id='.$msg_id.'"><strong>最新通知：HHHH</strong></a>
+		</div>
+	</div>
+</div>
+
+<div id="menu">
+	<div id="menu_logo">
+		<a href="{:U('Index/index')}"><img src="__PUBLIC__/images/logo.png" border="0"></a>
+	</div>
+	<div id="menu_btn">
+		<div class="menu_btn_style">
+			{:menu_style_link('首页', U('Index/index'), array(), 'Index/index', $Think.CONTROLLER_NAME.'/'.$Think.ACTION_NAME)}
+			<if condition = 'isset($home) eq true'>
+				<a href="#" onClick="bgDiv.style.display='';loginBox.style.display='';">登录</a>
+				<a href="#" onClick="bgDiv1.style.display='';loginBox1.style.display='';">注册</a>
+			</if>
+			{:menu_style_link('进入商城', U('Shops/index'), array(), 'Shops/index', $Think.CONTROLLER_NAME.'/'.$Think.ACTION_NAME)}
+			{:menu_style_link('关于大学时光', U('Index/about'), array(), 'Index/about', $Think.CONTROLLER_NAME.'/'.$Think.ACTION_NAME)}
+			{:menu_style_link('联系我们', U('Index/contact'), array(), 'Index/contact', $Think.CONTROLLER_NAME.'/'.$Think.ACTION_NAME)}
+		</div>
+	</div>
+</div>
