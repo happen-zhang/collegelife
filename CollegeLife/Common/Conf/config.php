@@ -1,5 +1,7 @@
 <?php
 $routesConfig = include('routes.php');
+$dbConfig = include('db.php');
+$secureConfig = include('secure.php');
 
 $appConfig =  array(
     // 调试页
@@ -17,4 +19,4 @@ $appConfig =  array(
     'LAYOUT_NAME' => 'Public/layout',
 );
 
-return array_merge($appConfig, $routesConfig);
+return array_merge($appConfig, $routesConfig, $dbConfig, $secureConfig);

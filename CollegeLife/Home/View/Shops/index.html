@@ -1,26 +1,42 @@
-<div id="shop_top">
-	<div class="shop_top_style">
-		<form action="deal/search.php" method="POST">
-			<input type="text" name="name" class="bar" onblur="if(this.value==''){this.value='商品名称'};" onfocus="if(this.value=='商品名称'){this.value=''};" value="商品名称"><select name="kinds" class="selected">
-				<option value="护肤品">护肤品</option>
-				<option value="面膜">面膜</option>
-			</select>
-			<input type="submit" name="submit" value="搜索商品" class="btn_shop" style="margin-left:10px">
-		</form>
-	</div>
-</div>
+<div id="shop_list">
+	<div class="shop_list_style">
+		<div class="info_title" style="border:0px">我的订单&nbsp;&nbsp;&nbsp;
+			<span style="font-size:12px;font-weight:normal;color:red">[修改成功]</span>
 
-<div id="about_box">
-	<div id="about_box_img">
-		<a href="shop_watch.php" title="点击查看详情"><img src="" width="180" height="210" border="0"></a>
-	</div>
-	<div id="about_box_content">
-		<div class="about_box_content_style">
-			<div class="about_box_content_style_price">&yen;20.00  <del style="font-size:12px;color:#999999">&yen;28.00</del></div>
-			<p><a href="shop_watch.php" title="点击查看详情">护肤品名称</a></p>
-			<p>类型：<a href="#">护肤品</a>&nbsp;&nbsp;&nbsp;&nbsp;成交额：<span style="color:#9e0000">7笔</span></p>
+            <!-- 
+ 			<span style="font-size:12px;font-weight:normal;color:red">[ 修改失败]</span>
+
+			<span style="font-size:12px;font-weight:normal;color:red">[原密码错误]</span> 
+			-->
+		</div>		
+		<div id="shop_list_box">
+			<div class="shop_list_box_style">
+				<table>
+					<tr width="1000px" height="30px">
+						<th width="200px">订单名称</th><th width="200px">状态</th><th width="200px">支付状态</th><th width="200px">下单时间</th><th width="200px">操作</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="shop_list_box">
+			<div class="shop_list_box_style">
+				<table>
+					<tr width="1000px" height="30px" align="center">
+						<td width="200px"><a href="{:U('Shops/show')}" target="_blank">01149号订单</a></td><td width="200px">未下单</td><td width="200px">未收款</td><td width="200px">2012-12-12 12:12</td><td width="200px"><span onclick="check_list(01149,1)">取消订单</span></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="shop_list_box">
+			<div class="shop_list_box_style">
+				<table>
+					<tr width="1000px" height="30px" align="center">
+						<td width="200px"><a href="{:U('Shops/show')}" target="_blank">01149号订单</a></td><td width="200px">未下单</td><td width="200px">未收款</td><td width="200px">2012-12-12 12:12</td><td width="200px"><span onclick="check_list(01149,1)">取消订单</span></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>
-
-<div id="shop_box"></div>

@@ -1,0 +1,78 @@
+<div id="info">
+	<div id="info_box">
+		<div class="info_style">
+			<div class="info_title">个人账户&nbsp;&nbsp;&nbsp;
+
+					<span style="font-size:12px;font-weight:normal">[您可以修改自己的信息]</span>
+<!-- 修改的状态通知
+					<span style="font-size:12px;font-weight:normal;color:red">[修改成功]</span>
+
+					<span style="font-size:12px;font-weight:normal;color:red">[修改失败]</span>
+
+					<span style="font-size:12px;font-weight:normal;color:red">[原密码错误]</span>
+-->
+			</div>
+
+			<p style="font-size:14px;font-weight:bold;padding-top:10px">基本信息</p>
+			<div class="info_content">
+
+				<form action="deal/modify_info_deal.php" method="POST">
+					<p>真实姓名：<input type="text" name="realname" class="bar" id="info_name" value="<?php echo $msg_realname; ?>"> <span style="color:red">*</span></p>
+					<p>电子邮箱：<input type="text" name="email" class="bar" id="info_email" value="<?php echo $msg_email; ?>"> <span style="color:red">*</span></p>
+					<p>您的年级：<select name="classes" class="bar">
+						
+						<?php
+						for($i=2009;$i<2013;$i++){
+						?>
+							<option value="<?php echo $i; ?>" <?php if($msg_classes == $i){ echo "selected"; } ?>><?php echo $i; ?></option>
+						<?php	
+						}
+						?>
+					</select></p>
+					<p>联系方式：<br />
+					<select name="mobile" class="bar" style="width:60px">
+						<option value="移动" <?php if($msg_contactway == "移动"){ echo "selected"; } ?>>移动</option>
+						<option value="联通" <?php if($msg_contactway == "联通"){ echo "selected"; } ?>>联通</option>
+					</select>
+					长号：<input type="text" name="long_num" class="bar" style="width:100px" value="<?php echo $msg_contactlong; ?>">
+					短号：<input type="text" name="short_num" class="bar" style="width:68px" value="<?php echo $msg_contactshort; ?>">
+					</p>
+					<p>宿舍地址：<select name="add" class="bar" style="width:80px">
+						<?php
+						for($i=1;$i<=41;$i++){
+							$str=$i."栋";
+						?>
+							<option value="<?php echo $i; ?>栋" <?php if($msg_adds == $str){ echo "selected"; } ?>><?php echo $i; ?>栋</option>
+						<?php
+						}
+						?>
+					</select>
+					宿舍号：<input type="text" name="dnum" class="bar" style="width:115px" value="<?php echo $msg_addsnum; ?>">
+					</p>
+					<p>
+						<input type="submit" name="submit" value="修改信息" class="btn" onclick="return check_info()" style="margin-left:90px">
+					</p>
+				</form>
+
+			</div>
+
+			<p style="font-size:14px;font-weight:bold;padding-top:10px">修改密码</p>
+			<div class="info_content">
+
+				<form action="deal/modify_psd_deal.php" method="POST">
+					<p>原&nbsp;密&nbsp;码&nbsp;：<input type="password" name="password_1" class="bar" id="info_psd1"></p>
+					<p>新&nbsp;密&nbsp;码&nbsp;：<input type="password" name="password_2" class="bar" id="info_psd2" onkeydown="index_show(4)"></p>
+					<div id="psd_forget" class="hide">
+						<div class="psd_forget_style">[密码长度为6-20位]</div>
+					</div>
+					<p>重复密码：<input type="password" name="password_3" class="bar" id="info_psd3"></p>
+					<p>
+						<input type="submit" name="submit" value="修改密码" class="btn" onclick="return check_psd()" style="margin-left:90px">
+					</p>
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+</div>

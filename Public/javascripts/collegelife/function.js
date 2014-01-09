@@ -128,12 +128,25 @@ function check_login(){
 
 }
 
+String.prototype.Trim = function() {
+	return this.replace(/(^\s*)|(\s*$)/g, "");
+}
+
+String.prototype.LTrim = function() {
+	return this.replace(/(^\s*)/g, "");
+}
+
+String.prototype.RTrim = function() {
+	return this.replace(/(\s*$)/g, "");
+}
+
 function check_reg(){
-	var name=document.getElementById("reg_name").value;
-	var psd1=document.getElementById("reg_psd").value;
-	var psd2=document.getElementById("reg_psd2").value;
-	var email=document.getElementById("reg_email").value;
-	var real=document.getElementById("reg_realname").value;
+	var name=document.getElementById("reg_name").value.Trim();
+	var psd1=document.getElementById("reg_psd").value.Trim();
+	var psd2=document.getElementById("reg_psd2").value.Trim();
+	var email=document.getElementById("reg_email").value.Trim();
+	var real=document.getElementById("reg_realname").value.Trim();
+	var tel_full = document.getElementById("tel_full").value.Trim();
 	if(name == ""){
 		alert("请输入您的昵称");
 		return false;

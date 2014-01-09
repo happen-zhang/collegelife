@@ -1,0 +1,112 @@
+<div id="shop_top" style="height:55px">
+	<div class="shop_top_style">
+		<a href="{:U('Index/shopCenter')}">返回商城 &gt;</a> <a href="{:U('Index/shopCenter')}">化妆品 &gt;</a> 化妆品名称
+	</div>
+</div>
+
+<div id="shop_watch">
+	<div id="shop_watch_left">
+		<img src="__PUBLIC__/images/bg_2.jpg" width="330px" height="400px" border="0">
+	</div>
+	<div id="shop_watch_right">
+		<div class="shop_watch_right_style">
+			<div class="shop_watch_right_style_title">护肤品名称</div>
+			<div class="shop_watch_right_style_content">
+			类型：<a href="#">护肤品</a> &nbsp;&nbsp;&nbsp; 品牌：<a href="about.php">大学时光(CollegeLife)</a><br /> 
+			<p style="color:#333333">大学时光(CollegeLife)甜美少女 香体润肤露 250ml，为你提供肌肤所需要的各种养分，有效精心呵护您的肌肤。让干燥肌肤得到舒缓，手感犹如丝绸一样细密。口碑好评如潮泉涌，为自己的肌肤送上一份保湿饮料！</p>
+			</div>
+			<div class="shop_watch_right_box">
+				<div class="shop_watch_right_box_style">
+					<span style="font-size:14px">促销价：</span>&yen;20.00
+					<p style="font-size:14px">原价<del>&yen;28.00</del>，现6折促销，为您节省&yen;8.00，送货上门</p>
+				</div>
+			</div>
+			<div class="shop_watch_right_style_content">
+				<form action="deal/buy.php" method="POST">
+					数量：<input type="text" name="num" class="shop_watch_right_num" value="1" id="shop_num" disabled="disabled">
+					<input type="button" id="check_left" value="&lt;" class="check_btn" onclick="check_shop_btn(1)">
+					<input type="button" id="check_right" value="&gt;" class="check_btn" onclick="check_shop_btn(2)">
+					<present name="Think.session.username">
+						<input type="submit" name="submit" value="立即购买" class="btn_shop" onclick="return check_shop()">
+					<else/>
+						<input type="submit" name="submit" value="立即购买" class="btn_shop" onclick="return unvalid()">
+					</present>
+					&nbsp;&nbsp;&nbsp;[成交额：7笔]
+				</form>
+			</div>
+				<p><div id="ckepop" style="padding-top:10px">
+                       <a class="jiathis_button_tsina">新浪微博</a>
+                       <a class="jiathis_button_tqq">腾讯微博</a> <a class="jiathis_button_renren">人人网</a>
+                       <a class="jiathis_button_kaixin001">开心网</a> <a class="jiathis_button_qzone">QQ空间</a> 
+                       <a class="jiathis_button_t163">网易微博</a>
+                       <a href="http://www.jiathis.com/share/" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a> 
+                       <a class="jiathis_counter_style"></a>
+               </div></p>
+               <script type="text/javascript" src="http://v2.jiathis.com/code/jia.js" charset="utf-8"></script> 
+            
+		</div>
+	</div>
+</div>
+
+<div id="commend" style="background-color:#9cb80c">
+	<div class="shop_watch_main_style" style="color:white;font-weight:bold">
+		产品参数
+	</div>
+</div>
+<div id="shop_watch_main">
+	<div class="shop_watch_main_style">
+		<p><span style="font-weight:bold;padding-left:10px">商品名称：</span>大学时光</p>
+		<p><span style="font-weight:bold;padding-left:10px">品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌：</span>大学时光(CollegeLife)</p>
+		<p><span style="font-weight:bold;padding-left:10px">分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类：</span>乳液</p>
+		<p><span style="font-weight:bold;padding-left:10px">功&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;效：</span>保湿</p>
+		<p><span style="font-weight:bold;padding-left:10px">产品规格：</span>250ml</p>
+		<p><span style="font-weight:bold;padding-left:10px">原&nbsp;&nbsp;产&nbsp;地：</span>中国广州</p>
+		<p><span style="font-weight:bold;padding-left:10px">保质期限：</span>3年</p>
+		<p><span style="font-weight:bold;padding-left:10px">适用人群：</span>干性及混合性肌肤</p>
+		<p><span style="font-weight:bold;padding-left:10px">特别说明：</span>本产品为全新无盒有塑封</p>
+
+	</div>
+</div>
+
+
+<div id="commend_boxs" onclick="show_commend()">
+	<div class="shop_watch_main_style" style="color:white;font-weight:bold" id="msg_commend">
+		评论消息▼
+	</div>
+</div>
+<div id="commend">
+	<div class="shop_watch_main_style">
+		<form action="" method="POST">
+			<input type="text" name="commend" id="commend_box" class="bar" style="width:400px;height:25px" onblur="if(this.value==''){this.value='发表评论'};" onfocus="if(this.value=='发表评论'){this.value=''};" value="发表评论">
+			<input type="submit" name="" value="评论" class="btn" onclick="return check_commend()">
+		</form>
+	</div>
+</div>
+
+
+<div id="all_comment_line">
+	<!-- 评论输出 -->
+	<div id="commend_line">
+		<div class="shop_watch_main_style_commend">
+			<strong>XXX</strong> 在 <span style="color:#999999">2012-12-12 12:12:12</span> 发表：
+			<p>1评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</p>
+		</div>
+	</div>
+
+	<div id="commend_line">
+		<div class="shop_watch_main_style_commend">
+			<strong>XXX</strong> 在 <span style="color:#999999">2012-12-12 12:12:12</span> 发表：
+			<p>2评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</p>
+		</div>
+	</div>
+
+	<!-- 评论输出结束 -->
+</div>
+
+
+<div id="shop_watch_main" style="margin-bottom:0px">
+	<div class="shop_watch_main_style">
+		<img src="__PUBLIC__/images/bg_1.jpg" width="1035">
+		<img src="__PUBLIC__/images/bg_2.jpg" width="1035">
+	</div>
+</div>

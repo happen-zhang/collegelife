@@ -1,7 +1,10 @@
 <?php
 /**
  * 生成<a>标签
- * @params 
+ * @param  string $text
+ * @param  string $url
+ * @param  string $options
+ * @return string
  */
 function link_to($text, $url, $options) {
     if (is_array($options)) {
