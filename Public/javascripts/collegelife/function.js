@@ -4,6 +4,16 @@ Date:12/25 2013
 North studio 21
  */
 
+String.prototype.trim=function(){
+　 return this.replace(/(^\s*)|(\s*$)/g, "");
+}
+String.prototype.ltrim=function(){
+　 return this.replace(/(^\s*)/g,"");
+}
+String.prototype.rtrim=function(){
+　 return this.replace(/(\s*$)/g,"");
+}
+
 function animation_top_start(){
 	$(document).ready(function(){
 		$("#top").slideToggle("slow");
@@ -106,18 +116,35 @@ function createCode(){
 
 function check_login(){
 	var inputCode=document.getElementById("input1").value.toUpperCase();
-	var name=document.getElementById("login_name").value;
-	var password=document.getElementById("login_psd").value;
+	var name=document.getElementById("login_name").value.trim();
+	var password=document.getElementById("login_psd").value.trim();
+	var regTest = /^[a-zA-Z0-9]+$/;
 
 	if(name == ""){
 		alert("请输入您的昵称");
 		createCode();
 		return false;
-	}else if(password == ""){
+	} else if (name.length < 6 || name.length > 24) {
+		alert("昵称长度必须在6~24个字符之间");
+		createCode();
+		return false;		
+	} else if (false == regTest.test(name)) {
+		alert("昵称只能包含字母和数字");
+		createCode();
+		return false;	
+	} else if(password == "") {
 		alert("请输入您的登录密码");
 		createCode();
 		return false;
-	}else if(inputCode.length <=0) {
+	} else if (password.length < 6 || name.length > 24) {
+		alert("密码长度必须在6~24个字符之间");
+		createCode();
+		return false;
+	} else if (false == regTest.test(password)) {
+		alert("密码昵称只能包含字母和数字");
+		createCode();
+		return false;
+	} else if(inputCode.length <=0) {
 	   alert("请输入验证码");
 	   return false;
 	}else if(inputCode != code ){
@@ -125,45 +152,70 @@ function check_login(){
 	   createCode();
 	   return false;
 	}
-
-}
-
-String.prototype.Trim = function() {
-	return this.replace(/(^\s*)|(\s*$)/g, "");
-}
-
-String.prototype.LTrim = function() {
-	return this.replace(/(^\s*)/g, "");
-}
-
-String.prototype.RTrim = function() {
-	return this.replace(/(\s*$)/g, "");
 }
 
 function check_reg(){
-	var name=document.getElementById("reg_name").value.Trim();
-	var psd1=document.getElementById("reg_psd").value.Trim();
-	var psd2=document.getElementById("reg_psd2").value.Trim();
-	var email=document.getElementById("reg_email").value.Trim();
-	var real=document.getElementById("reg_realname").value.Trim();
-	var tel_full = document.getElementById("tel_full").value.Trim();
+	var name=document.getElementById("reg_name").value.trim();
+	var psd1=document.getElementById("reg_psd").value.trim();
+	var psd2=document.getElementById("reg_psd2").value.trim();
+	var email=document.getElementById("reg_email").value.trim();
+	var real=document.getElementById("reg_realname").value.trim();
+	var tel_full = document.getElementById("tel_full").value.trim();
+	var tel_brief = document.getElementById("tel_brief").value.trim();
+	var dormitory_no = document.getElementById("dormitory_no").value.trim();
+
+	var regNumLetter = /^[a-zA-Z0-9]+$/;
+	var regNum = /^[0-9]+$/;
+	var regMail = /^\w+((-\w+)|(\.\w+))*\@{1}\w+\.{1}\w{2,4}(\.{0,1}\w{2}){0,1}/ig;
+	var regSpecialChars = new RegExp(/^(([^\^\.<>%&',;=?$"':#@!~\]\[{}\\/`\|])*)$/);
+
 	if(name == ""){
 		alert("请输入您的昵称");
 		return false;
-	}else if(psd1 == "" || psd2 == ""){
+	} if (name.length > 24 || name.length < 6) {
+		alert("昵称长度必须在6~24个字符之间");
+		return false;
+	} else if (!regNumLetter.test(name)) {
+		alert("昵称只能包含字母和数字");
+		return false;
+	} else if(psd1 == "" || psd2 == ""){
 		alert("您的注册密码不能为空");
 		return false;
-	}else if(psd1.length < 6 || psd1.length > 20){
-		alert("您的注册密码长度不符合要求");
+	} else if(psd1.length < 6 || psd1.length > 24){
+		alert("密码长度必须在6~24个字符之间");
 		return false;
-	}else if(psd1 != psd2){
+	} else if (!regNumLetter.test(psd1)) {
+		alert("密码只能包含字母和数字");
+		return false;
+	} else if(psd1 != psd2) {
 		alert("您两次输入的密码不一致");
 		return false;
-	}else if(email == ""){
+	} else if(email == "") {
 		alert("请输入您的邮箱");
 		return false;
-	}else if(real == ""){
+	} else if (!regMail.test(email)) {
+		alert("邮箱格式不正确");
+		return false;		
+	} else if(real == "") {
 		alert("请输入您的真实姓名");
+		return false;
+	} else if (!real.match(regSpecialChars)) {
+		alert("真实姓名不能包含特殊字符");
+		return false;		
+	} else if (tel_full != "" && tel_full.length < 6) {
+		alert("请填写正确的长号");
+		return false;	
+	} else if (tel_full != "" && !regNum.test(tel_full)) {
+		alert("请填写正确的长号");
+		return false;			
+	} else if (tel_brief != "" && tel_brief.length < 6) {	
+		alert("请填写正确的短号");
+		return false;	
+	} else if (tel_brief != "" && !regNum.test(tel_brief)) {
+		alert("请填写正确的短号");
+		return false;			
+	} else if (dormitory_no == "" || !regNum.test(dormitory_no)) {
+		alert("请填写正确的宿舍号");
 		return false;
 	}
 }

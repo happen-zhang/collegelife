@@ -2,8 +2,8 @@
 namespace Home\Controller;
 
 /**
- * ShopsController
- */
+* ShopsController
+*/
 class ShopsController extends CommonController {
     public function _initialize() {
         parent::_initialize();
@@ -17,31 +17,31 @@ class ShopsController extends CommonController {
     }
 
     /**
-     * 用户订单列表
-     * @return
-     */
+    * 用户订单列表
+    * @return
+    */
     public function index() {
         $this->display();
     }
 
     /**
-     * 用户单个订单信息
-     * @return
-     */
+    * 用户单个订单信息
+    * @return
+    */
     public function show() {
         $this->display();
     }
 
     /**
-     * 商品购买
-     * @return [type] [description]
-     */
+    * 商品购买
+    * @return
+    */
     public function build() {
         $this->display();
     }
 
     public function create() {
-        
+
     }
 
     public function edit() {
@@ -49,6 +49,6 @@ class ShopsController extends CommonController {
     }
 
     public function destory() {
-        
+
     }
 }

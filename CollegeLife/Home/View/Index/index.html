@@ -51,7 +51,7 @@
 	        	  <p>您的昵称：<input type="text" name="user[username]" class="bar" id="reg_name"> <span style="color:yellow">*</span></p>
 		          <p>您的密码：<input type="password" name="user[password]" class="bar" id="reg_psd" onkeydown="index_show(4)"> <span style="color:yellow">*</span></p>
 		          <div id="psd_forget" class="hide">
-		            <div class="psd_forget_style">[密码长度为6-20位]</div>
+		            <div class="psd_forget_style">[密码长度为6-24位]</div>
 		          </div>
 		          <p>重复密码：<input type="password" name="user[confirmation_password]" class="bar" id="reg_psd2"> <span style="color:yellow">*</span></p>
 		          <p>电子邮箱：<input type="text" name="user[email]" class="bar" id="reg_email"> <span style="color:yellow">*</span></p>
@@ -69,7 +69,7 @@
 		            <option value="联通">联通</option>
 		          </select>
 		          长号：<input type="text" name="user[tel_full]" id="tel_full" class="bar" style="width:100px">
-		          短号：<input type="text" name="user[tel_brief]" class="bar" style="width:68px">
+		          短号：<input type="text" name="user[tel_brief]" id="tel_brief" class="bar" style="width:68px">
 		          </p>
 		          <p>宿舍地址：<select name="user[building_no]" class="bar" style="width:80px">
 		            <?php
@@ -80,7 +80,7 @@
 		            }
 		            ?>
 		          </select>
-		          宿舍号：<input type="text" name="user[dormitory_no]" class="bar" style="width:115px">
+		          宿舍号：<input type="text" name="user[dormitory_no]" id="dormitory_no" class="bar" style="width:115px">
 		          </p>
 		          <div id="psd_forget">
 		              <div class="psd_forget_style">已有账号？请 <a href="#" onClick="loginBox1.style.display='none';bgDiv1.style.display='none';loginBox.style.display='';bgDiv.style.display=''">登录</a></div>

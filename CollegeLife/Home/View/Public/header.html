@@ -39,8 +39,8 @@
 			{:menu_style_link('首页', U('Index/index'), array(), 'Index/index', $Think.CONTROLLER_NAME.'/'.$Think.ACTION_NAME)}
 			<if condition = 'isset($home) eq true '>
 				<notpresent name="Think.session.username">
-					<a href="#" onClick="bgDiv.style.display='';loginBox.style.display='';">登录</a>
-					<a href="#" onClick="bgDiv1.style.display='';loginBox1.style.display='';">注册</a>
+					<a href="javascript:void(0);" onClick="bgDiv.style.display='';loginBox.style.display='';">登录</a>
+					<a href="javascript:void(0);" onClick="bgDiv1.style.display='';loginBox1.style.display='';">注册</a>
 				</notpresent>
 			</if>
 			{:menu_style_link('进入商城', U('Index/shopCenter'), array(), 'Index/shopCenter/Shops', $Think.CONTROLLER_NAME.$Think.ACTION_NAME)}
