@@ -5,6 +5,10 @@ namespace Home\Controller;
 * 静态页面控制器
 */
 class IndexController extends CommonController {
+    /**
+     * 首页
+     * @return
+     */
     public function index(){
         // 只有在首页时才显示“登陆”和“注册”
         $this->assign('home', 'home');
@@ -14,7 +18,7 @@ class IndexController extends CommonController {
 
     /**
     * 商城
-    * @return 
+    * @return
     */
     public function shopCenter() {
         $this->display();

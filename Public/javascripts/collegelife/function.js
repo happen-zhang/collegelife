@@ -236,34 +236,73 @@ function index_bg(id){
 }
 
 function check_info(){
-	var name=document.getElementById("info_name").value;
-	var email=document.getElementById("info_email").value;
-	if(name == ""){
-		alert("请输入您的真实姓名");
-		return false;
-	}else if(email == ""){
+	var email=document.getElementById("email").value.trim();
+	var real=document.getElementById("real_name").value.trim();
+	var tel_full = document.getElementById("tel_full").value.trim();
+	var tel_brief = document.getElementById("tel_brief").value.trim();
+	var dormitory_no = document.getElementById("dormitory_no").value.trim();
+
+	var regNumLetter = /^[a-zA-Z0-9]+$/;
+	var regNum = /^[0-9]+$/;
+	var regMail = /^\w+((-\w+)|(\.\w+))*\@{1}\w+\.{1}\w{2,4}(\.{0,1}\w{2}){0,1}/ig;
+	var regSpecialChars = new RegExp(/^(([^\^\.<>%&',;=?$"':#@!~\]\[{}\\/`\|])*)$/);
+
+    if(email == "") {
 		alert("请输入您的邮箱");
 		return false;
-	}
+	} else if (!regMail.test(email)) {
+		alert("邮箱格式不正确");
+		return false;		
+	} else if(real == "") {
+		alert("请输入您的真实姓名");
+		return false;
+	} else if (!real.match(regSpecialChars)) {
+		alert("真实姓名不能包含特殊字符");
+		return false;		
+	} else if (tel_full != "" && tel_full.length < 6) {
+		alert("请填写正确的长号");
+		return false;	
+	} else if (tel_full != "" && !regNum.test(tel_full)) {
+		alert("请填写正确的长号");
+		return false;			
+	} else if (tel_brief != "" && tel_brief.length < 6) {	
+		alert("请填写正确的短号");
+		return false;	
+	} else if (tel_brief != "" && !regNum.test(tel_brief)) {
+		alert("请填写正确的短号");
+		return false;			
+	} else if (dormitory_no == "" || !regNum.test(dormitory_no)) {
+		alert("请填写正确的宿舍号");
+		return false;
+	}	
 }
 
 function check_psd(){
-	var psd1=document.getElementById("info_psd1").value;
-	var psd2=document.getElementById("info_psd2").value;
-	var psd3=document.getElementById("info_psd3").value;
-	if(psd1 == ""){
-		alert("请输入您的原密码");
+	var origin_psd=document.getElementById("origin_password").value.trim();
+	var psd1=document.getElementById("password").value.trim();
+	var psd2=document.getElementById("confirmation_password").value.trim();
+
+	var regNumLetter = /^[a-zA-Z0-9]+$/;
+
+    if(origin_psd == "") {
+    	alert("原密码不能为空");
+    	return false;
+    } else if (origin_psd.length < 6 || origin_psd.length > 24) {
+    	alert("原密码长度必须在6~24个字符之间");
+    	return false;
+    } else if (!regNumLetter.test(origin_psd)) {
+		alert("原密码只能包含字母和数字");
+    	return false;    	
+    } else if(psd1 == "" || psd2 == ""){
+		alert("密码不能为空");
 		return false;
-	}else if(psd2 == ""){
-		alert("请输入您的新密码");
+	} else if(psd1.length < 6 || psd1.length > 24){
+		alert("密码长度必须在6~24个字符之间");
 		return false;
-	}else if(psd3 == ""){
-		alert("请确认您的新密码");
+	} else if (!regNumLetter.test(psd1)) {
+		alert("密码只能包含字母和数字");
 		return false;
-	}else if(psd2.length < 6 || psd2.length > 20){
-		alert("您的新密码长度不符合要求");
-		return false;
-	}else if(psd2 != psd3){
+	} else if(psd1 != psd2) {
 		alert("您两次输入的密码不一致");
 		return false;
 	}

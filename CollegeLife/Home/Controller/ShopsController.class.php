@@ -5,6 +5,10 @@ namespace Home\Controller;
 * ShopsController
 */
 class ShopsController extends CommonController {
+    /**
+     * _initialize
+     * @return
+     */
     public function _initialize() {
         parent::_initialize();
 

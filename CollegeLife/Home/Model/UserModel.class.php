@@ -14,18 +14,18 @@ class UserModel extends Model {
     // array(验证字段, 验证规则, 错误信息, 验证条件, 附加规则, 验证时间)
     protected $_validate = array(
         // 用户名为空验证
-        array('username', 'require', '用户名不能为空！', 1, 'regex', 3),
+        array('username', 'require', '用户名不能为空！', 1, 'regex', 1),
         // 用户名长度验证
         array('username', '6, 24', '用户名长度只能在6~24个字符之间！',
-              1, 'length', 3),
+              1, 'length', 1),
         // 用户名只能包含数字和字母
         array('username', 'validNumLetter', '用户名只能是数字和字母组成！', 1, 
-              'callback', 3),
+              'callback', 1),
         // 用户名唯一验证
-        array('username', '', '用户名已经存在！', 1, 'unique', 3),
+        array('username', '', '用户名已经存在！', 1, 'unique', 1),
         // 密码为空验证，新增时才验证
         array('password', 'require', '用户密码不能为空！', 1, 'require',
-              1, 'regex', 1),
+              1, 'regex', 3),
         // 密码长度验证
         array('password', '6, 24', '用户密码长度只能在6~24个字符之间！',
               1, 'length', 3),
@@ -38,8 +38,10 @@ class UserModel extends Model {
         array('email', 'email', '邮箱格式不正确！', 1, 'regex', 3),
         // email长度验证
         array('email', '6, 128', '邮箱长度只能在6~128个字符之间！', 1, 'length', 3),
-        // email唯一验证
-        array('email', '', 'email已经存在！', 1, 'unique', 3),
+        // email唯一验证，新增数据
+        array('email', '', 'email已经存在！', 1, 'unique', 1),
+        // email唯一验证，更新数据
+        array('email', 'uniqueEmail', 'email已经存在！', 1, 'callback', 2),
         // 真实姓名长度验证，不为空时验证
         array('real_name', '2, 8', '真实姓名长度只能在2~8个字符之间！', 2, 
               'length', 3),
@@ -48,7 +50,7 @@ class UserModel extends Model {
         //      'callback', 3),
         // 号码类型验证，不为空时验证
         array('tel_type', array('移动', '联通'), '号码类型只能为<移动>或者<联通>！',
-              2, 'in', 2),
+              2, 'in', 3),
         // 长号数字验证 ，不为空时验证
         array('tel_full', 'number', '号码必须是数字！', 2, 'regex', 3),
         // 短号数字验证，不为空时验证
@@ -67,7 +69,7 @@ class UserModel extends Model {
         // 注册时间
         array('register_time', 'datetime', 1, 'callback'),
         // 转义特殊字符
-        array('username', 'filterSpecialChars', 3, 'callback'),
+        array('username', 'filterSpecialChars', 1, 'callback'),
         array('password', 'filterSpecialChars', 3, 'callback'),
         array('real_name', 'filterSpecialChars', 3, 'callback'),
         // 密码md5
@@ -90,8 +92,8 @@ class UserModel extends Model {
 
     /**
      * 正则验证不包含特殊字符
-     * @param  [type] $src [description]
-     * @return [type]      [description]
+     * @param  string $src
+     * @return boolean
      */
     protected function unvalidSpecialChars($src) {
         $partten = "/^(([^\^\.<>%&',;=?$\"':#@!~\]\[{}\\/`\|])*)$/";
@@ -117,5 +119,25 @@ class UserModel extends Model {
     */
     protected function filterSpecialChars($src) {
         return sql_injection(htmlspecialchars($src));
+    }
+
+    /**
+     * 验证email唯一
+     * @return boolean
+     */
+    protected function uniqueEmail($email) {
+        if (!isset($_SESSION['uid'])) {
+            return false;
+        }
+
+        $User = M('User');
+        $where['uuid'] = array('neq', $_SESSION['uid']);
+        $where['email'] = array('eq', $email);
+        if ($User->where($where)->find()) {
+            // email已经存在
+            return false;
+        }
+
+        return true;
     }
 }

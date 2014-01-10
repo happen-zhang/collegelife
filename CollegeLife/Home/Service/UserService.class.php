@@ -21,12 +21,15 @@ class UserService extends Model {
         $user['is_active'] = 1;
 
         $User = M('User');
-        $result = $User->where($user)->find();
+        $result = $User->where($user)
+                       ->field(array('uuid', 'username'))->find();
         if (!empty($result)) {
-            $_SESSION['username'] = $user['username'];
+            // session
+            $_SESSION['username'] = $result['username'];
             $_SESSION[C('SESSION_AUTH_KEY_NAME')]
-                     = md5($user['username'] . C('COOKIE_NAME'));
-
+                     = md5($result['username'] . C('COOKIE_NAME'));
+            $_SESSION['uid'] = $result['uuid'];
+            
             return true;
         } else {
             // 密码错误
@@ -42,5 +45,6 @@ class UserService extends Model {
         // 清除session
         unset($_SESSION['username']);
         unset($_SESSION[C('SESSION_AUTH_KEY_NAME')]);
+        unset($_SESSION['uid']);
     }
 }

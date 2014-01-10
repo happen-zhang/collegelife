@@ -47,9 +47,4 @@ class PublicController extends CommonController {
         D('User', 'Service')->logout();
         $this->success('登出成功！', U('Index/index'));
     }
-
-    public function test() {
-        echo var_export('   asdasd    ', false);
-        var_dump($_SESSION);
-    }
 }

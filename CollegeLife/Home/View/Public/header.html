@@ -8,19 +8,19 @@
 <div id="top">
 	<div id="top_msg">
 		<div class="top_box_style">
-			<if condition = "isset($_SESSION['username']) eq true">
-				欢迎回来 <a href='info.php' title='查看个人账户'>{$_SESSION['username']}</a>&nbsp;&nbsp;
+			<present name="Think.session.uid">
+				欢迎回来 <a href="{:U('Users/edit', array('uid' => $_SESSION['uid']))}" title='查看个人账户'>{$_SESSION['username']}</a>&nbsp;&nbsp;
 <!--
 				<a href="msg_watch.php?id='.$msg_id.'"><strong>最新通知：HHHH</strong></a>
 -->
-			</if>
+			</present>
 		</div>
 	</div>
 	<div id="top_box">	
 		<div class="top_box_style">
-			<present name="Think.session.username">
-				<span><a href="{:U('Shops/index')}">查看订单</a></span>
-				<span><a href="{:U('Users/edit')}">个人账户</a></span>
+			<present name="Think.session.uid">
+				<span><a href="{:U('Shops/index', array('uid' => $_SESSION['uid']))}">查看订单</a></span>
+				<span><a href="{:U('Users/edit', array('uid' => $_SESSION['uid']))}">个人账户</a></span>
 				<span><a href="{:U('Public/logout')}">登出</a></span>	
 			<else />
 				<span><a href="{:U('Index/index')}">首页登录</a></span>
@@ -37,12 +37,12 @@
 	<div id="menu_btn">
 		<div class="menu_btn_style">
 			{:menu_style_link('首页', U('Index/index'), array(), 'Index/index', $Think.CONTROLLER_NAME.'/'.$Think.ACTION_NAME)}
-			<if condition = 'isset($home) eq true '>
-				<notpresent name="Think.session.username">
+			<present name="home">
+				<notpresent name="Think.session.uid">
 					<a href="javascript:void(0);" onClick="bgDiv.style.display='';loginBox.style.display='';">登录</a>
 					<a href="javascript:void(0);" onClick="bgDiv1.style.display='';loginBox1.style.display='';">注册</a>
 				</notpresent>
-			</if>
+			</present>
 			{:menu_style_link('进入商城', U('Index/shopCenter'), array(), 'Index/shopCenter/Shops', $Think.CONTROLLER_NAME.$Think.ACTION_NAME)}
 			{:menu_style_link('关于大学时光', U('Index/about'), array(), 'Index/about', $Think.CONTROLLER_NAME.'/'.$Think.ACTION_NAME)}
 			{:menu_style_link('联系我们', U('Index/contact'), array(), 'Index/contact', $Think.CONTROLLER_NAME.'/'.$Think.ACTION_NAME)}

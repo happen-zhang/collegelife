@@ -2,14 +2,16 @@
 	<div id="reply">
 		<div class="reply_style">
 
-			登录成功！欢迎您回来 <?php echo $name; ?>
-			<p>您可以执行以下操作：</p>
-			<p><a href="{:U('Index/shopCenter')}">进入商城</a> <a href="{:U('Shops/index')}">查看订单</a> <a href="{:U('Users/edit')}">修改个人信息</a></p>
-<!-- 注册成功
-			注册成功！感谢您对大学时光的支持！
-			<p>您可以执行以下操作：</p>
-			<p><a href="shop.php">进入商城</a> <a href="shop_list.php">查看订单</a> <a href="info.php">修改个人信息</a></p>
--->
+			<present name="Think.get.status">
+				注册成功！感谢您对大学时光的支持！
+				<p>您可以执行以下操作：</p>
+				<p><a href="{:U('Index/shopCenter')}">进入商城</a> <a href="{:U('Shops/index', array('uid' => $_SESSION['uid']))}">查看订单</a> <a href="{:U('Users/edit', array('uid' => $_SESSION['uid']))}">修改个人信息</a></p>
+			<else />
+				登录成功！欢迎您回来 <?php echo $name; ?>
+				<p>您可以执行以下操作：</p>
+				<p><a href="{:U('Index/shopCenter')}">进入商城</a> <a href="{:U('Shops/index', array('uid' => $_SESSION['uid']))}">查看订单</a> <a href="{:U('Users/edit', array('uid' => $_SESSION['uid']))}">修改个人信息</a></p>			
+			</present>
+
 		</div>
 	</div>
 </div>
