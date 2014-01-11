@@ -13,8 +13,8 @@ class UsersController extends CommonController {
         parent::_initialize();
 
         if (ACTION_NAME != 'create') {
-        // 注册用户不需访问过滤
-        $this->accessFilter();
+            // 注册用户不需访问过滤
+            $this->accessFilter();
         }
     }
 

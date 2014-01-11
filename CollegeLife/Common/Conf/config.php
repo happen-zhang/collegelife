@@ -8,7 +8,7 @@ $appConfig =  array(
     'SHOW_PAGE_TRACE' =>true,
 
     // 默认模块和Action
-    'MODULE_ALLOW_LIST' => 'Home',
+    'MODULE_ALLOW_LIST' => array('Home', 'Mobile'),
     'DEFAULT_MODULE' => 'Home',
 
     // 开启路由
