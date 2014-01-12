@@ -10,9 +10,10 @@
 		<div class="top_box_style">
 			<present name="Think.session.uid">
 				欢迎回来 <a href="{:U('Users/edit', array('uid' => $_SESSION['uid']))}" title='查看个人账户'>{$_SESSION['username']}</a>&nbsp;&nbsp;
-<!--
-				<a href="msg_watch.php?id='.$msg_id.'"><strong>最新通知：HHHH</strong></a>
--->
+
+                <if condition = "is_null(cookie('latest_msg')) eq false">
+				    <a href="msg_watch.php?id='.$msg_id.'"><strong>最新通知：{:cookie('latest_msg')}</strong></a>
+                </if>
 			</present>
 		</div>
 	</div>

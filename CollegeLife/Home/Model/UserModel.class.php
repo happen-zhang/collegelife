@@ -67,7 +67,7 @@ class UserModel extends Model {
         // 生成uuid
         array('uuid', 'uuid', 1, 'function'),
         // 注册时间
-        array('register_time', 'datetime', 1, 'callback'),
+        array('created_at', 'datetime', 1, 'callback'),
         // 转义特殊字符
         array('username', 'filterSpecialChars', 1, 'callback'),
         array('password', 'filterSpecialChars', 3, 'callback'),

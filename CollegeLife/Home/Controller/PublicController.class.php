@@ -33,6 +33,6 @@ class PublicController extends CommonController {
     }
 
     public function test() {
-        $this->display();
+        var_dump(cookie('name'));
     }
 }

@@ -8,11 +8,24 @@ use Think\Controller;
 */
 class CommonController extends Controller {
     /**
-    * utf-8编码
+    * 全局初始化
     * @return
     */
     public function _initialize() {
+        // utf-8编码
         header('Content-Type: text/html; charset=utf-8');
+
+        // 初始化最新信息，保存到cookie
+        if (is_null(cookie('latest_msg'))) {
+            $Message = M('Message');
+            // 取出最新的一条
+            $lastestMsg = $Message->order('created_at DESC')->find();
+
+            if ($lastestMsg) {
+                // 设置到cookie
+                cookie('latest_msg', $lastestMsg['content']);
+            }
+        }
     }
 
     /**
