@@ -12,8 +12,9 @@ class UsersController extends CommonController {
     public function _initialize() {
         parent::_initialize();
 
-        if (ACTION_NAME != 'create') {
-            // 注册用户不需访问过滤
+        // 需要登陆才能操作的ACTION_NAME
+        $filterActions = array('index', 'edit', 'update');
+        if (true == in_array(ACTION_NAME, $filterActions)) {
             $this->accessFilter();
         }
     }

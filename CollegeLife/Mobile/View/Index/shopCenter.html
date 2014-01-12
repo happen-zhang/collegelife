@@ -1,0 +1,30 @@
+<div id="add_search">
+	<form action="deal/search.php" method="POST">	
+		<input type="text" name="name" class="add_search_bar" onblur="if(this.value==''){this.value='商品名称'};" onfocus="if(this.value=='商品名称'){this.value=''};" value="商品名称">
+		<select name="kinds" class="add_search_select">
+			<option value="护肤品">类型：护肤品</option>
+			<option value="面膜">类型：面膜</option>
+		</select>
+		<input type="submit" name="submit" value="搜索" class="add_search_btn">
+	</form>
+</div>
+
+<div class="add_line"></div>
+<div class="add_img">
+	<a href="{:U('Shops/build')}"><img src="__PUBLIC__/images/bg_1.jpg" width="100%" border="0"></a>
+</div>
+<div class="add_shop_style">
+	<a href="{:U('Shops/build')}">商品名称</a>
+	<p>类型：<a href="#">护肤品</a>
+	价格：<span style="color:#9e0000">&yen;20.00</span></p>
+</div>
+
+<div class="add_line"></div>
+<div class="add_img">
+	<a href="{:U('Shops/build')}"><img src="__PUBLIC__/images/bg_2.jpg" width="100%" border="0"></a>
+</div>
+<div class="add_shop_style">
+	<a href="{:U('Shops/build')}">商品名称</a>
+	<p>类型：<a href="#">护肤品</a>
+	价格：<span style="color:#9e0000">&yen;20.00</span></p>
+</div>

@@ -2,35 +2,6 @@
 include 'helper.php';
 
 /**
-* header.html
-* 生成menu中当前位置的链接 
-* @param  string $text
-* @param  string $url
-* @param  array $options
-* @param  string $bind_name
-* @param  string $target_name
-* @return string
-*/
-function menu_style_link($text, $url, $options, $bind_name, $src_name) {
-    $style = array('style' => 'background-color:#9cb80c;color:white');
-    if (strpos($bind_name, 'Shops') !== false) {
-        if (strpos($src_name, 'Shops') !== false) {
-            $options = array_merge($options, $style);
-        } elseif (strpos($src_name, 'shopCenter')) {
-            $src_name .= '/Shops';
-        }
-    }
-
-    if ($bind_name == $src_name 
-        || (strpos($bind_name, 'Shops') !== false)
-        && (strpos($src_name, 'Shops') !== false)) {
-            $options = array_merge($options, $style);
-    }
-
-    return link_to($text, $url, $options);
-}
-
-/**
 * 防sql注入
 * @param  string $content
 * @return string

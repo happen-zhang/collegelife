@@ -95,14 +95,14 @@ class UserModel extends Model {
      * @param  string $src
      * @return boolean
      */
-    protected function unvalidSpecialChars($src) {
-        $partten = "/^(([^\^\.<>%&',;=?$\"':#@!~\]\[{}\\/`\|])*)$/";
-        if (!preg_match($partten, $src)) {
-            return true;
-        }
-
-        return false;
-    }
+    // protected function unvalidSpecialChars($src) {
+    //    $partten = "/^(([^\^\.<>%&',;=?$\"':#@!~\]\[{}\\\/`\|])*)$/";
+    //    if (!preg_match($partten, $src)) {
+    //        return true;
+    //    }
+    //
+    //    return false;
+    // }
 
     /**
     * 生成datetime

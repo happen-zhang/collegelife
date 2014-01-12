@@ -1,38 +1,14 @@
-function url_change(ids){
+function url_change(url){
 	$(document).ready(function(){
 		$("#box").animate({left:"-2000px"},800);
 	})
-	times=setTimeout("url_change_animation("+ids+")",800);
+
+	times=setTimeout("url_change_animation('"+url+"')",800);
 }
 
 
-function url_change_animation(id){
-	switch(id){
-		case 1:
-			window.location.href="index.php";
-			break;
-		case 2:
-			window.location.href="register.php";
-			break;
-		case 3:
-			window.location.href="shop.php";
-			break;
-		case 4:
-			window.location.href="about.php";
-			break;
-		case 5:
-			window.location.href="contact.php";
-			break;
-		case 6:
-			window.location.href="shop_list.php";
-			break;
-		case 7:
-			window.location.href="info.php";
-			break;
-		case 8:
-			window.location.href="deal/logout.php";
-			break;
-	}
+function url_change_animation(url){
+	window.location.href=url;
 }
 
 function check_login(){

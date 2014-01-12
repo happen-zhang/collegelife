@@ -1,29 +1,29 @@
 <h2>大学时光 <span style="font-size:12px;letter-spacing:1px">移动站</span></h2>
 
 <div id="add_menu">
-	<div class="lineStyle" onclick="url_change(1)">
-		<div class="lineStyle_inside" style="background-color:#3eb5d4">
-			<center><a href="javascript:url_change(1)">主页</a></center>
+	<div class="lineStyle" onclick="url_change('{:U('Index/index')}')">
+		<div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Index/index') { ?>style="background-color:#3eb5d4"<?php } ?>>
+			<center><a href="{:U('Index/index')}">主页</a></center>
 		</div>
 	</div>
-	<div class="lineStyle" onclick="url_change(2)">
-		<div class="lineStyle_inside">
-			<center><a href="javascript:url_change(2)">注册</a></center>
+	<div class="lineStyle" onclick="url_change('{:U('Users/news')}')">
+		<div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Users/news') { ?>style="background-color:#3eb5d4"<?php } ?>>
+			<center><a href="javascript:url_change('{:U('Users/news')}')">注册</a></center>
 		</div>
 	</div>
-	<div class="lineStyle" onclick="url_change(3)">
-		<div class="lineStyle_inside">
-			<center><a href="javascript:url_change(3)">商城</a></center>
+	<div class="lineStyle" onclick="url_change('{:U('Index/shopCenter')}')">
+		<div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Index/shopCenter' || CONTROLLER_NAME == 'Shops') { ?>style="background-color:#3eb5d4"<?php } ?>>
+			<center><a href="javascript:url_change('{:U('Index/shopCenter')}')">商城</a></center>
 		</div>
 	</div>
-	<div class="lineStyle" onclick="url_change(4)">
-		<div class="lineStyle_inside">
-			<center><a href="javascript:url_change(4)">关于</a></center>
+	<div class="lineStyle" onclick="url_change('{:U('Index/about')}')">
+		<div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Index/about') { ?>style="background-color:#3eb5d4"<?php } ?>>
+			<center><a href="javascript:url_change('{:U('Index/about')}')">关于</a></center>
 		</div>
 	</div>
-	<div class="lineStyle" onclick="url_change(5)">
-		<div class="lineStyle_inside">
-			<center><a href="javascript:url_change(5)">联系</a></center>
+	<div class="lineStyle" onclick="url_change('{:U('Index/contact')}')">
+		<div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Index/contact') { ?>style="background-color:#3eb5d4"<?php } ?>>
+			<center><a href="javascript:url_change('{:U('Index/contact')}')">联系</a></center>
 		</div>
 	</div>
 </div>

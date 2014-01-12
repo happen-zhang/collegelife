@@ -6,22 +6,6 @@ namespace Home\Controller;
 */
 class PublicController extends CommonController {
     /**
-    * 渲染header
-    * @return
-    */
-    public function header() {
-        $this->display();
-    }
-
-    /**
-    * 渲染footer
-    * @return
-    */
-    public function layout() {
-        $this->display();
-    }
-
-    /**
     * 用户登录
     * @return
     */
@@ -46,5 +30,9 @@ class PublicController extends CommonController {
         // 用户登出
         D('User', 'Service')->logout();
         $this->success('登出成功！', U('Index/index'));
+    }
+
+    public function test() {
+        $this->display();
     }
 }
