@@ -68,6 +68,8 @@ class UserModel extends Model {
         array('uuid', 'uuid', 1, 'function'),
         // 注册时间
         array('created_at', 'datetime', 1, 'callback'),
+        // 修改时间
+        array('updated_at', 'datetime', 2, 'callback'),
         // 转义特殊字符
         array('username', 'filterSpecialChars', 1, 'callback'),
         array('password', 'filterSpecialChars', 3, 'callback'),

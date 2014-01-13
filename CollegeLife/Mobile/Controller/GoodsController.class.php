@@ -2,8 +2,8 @@
 namespace Mobile\Controller;
 
 /**
- * UsersController
+ * GoodsController
  */
-class ShopsController extends \Home\Controller\ShopsController {
+class GoodsController extends \Home\Controller\GoodsController {
     // 继承Home\Controller\ShopsController
 }

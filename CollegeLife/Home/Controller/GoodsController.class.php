@@ -2,9 +2,9 @@
 namespace Home\Controller;
 
 /**
-* ShopsController
+* GoodsController
 */
-class ShopsController extends CommonController {
+class GoodsController extends CommonController {
     /**
      * _initialize
      * @return

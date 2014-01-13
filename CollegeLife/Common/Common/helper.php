@@ -29,17 +29,17 @@ function link_to($text, $url, $options) {
 */
 function menu_style_link($text, $url, $options, $bind_name, $src_name) {
     $style = array('style' => 'background-color:#9cb80c;color:white');
-    if (strpos($bind_name, 'Shops') !== false) {
-        if (strpos($src_name, 'Shops') !== false) {
+    if (strpos($bind_name, 'Goods') !== false) {
+        if (strpos($src_name, 'Goods') !== false) {
             $options = array_merge($options, $style);
         } elseif (strpos($src_name, 'shopCenter')) {
-            $src_name .= '/Shops';
+            $src_name .= '/Goods';
         }
     }
 
     if ($bind_name == $src_name 
-        || (strpos($bind_name, 'Shops') !== false)
-        && (strpos($src_name, 'Shops') !== false)) {
+        || (strpos($bind_name, 'Goods') !== false)
+        && (strpos($src_name, 'Goods') !== false)) {
             $options = array_merge($options, $style);
     }
 
