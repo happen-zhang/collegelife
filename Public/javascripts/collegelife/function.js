@@ -322,10 +322,10 @@ function check_shop(){
 	}
 }
 
-function check_list(str,id){
-	var i=confirm("您确认要取消"+str+"号订单吗？");
+function check_list(id, url){
+	var i=confirm("您确认要取消"+id+"号订单吗？");
 	if(i){
-		window.location.href="deal/shop_list_deal.php?id="+id;
+		window.location.href=url;
 	}else{
 		return false;
 	}

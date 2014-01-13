@@ -6,4 +6,8 @@ namespace Mobile\Controller;
 */
 class PublicController extends \Home\Controller\PublicController {
     // 继承Home\Controller\PublicController
+    
+    public function test() {
+    	
+    }
 }

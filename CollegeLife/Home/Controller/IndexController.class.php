@@ -12,7 +12,7 @@ class IndexController extends CommonController {
     public function index(){
         // 只有在首页时才显示“登陆”和“注册”
         $this->assign('home', 'home');
-        $this->assign(C('TOKEN_NAME'), get_token(C('TOKEN_NAME')));
+        $this->assignToken();
         $this->display('index');
     }
 

@@ -20,7 +20,7 @@
 	<div id="top_box">	
 		<div class="top_box_style">
 			<present name="Think.session.uid">
-				<span><a href="{:U('Goods/index', array('uid' => $_SESSION['uid']))}">查看订单</a></span>
+				<span><a href="{:U('Orders/index', array('uid' => $_SESSION['uid']))}">查看订单</a></span>
 				<span><a href="{:U('Users/edit', array('uid' => $_SESSION['uid']))}">个人账户</a></span>
 				<span><a href="{:U('Public/logout')}">登出</a></span>	
 			<else />
@@ -44,7 +44,7 @@
 					<a href="javascript:void(0);" onClick="bgDiv1.style.display='';loginBox1.style.display='';">注册</a>
 				</notpresent>
 			</present>
-			{:menu_style_link('进入商城', U('Index/shopCenter'), array(), 'Index/shopCenter/Goods', $Think.CONTROLLER_NAME.$Think.ACTION_NAME)}
+			{:menu_style_link('进入商城', U('Index/shopCenter'), array(), 'Index/shopCenter/Orders', $Think.CONTROLLER_NAME.$Think.ACTION_NAME)}
 			{:menu_style_link('关于大学时光', U('Index/about'), array(), 'Index/about', $Think.CONTROLLER_NAME.'/'.$Think.ACTION_NAME)}
 			{:menu_style_link('联系我们', U('Index/contact'), array(), 'Index/contact', $Think.CONTROLLER_NAME.'/'.$Think.ACTION_NAME)}
 		</div>

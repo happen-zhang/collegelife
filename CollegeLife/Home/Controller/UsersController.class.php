@@ -40,8 +40,6 @@ class UsersController extends CommonController {
             if ($User->add($user)) {
                 // 注册成功，用户登录
                 D('User', 'Service')->login($_POST['user']);
-                // 提示注册成功，重定向到登陆页
-                // $this->success('注册成功，3秒后回到首页！', 'index/status/', 3);
                 $this->redirect('Users/index', array('status' => 'regist'));
             } else {
                 // 数据库错误

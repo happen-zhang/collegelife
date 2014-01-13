@@ -1,14 +1,24 @@
 <?php
 namespace Home\Model;
 
-use Think\Model;
+use Think\Model\RelationModel;
 
 /**
 * user模型
 */
-class UserModel extends Model {
+class UserModel extends RelationModel {
     // 批量验证
     protected $patchValidate = true;
+
+    // 关联模型
+    protected $_link = array(
+        // 一个用户对应多个订单
+        'orders' => array(
+            'mapping_type' => HAS_MANY,
+            'class_name' => 'order',
+            'foreign_key' => 'user_id',
+        ),
+    );
 
     // 自动验证
     // array(验证字段, 验证规则, 错误信息, 验证条件, 附加规则, 验证时间)
