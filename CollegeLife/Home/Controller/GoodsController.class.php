@@ -17,7 +17,7 @@ class GoodsController extends CommonController {
             $this->accessFilter();
         }
 
-        $this->assign('ctrl_name', 'Shops');
+        $this->assign('ctrl_name', 'Goods');
     }
 
     /**

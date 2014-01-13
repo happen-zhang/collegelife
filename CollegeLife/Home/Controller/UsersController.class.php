@@ -87,83 +87,19 @@ class UsersController extends CommonController {
             $this->redirect('Index/index');
         }
 
-        $uuid = sql_injection($_POST['uid']);
         $data = $_POST['user'];
-        $User = D('User');
+        $data['uuid'] = sql_injection($_POST['uid']);
+        $userService = D('User', 'Service');
+
         // 表单信息
         if ($_POST['info'] == 'metadata') {
-            // 修改基础信息
-            if ($user = $User->create($data, 2)) {
-                // 清除password字段
-                unset($user['password']);
-                $flag = $User->where(array('uuid' => $uuid))->save($user);
-                if (false === $flag) {
-                    // 数据库错误
-                    // $this->error(var_export($User->getDbError(), false));
-                    $this->afterUpdateRect(array('uid' => $uuid, 
-                                                 'status' => 2));
-                } else {
-                    // 修改成功，重定向到用户编辑页
-                    $this->afterUpdateRect(array('uid' => $uuid, 
-                                                 'status' => 1));
-                }
-            } else {
-                // 数据验证错误
-                // $this->error(var_export($User->getError(), false));
-                $errors = $this->formatUnvalidData($User->getError());
-                $this->afterUpdateRect(array('uid' => $uuid, 
-                                             'status' => 3, 
-                                             'errors' => $errors));
-            }
+            $this->afterUpdateRect($userService->updateMetaData($data));
         } else if ($_POST['info'] == 'password'){
-            // 修改密码信息
-            // 判断原密码是否正确
-            $orginPassword = $_POST['user']['origin_password'];
-            $orginPassword = sql_injection($orginPassword);
-            $where['uuid'] = array('eq', $uuid);
-            $where['password'] = array('eq', md5($orginPassword));
-            if (!$User->where($where)->find()) {
-                $errors = $this->formatUnvalidData(array('原密码错误！'));
-                $this->afterUpdateRect(array('uid' => $uuid, 
-                                              'status' => 3, 
-                                              'errors' => $errors));
-            }
-            
-            // 更新密码
-            if ($user = $User->create($_POST['user'], 2)) {
-                // 清除email、real_name字段，自动验证和完成产生
-                unset($user['email'], $user['real_name']);
-                $flag = $User->where(array('uuid' => $uuid))->save($user);
-                if (false === $flag) {
-                    // 数据库错误
-                    $this->afterUpdateRect(array('uid' => $uuid, 
-                                                 'status' => 2));                   
-                } else {
-                     // 修改成功，重定向到用户编辑页
-                    $this->afterUpdateRect(array('uid' => $uuid, 
-                                                  'status' => 1));                   
-                }
-            } else {
-                // 数据验证错误
-                $errors = $this->formatUnvalidData($User->getError());
-                $this->afterUpdateRect(array('uid' => $uuid, 
-                                             'status' => 3, 
-                                             'errors' => $errors));               
-            }
+            $this->afterUpdateRect($userService->updatePassword($data));
         }
 
         // 请求的表单无效
-        $this->afterUpdateRect(array('uid' => $uuid));
-    }
-
-    /**
-     * Model::getError格式化为字符串
-     * @param array $errors
-     * @return string 
-     */
-    private function formatUnvalidData(array $errors) {
-        $errorsStr =  implode(' ， ', $errors);
-        return '[' . $errorsStr . ']';
+        $this->afterUpdateRect(array('uid' => $data['uuid']));
     }
 
     /**

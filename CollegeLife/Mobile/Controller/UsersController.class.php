@@ -9,7 +9,7 @@ class UsersController extends \Home\Controller\UsersController {
 	 * 注册用户
 	 * @return
 	 */
-    public function news() {
+    public function build() {
     	$this->display();
     }
 
