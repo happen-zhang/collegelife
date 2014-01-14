@@ -310,12 +310,14 @@ function check_psd(){
 
 function check_shop(){
 	var num=document.getElementById("shop_num").value;
+	var goods_count = document.getElementById("goods_count");
 	if(num < 1 || isNaN(num)){
 		alert("请填写有效的数字再提交购买");
 		return false;
 	}else{
 		num=num.replace(/\b(0+)/gi,"");
 		var i=confirm("您确认要购买该产品且数量为"+num+"吗？");
+        goods_count.value = num;
 		if(!i){
 			return false;
 		}

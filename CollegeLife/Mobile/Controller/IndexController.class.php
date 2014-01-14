@@ -5,10 +5,10 @@ namespace Mobile\Controller;
  * IndexController
  */
 class IndexController extends \Home\Controller\IndexController {
-	/**
-	 * 移动版首页
-	 * @return
-	 */
+    /**
+     * 移动版首页
+     * @return
+     */
     public function index() {
         $this->display();
     }

@@ -4,7 +4,7 @@ namespace Home\Model;
 use Think\Model\RelationModel;
 
 /**
-* user模型
+* user关联模型
 */
 class UserModel extends RelationModel {
     // 批量验证
@@ -77,9 +77,9 @@ class UserModel extends RelationModel {
         // 生成uuid
         array('uuid', 'uuid', 1, 'function'),
         // 注册时间
-        array('created_at', 'datetime', 1, 'callback'),
+        array('created_at', 'datetime', 1, 'function'),
         // 修改时间
-        array('updated_at', 'datetime', 2, 'callback'),
+        array('updated_at', 'datetime', 3, 'function'),
         // 转义特殊字符
         array('username', 'filterSpecialChars', 1, 'callback'),
         array('password', 'filterSpecialChars', 3, 'callback'),
@@ -115,14 +115,6 @@ class UserModel extends RelationModel {
     //
     //    return false;
     // }
-
-    /**
-    * 生成datetime
-    * @return string
-    */
-    protected function datetime() {
-        return date('Y-m-d H:i:s');
-    }
 
     /**
     * 过滤特殊字符

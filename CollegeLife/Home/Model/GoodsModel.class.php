@@ -3,6 +3,9 @@ namespace Home\Model;
 
 use Think\Model\RelationModel;
 
+/**
+ * Goods关联模型
+ */
 class GoodsModel extends RelationModel {
     // 关联模型
     protected $_link = array(

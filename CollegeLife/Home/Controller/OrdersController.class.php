@@ -59,15 +59,84 @@ class OrdersController extends CommonController {
     * @return
     */
     public function build() {
+        if (!isset($_GET['goods_id'])) {
+            $this->error('您查看的商品不存在！');
+        }
+
+        $uuid = sql_injection($_GET['goods_id']);
+        $goods = D('Goods')->relation(true)
+                           ->where(array('uuid' => $uuid))
+                           ->find();
+
+        if (is_null($goods) || false === $goods) {
+            $this->error('您查看的商品不存在！');
+        }
+
+        $this->assignToken();
+        $this->assign('goods', $goods);
         $this->display();
     }
 
+    /**
+     * RESTful create
+     * @return
+     */
     public function create() {
-        
-    }
+        // 无效表单请求
+        $this->unvalidFormReq();
 
-    public function edit() {
+        // 错误处理
+        if (!isset($_SESSION['uid'])
+            || !isset($_POST['goods_id'])
+            || !is_numeric($_POST['goods_id'])
+            || !isset($_POST['goods_count'])
+            || !is_numeric($_POST['goods_count'])
+            || $_POST['goods_count'] <= 0) {
+            $this->error('无效的操作！');
+        }
 
+        $goods_count = $_POST['goods_count'];
+        $goods_id = $_POST['goods_id'];
+
+        // 购物车方式
+        // 获取$_SESSION中的所有商品，合并相同物品的数量
+        // 从数据库取出所有物品，为每个物品生成一个子订单
+        // 计算payment到总订单order
+
+        // 获取当前用户的id作为订单外键
+        if (!($goods = D('Goods', 'Service')->getGoodsById($goods_id))) {
+            $this->error('您购买的商品不存在！');
+        }
+
+        // 获取当前用户的id作为订单外键
+        if(!($user = D('User', 'Service')->getUserByUuid($_SESSION['uid']))) {
+            $this->error('无效的操作！');
+        }
+
+        $Order = D('Order');
+        $order = array('user_id' => $user['id'], 
+                       'payment' => $goods['preferential'] * $goods_count);
+        if ($order = $Order->create($order)) {
+            if (false === $Order->add($order)) {
+                $this->error($Order->getDbError());
+            }
+        } else {
+            $this->error($Order->getError());
+        }
+
+        // 购物车多物品，则需要循环
+        $OrderGoodsShip = D('OrderGoodsShip');
+        $subOrder = array('order_id' => $Order->getLastInsID(), 
+                          'goods_id' => $goods_id,
+                          'goods_count' => $goods_count,
+                          'order_payment' => $order['payment']);
+        if ($OrderGoodsShip->add($subOrder)) {
+            // 操纵成功，跳转到订单页
+            $url = U('Orders/index', array('uid' => $_SESSION['uid']));
+            $this->success('感谢您的购买，我们将尽快处理您的订单！', $url);
+        } else {
+            $this->error($OrderGoodsShip->getDbError());
+        }
     }
 
     /**

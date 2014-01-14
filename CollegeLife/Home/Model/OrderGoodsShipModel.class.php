@@ -3,6 +3,9 @@ namespace Home\Model;
 
 use Think\Model\RelationModel;
 
+/**
+ * OrderGoods关联模型
+ */
 class OrderGoodsShipModel extends RelationModel {
     // 关联模型
     protected $_link = array(
@@ -11,7 +14,7 @@ class OrderGoodsShipModel extends RelationModel {
             'mapping_type' => BELONGS_TO,
             'class_name' => 'goods',
             'foreign_key' => 'goods_id',
-            'mapping_fields' => 'id, uuid, name, price',
+            'mapping_fields' => 'id, uuid, name, preferential',
         ),
-    );
+    );  
 }

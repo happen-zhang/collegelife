@@ -7,17 +7,19 @@ use Think\Model;
  * OrderService
  */
 class OrderService extends Model {
-	/**
-	 * 获取指定uuid用户的订单
-	 * @param  string $uuid
-	 * @return array
-	 */
+    /**
+     * 获取指定uuid用户的订单
+     * @param  string $userUuid
+     * @return array
+     */
     public function getUserOrders($userUuid) {
     	$uuid = sql_injection($userUuid);
-        $user = D('User')->relation(true)->where(array('uuid' => $userUuid))
-                         ->field('id')->find();
+        $user = D('User')->relation(true)
+                         ->field('id')
+                         ->where(array('uuid' => $userUuid))
+                         ->find();
 
-        return $user['orders'];
+        return array_reverse($user['orders']);
     }
 
     /**

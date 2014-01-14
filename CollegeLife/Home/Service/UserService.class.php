@@ -118,6 +118,17 @@ class UserService extends Model {
     }
 
     /**
+     * 按uuid获取用户
+     * @param  string $uuid
+     * @return array
+     */
+    public function getUserByUuid($uuid) {
+        $user = M('User')->where(array('uuid' => $uuid))->find();
+
+        return $user;
+    }
+
+    /**
      * Model::getError格式化为字符串
      * @param array $errors
      * @return string 
@@ -125,5 +136,5 @@ class UserService extends Model {
     private function formatUnvalidData(array $errors) {
         $errorsStr =  implode(' ， ', $errors);
         return '[' . $errorsStr . ']';
-    }    
+    }
 }

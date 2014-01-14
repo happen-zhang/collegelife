@@ -114,3 +114,11 @@ function uuid($prefix = '') {
 
     return $prefix . $uuid;
 }
+
+/**
+* 生成datetime
+* @return string
+*/
+function datetime() {
+    return date('Y-m-d H:i:s');
+}

@@ -5,10 +5,10 @@ namespace Mobile\Controller;
  * UsersController
  */
 class UsersController extends \Home\Controller\UsersController {
-	/**
-	 * 注册用户
-	 * @return
-	 */
+    /**
+     * 用户注册
+     * @return
+     */
     public function build() {
     	$this->display();
     }
