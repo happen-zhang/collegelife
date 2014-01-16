@@ -1,16 +1,22 @@
 <?php
 namespace Home\Controller;
 
-use Think\Controller;
-
 /**
  * 
  */
-class GoodsController extends Controller {
-	/**
-	 * 
-	 * @return
-	 */
+class GoodsController extends CommonController {
+    /**
+     * 访问过滤
+     * @return 
+     */
+    public function _initialize() {
+        $this->accessFilter();
+    }
+    
+    /**
+     * 商品管理
+     * @return
+     */
     public function index(){
         $this->display();
     }

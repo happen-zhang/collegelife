@@ -1,12 +1,18 @@
 <?php
 namespace Home\Controller;
 
-use Think\Controller;
-
 /**
  * 
  */
-class OrdersController extends Controller {
+class OrdersController extends CommonController {
+    /**
+     * 访问过滤
+     * @return 
+     */
+    public function _initialize() {
+        $this->accessFilter();
+    }
+
     /**
      * 订单管理页
      * @return

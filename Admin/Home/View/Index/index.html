@@ -15,9 +15,10 @@
 	</div>
 	<div id="box_bottom">
 		<div class="add_style">
-			<form action="" method="POST">
-				<p><center>管理员姓名：<input type="text" name="name" class="bar" id="adminName"></center></p>
-				<p><center>管理员密码：<input type="password" name="password" class="bar" id="adminPsd"></center></p>
+			<form action="{:U('Public/login')}" method="POST">
+				<input type="hidden" name="__hash__" value="{$__hash__}" />
+				<p><center>管理员姓名：<input type="text" name="admin[admin_name]" class="bar" id="adminName"></center></p>
+				<p><center>管理员密码：<input type="password" name="admin[password]" class="bar" id="adminPsd"></center></p>
 				<p><center>验&nbsp;证&nbsp;码&nbsp;：<input type="text" id="input1" class="bar" style="width:100px">
 			        <input type="button" id="checkCode" class="code" style="width:60px" onClick="createCode()" /> <a href="#" onClick="createCode()">看不清楚</a>
 			    </center></p>

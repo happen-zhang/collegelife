@@ -1,16 +1,22 @@
 <?php
 namespace Home\Controller;
 
-use Think\Controller;
-
 /**
  * 
  */
-class SuggestionsController extends Controller {
-	/**
-	 * 
-	 * @return
-	 */
+class SuggestionsController extends CommonController {
+    /**
+     * 访问过滤
+     * @return 
+     */
+    public function _initialize() {
+        $this->accessFilter();
+    }
+
+    /**
+     * 建议管理
+     * @return [type] [description]
+     */
     public function index(){
         $this->display();
     }

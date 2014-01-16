@@ -1,7 +1,7 @@
 <?php
 $routesConfig = include('routes.php');
-$dbConfig = include('db_config.php');
-$secureConfig = include('secure.php');
+$dbConfig = include('Global/Conf/db_config.php');
+$secureConfig = include('Global/Conf/secure_config.php');
 
 $appConfig =  array(
     // 调试页

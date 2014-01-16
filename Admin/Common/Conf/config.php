@@ -1,5 +1,6 @@
 <?php
-$dbConfig = include('db_config.php');
+$dbConfig = include('Global/Conf/db_config.php');
+$secureConfig = include('Global/Conf/secure_config.php');
 
 $appConfig =  array(
     // 调试页
@@ -18,4 +19,4 @@ $appConfig =  array(
     // 'TMPL_ACTION_SUCCESS' => 'Public:success',
 );
 
-return array_merge($appConfig, $dbConfig);
+return array_merge($appConfig, $dbConfig, $secureConfig);
