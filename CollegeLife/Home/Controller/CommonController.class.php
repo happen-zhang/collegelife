@@ -69,6 +69,14 @@ class CommonController extends Controller {
     }
 
     /**
+     * 销毁token
+     * @return
+     */
+    protected function destroyToken() {
+        unset($_SESSION[C('TOKEN_NAME')]);
+    }
+
+    /**
     * 检查是否有效的站内表单请求
     * 否则重定向到首页
     * @return boolean

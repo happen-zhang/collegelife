@@ -81,9 +81,9 @@ class UserModel extends RelationModel {
         // 修改时间
         array('updated_at', 'datetime', 3, 'function'),
         // 转义特殊字符
-        array('username', 'filterSpecialChars', 1, 'callback'),
-        array('password', 'filterSpecialChars', 3, 'callback'),
-        array('real_name', 'filterSpecialChars', 3, 'callback'),
+        array('username', 'filterSpecialChars', 3, 'function'),
+        array('password', 'filterSpecialChars', 3, 'function'),
+        array('real_name', 'filterSpecialChars', 3, 'function'),
         // 密码md5
         array('password', 'md5', 3, 'function'),
     );
@@ -100,29 +100,6 @@ class UserModel extends RelationModel {
         }
 
         return false;
-    }
-
-    /**
-     * 正则验证不包含特殊字符
-     * @param  string $src
-     * @return boolean
-     */
-    // protected function unvalidSpecialChars($src) {
-    //    $partten = "/^(([^\^\.<>%&',;=?$\"':#@!~\]\[{}\\\/`\|])*)$/";
-    //    if (!preg_match($partten, $src)) {
-    //        return true;
-    //    }
-    //
-    //    return false;
-    // }
-
-    /**
-    * 过滤特殊字符
-    * @param  string $src
-    * @return string
-    */
-    protected function filterSpecialChars($src) {
-        return sql_injection(htmlspecialchars($src));
     }
 
     /**

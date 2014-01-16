@@ -65,6 +65,15 @@ function strip_sql_injection($content) {
 }
 
 /**
+* 过滤特殊字符
+* @param  string $src
+* @return string
+*/
+function filterSpecialChars($src) {
+    return sql_injection(htmlspecialchars($src));
+}
+
+/**
 * 生成令牌
 * @return [type] [description]
 */

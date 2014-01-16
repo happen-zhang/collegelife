@@ -98,11 +98,6 @@ class OrdersController extends CommonController {
         $goods_count = $_POST['goods_count'];
         $goods_id = $_POST['goods_id'];
 
-        // 购物车方式
-        // 获取$_SESSION中的所有商品，合并相同物品的数量
-        // 从数据库取出所有物品，为每个物品生成一个子订单
-        // 计算payment到总订单order
-
         // 获取当前用户的id作为订单外键
         if (!($goods = D('Goods', 'Service')->getGoodsById($goods_id))) {
             $this->error('您购买的商品不存在！');
@@ -124,14 +119,15 @@ class OrdersController extends CommonController {
             $this->error($Order->getError());
         }
 
-        // 购物车多物品，则需要循环
         $OrderGoodsShip = D('OrderGoodsShip');
         $subOrder = array('order_id' => $Order->getLastInsID(), 
                           'goods_id' => $goods_id,
                           'goods_count' => $goods_count,
                           'order_payment' => $order['payment']);
         if ($OrderGoodsShip->add($subOrder)) {
-            // 操纵成功，跳转到订单页
+            // 无效token
+            $this->destroyToken();
+            // 操作成功，跳转到订单页
             $url = U('Orders/index', array('uid' => $_SESSION['uid']));
             $this->success('感谢您的购买，我们将尽快处理您的订单！', $url);
         } else {

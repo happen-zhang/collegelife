@@ -33,11 +33,6 @@ class PublicController extends CommonController {
     }
 
     public function test() {
-        // $Order = D('OrderGoodsShip');
-        // $data = $Order->relation(true)->select();
-
-        D('Order', 'Service')->getOrderDetail('08117d02-7c17-11e3-8516-f46d047edaad');
-
-        // var_dump($data);
+        var_dump($_SESSION);
     }
 }

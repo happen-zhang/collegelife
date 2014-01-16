@@ -14,6 +14,8 @@ String.prototype.rtrim=function(){
 　 return this.replace(/(\s*$)/g,"");
 }
 
+var alreadyComment = false;
+
 function animation_top_start(){
 	$(document).ready(function(){
 		$("#top").slideToggle("slow");
@@ -391,4 +393,63 @@ function check_contact(){
 		alert("请输入您的建议再提交");
 		return false;
 	}
+}
+
+/*
+ * 评论表单处理
+ */
+function submit_comment() {
+    if (alreadyComment == true) {
+    	alert("您已经评论过了！");
+        return false;
+    }
+
+
+	var $comment_content = $("#comment_content");
+	var comment_content =  $comment_content[0];
+
+	$comment_content.focus(function() {
+		if (this.value == this.defaultValue) {
+			this.value = "";
+		}
+	}).blur(function() {
+		if (this.value == "") {
+			this.value = this.defaultValue;
+		}
+	});
+
+	// 表单简单验证 ajax提交表单
+	if (comment_content.value.trim() == "") {
+		alert("您提交的评论不能为空！");
+		return false;
+	} else if (comment_content.value.trim() == comment_content.defaultValue) {
+		alert("您提交的评论不能为空！");
+		return false;
+	}
+
+	var content = comment_content.value.trim();
+	var __hash__ = $("input:[name='__hash__']").val();
+	var url = $("#app_url").val(); // 提交位置
+	var goods_id = $("input:[name='goods_id']").val();
+
+    // ajax
+	$.post(url, {
+		comment_content: content,
+		goods_id: goods_id,
+		__hash__: __hash__
+	}, function(json) {
+		if (json.status == 1) { // 成功
+			var reg = new RegExp("\n", "g"); // 创建正则对象
+			json.data.content = json.data.content.replace(reg, "<br/>");
+
+			var $new_comment = $("<div id='commend_line'><div class='shop_watch_main_style_commend'><strong>" + json.data.commenter_name + "</strong> 在 <span style='color:#999999'>" + json.data.created_at + "</span> 发表：<p>" + json.data.content + "</p></div></div>");
+			$("#all_comment_line").show();
+			$("#all_comment_line").prepend($new_comment);
+ 
+            alreadyComment = true;
+			alert(json.info);
+		} else {
+			alert(json.info);
+		}
+	}, "json"); // $.post
 }

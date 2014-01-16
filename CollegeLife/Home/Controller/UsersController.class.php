@@ -40,6 +40,8 @@ class UsersController extends CommonController {
             if ($User->add($user)) {
                 // 注册成功，用户登录
                 D('User', 'Service')->login($_POST['user']);
+                // 无效token
+                $this->destroyToken();
                 $this->redirect('Users/index', array('status' => 'regist'));
             } else {
                 // 数据库错误

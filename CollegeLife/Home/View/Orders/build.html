@@ -23,6 +23,7 @@
 			</div>
 			<div class="shop_watch_right_style_content">
 				<form action="{:U('Orders/create')}" method="POST">
+					<input type="hidden" id="app_url" value="{:U('Comments/create')}">
 					数量：<input type="text" class="shop_watch_right_num" value="1" id="shop_num" disabled="disabled" />
 					<input type="button" id="check_left" value="&lt;" class="check_btn" onclick="check_shop_btn(1)">
 					<input type="button" id="check_right" value="&gt;" class="check_btn" onclick="check_shop_btn(2)">
@@ -79,37 +80,29 @@
 </div>
 <div id="commend">
 	<div class="shop_watch_main_style">
-		<form action="" method="POST">
-			<input type="text" name="commend" id="commend_box" class="bar" style="width:400px;height:25px" onblur="if(this.value==''){this.value='发表评论'};" onfocus="if(this.value=='发表评论'){this.value=''};" value="发表评论">
-			<input type="submit" name="" value="评论" class="btn" onclick="return check_commend()">
-		</form>
+		<input type="text" name="comment_content" id="comment_content" class="bar" style="width:400px;height:25px" onblur="if(this.value==''){this.value='发表评论'};" onfocus="if(this.value=='发表评论'){this.value=''};" value="发表评论">
+		<input type="button" value="评论" class="btn" onclick="submit_comment()"/>
 	</div>
 </div>
 
 
 <div id="all_comment_line">
-	<!-- 评论输出 -->
-	<div id="commend_line">
-		<div class="shop_watch_main_style_commend">
-			<strong>XXX</strong> 在 <span style="color:#999999">2012-12-12 12:12:12</span> 发表：
-			<p>1评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</p>
-		</div>
-	</div>
-
-	<div id="commend_line">
-		<div class="shop_watch_main_style_commend">
-			<strong>XXX</strong> 在 <span style="color:#999999">2012-12-12 12:12:12</span> 发表：
-			<p>2评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</p>
-		</div>
-	</div>
-
-	<!-- 评论输出结束 -->
+    <volist name="goods['comments']" id="comment">
+		<div id="commend_line">
+			<div class="shop_watch_main_style_commend">
+				<strong>{$comment['commenter_name']}</strong> 在 <span style="color:#999999">{$comment['created_at']}</span> 发表：
+				<p>{$comment['content']}</p>
+			</div>
+		</div>    	
+    </volist>
 </div>
 
 
 <div id="shop_watch_main" style="margin-bottom:0px">
-	<div class="shop_watch_main_style">
-		<img src="__PUBLIC__/images/bg_1.jpg" width="1035">
-		<img src="__PUBLIC__/images/bg_2.jpg" width="1035">
-	</div>
+	<center>
+		<div class="shop_watch_main_style">
+			<img src="__PUBLIC__/images/bg_1.jpg" width="1035">
+			<img src="__PUBLIC__/images/bg_2.jpg" width="1035">
+		</div>		
+	</center>
 </div>
