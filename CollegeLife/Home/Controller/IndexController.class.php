@@ -68,6 +68,7 @@ class IndexController extends CommonController {
     * @return
     */
     public function contact() {
+        $this->assignToken();
         $this->display();
     }
 }

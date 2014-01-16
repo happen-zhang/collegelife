@@ -17,6 +17,10 @@ $appConfig =  array(
     // 开启布局
     'LAYOUT_ON' => true,
     'LAYOUT_NAME' => 'Public/layout',
+
+    // error和success重定向
+    // 'TMPL_ACTION_ERROR' => 'Public:error',
+    // 'TMPL_ACTION_SUCCESS' => 'Public:success',
 );
 
 return array_merge($appConfig, $routesConfig, $dbConfig, $secureConfig);

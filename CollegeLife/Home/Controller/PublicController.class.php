@@ -33,6 +33,6 @@ class PublicController extends CommonController {
     }
 
     public function test() {
-        var_dump($_SESSION);
+        
     }
 }
