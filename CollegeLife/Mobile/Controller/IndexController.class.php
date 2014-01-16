@@ -10,6 +10,7 @@ class IndexController extends \Home\Controller\IndexController {
      * @return
      */
     public function index() {
+        $this->assignToken();
         $this->display();
     }
 

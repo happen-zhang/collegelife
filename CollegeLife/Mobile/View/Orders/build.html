@@ -3,40 +3,42 @@
 	<img src="__PUBLIC__/images/bg_1.jpg" width="100%" border="0">
 </div>
 <div class="add_shop_style">
-	商品名称
-	<p>类型：<a href="#">护肤品</a>
-	品牌：<a href="javascript:url_change(4)">大学时光</a></p>
+	{$goods['name']}
+	<p>类型：<a href="{:U('Index/shopCenter', array('category_id' => $goods['category']['uuid']))}">{$goods['category']['name']}</a>
+	品牌：{$goods['brand']} </p>
 </div>
 
 <div id="add_shop_watch_box">
 	<div class="add_shop_watch_box_style">
-		<span style="font-size:14px">促销价：</span>&yen;20.00
-		<p style="font-size:14px">原价<del>&yen;28.00</del>，现6折促销，为您节省&yen;8.00，送货上门</p>
+		<span style="font-size:14px">促销价：</span>&yen;{$goods['preferential']}
+		<p style="font-size:14px">原价<del>&yen;{$goods['price']}</del>，现<?php echo (int)(($goods['preferential'] / $goods['price'])*10)  ; ?>折促销，为您节省&yen;<?php printf('%.2f', $goods['price'] - $goods['preferential']); ?>，送货上门</p>
 	</div>
 </div>
 
 <div class="add_shop_watch_style">
-	大学时光(CollegeLife)甜美少女 香体润肤露 250ml，为你提供肌肤所需要的各种养分，有效精心呵护您的肌肤。让干燥肌肤得到舒缓，手感犹如丝绸一样细密。口碑好评如潮泉涌，为自己的肌肤送上一份保湿饮料！
+    {$goods['description']}
 
-	<p><span style="font-weight:bold">商品名称：</span>大学时光</p>
-	<p><span style="font-weight:bold">品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌：</span>大学时光(CollegeLife)</p>
-	<p><span style="font-weight:bold">分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类：</span>乳液</p>
-	<p><span style="font-weight:bold">功&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;效：</span>保湿</p>
-	<p><span style="font-weight:bold">产品规格：</span>250ml</p>
-	<p><span style="font-weight:bold">原&nbsp;&nbsp;产&nbsp;地：</span>中国广州</p>
-	<p><span style="font-weight:bold">保质期限：</span>3年</p>
-	<p><span style="font-weight:bold">适用人群：</span>干性及混合性肌肤</p>
-	<p><span style="font-weight:bold">特别说明：</span>本产品为全新无盒有塑封</p>
+	<p><span style="font-weight:bold">商品名称：</span>{$goods['name']}</p>
+	<p><span style="font-weight:bold">品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌：</span>{$goods['brand']}</p>
+	<p><span style="font-weight:bold">分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类：</span>{$goods['category']['name']}</p>
+	<p><span style="font-weight:bold">功&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;效：</span>{$goods['feature']}</p>
+	<p><span style="font-weight:bold">产品规格：</span>{$goods['net_wt']}</p>
+	<p><span style="font-weight:bold">原&nbsp;&nbsp;产&nbsp;地：</span>{$goods['place_origin']}</p>
+	<p><span style="font-weight:bold">保质期限：</span>{$goods['qgp']}</p>
+	<p><span style="font-weight:bold">适用人群：</span>{$goods['suitable']}</p>
+	<p><span style="font-weight:bold">特别说明：</span>{$goods['remind']}</p>
 </div>
 
-<form action="deal/buy.php" method="POST">
+<form action="{:U('Orders/create')}" method="POST">
+    <input type="hidden" name="goods_id" value="{$goods['id']}" />
+	<input type="hidden" name="__hash__" value="{$__hash__}" />
+	<center><input type="text" name="goods_count" id="shop_num" class="add_bar" onblur="if(this.value==''){ this.value='数量' };" onfocus="if(this.value=='数量'){this.value=''};" value="数量"></center>
 
-	<center><input type="text" name="num" id="shop_num" class="add_bar" onblur="if(this.value==''){ this.value='数量' };" onfocus="if(this.value=='数量'){this.value=''};" value="数量"></center>
-<!--
-	<center><input type="submit" name="submit" value="立即购买" class="add_btn_2" onclick="return check_buy()"></center>
- -->
-	<center><input type="submit" name="submit" value="立即购买" class="add_btn_2" onclick="return unvalid()"></center>
-
+    <present name="_SESSION['uid']">
+		<center><input type="submit" name="submit" value="立即购买" class="add_btn_2" onclick="return check_buy()"></center>
+    <else />
+		<center><input type="submit" name="submit" value="立即购买" class="add_btn_2" onclick="return unvalid()"></center>
+    </present>
 
 </form>
 

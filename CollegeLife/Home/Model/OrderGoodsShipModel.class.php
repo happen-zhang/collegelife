@@ -16,5 +16,5 @@ class OrderGoodsShipModel extends RelationModel {
             'foreign_key' => 'goods_id',
             'mapping_fields' => 'id, uuid, name, preferential',
         ),
-    );  
+    );
 }

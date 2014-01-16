@@ -242,11 +242,13 @@ p{
 	width:100%;
 	height:80px;
 }
-#error_box_1,#error_box_2,#error_box_3,#error_box_4,#error_box_5,#error_box_6,#error_box_7,#error_box_8{
+
+.error_action {
 	color:red;
 	padding:10px;
-	display:none;
+	display:none;	
 }
+
 .add_bar_style{
 	padding:10px;
 }

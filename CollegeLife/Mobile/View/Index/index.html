@@ -1,36 +1,23 @@
-<!-- 登陆信息错误
-<div class="add_shop_watch_style" style="color:red" id="error_show">* 您的登录信息有误</div>
-<script type="text/javascript" language="javascript">
-$(document).ready(function(){
-	$("#error_show").fadeOut(5000);
-})
-</script>
-
-<div class="add_shop_watch_style" style="color:red" id="error_show">* 登录信息不能留空</div>
-<script type="text/javascript" language="javascript">
-$(document).ready(function(){
-	$("#error_show").fadeOut(5000);
-})
-</script>
--->
-
-<div class="add_shop_watch_style" style="color:red" id="error_show">* 请登录后再访问该页</div>
-<script type="text/javascript" language="javascript">
-$(document).ready(function(){
-	$("#error_show").fadeOut(5000);
-})
-</script>
+<present name="Think.get.status">
+	<div class="add_shop_watch_style" style="color:red" id="error_show">* 您的登录信息有误</div>
+	<script type="text/javascript" language="javascript">
+	$(document).ready(function(){
+		$("#error_show").fadeOut(5000);
+	})
+	</script>	
+</present>
 
 
-<center><img src="__PUBLIC__/images/bg_1.jpg" width="100%"></center>
-<form action="deal/login_deal.php" method="POST">
-	<center><input type="text" name="name" class="add_bar" id="login_name" onblur="if(this.value==''){this.value='登录昵称'};" onfocus="if(this.value=='登录昵称'){this.value=''};" value="登录昵称"></center>
-	<center><input type="text" name="password" class="add_bar" id="login_psd" onblur="if(this.value==''){this.value='密码';this.type='text'};" onfocus="if(this.value=='密码'){this.value='';this.type='password'};" value="密码"></center>
-	<div id="error_box_1">* 您的登录名不能为空</div>
-	<div id="error_box_2">* 您的登录密码不能为空</div>
-	<center><input type="submit" name="submit" value="登录" class="add_btn" onclick="return check_login()"></center>
-</form>
-
-<!-- 登陆后不显示表单，直接显示如下信息
-<div class="add_shop_watch_style"><?php echo $name; ?> 欢迎回到大学时光</div>
--->
+<notpresent name="_SESSION['uid']">
+	<center><img src="__PUBLIC__/images/bg_1.jpg" width="100%"></center>
+	<form action="{:U('Public/login')}" method="POST">
+		<input type="hidden" value="{$__hash__}" name="__hash__" />
+		<center><input type="text" name="user[username]" class="add_bar" id="login_name" onblur="if(this.value==''){this.value='登录昵称'};" onfocus="if(this.value=='登录昵称'){this.value=''};" value="登录昵称"></center>
+		<center><input type="text" name="user[password]" class="add_bar" id="login_psd" onblur="if(this.value==''){this.value='密码';this.type='text'};" onfocus="if(this.value=='密码'){this.value='';this.type='password'};" value="密码"></center>
+		<div id="error_box_1" class="error_action">* 您的登录名不能为空</div>
+		<div id="error_box_2" class="error_action">* 您的登录密码不能为空</div>
+		<center><input type="submit" name="submit" value="登录" class="add_btn" onclick="return check_login()"></center>
+	</form>
+<else />
+	<center><div class="add_shop_watch_style"><span style="color:red;">{$_SESSION['username']}</span> 欢迎回到大学时光</div></center>
+</notpresent>
