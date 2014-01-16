@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>大学时光 后台管理系统</title>
+	<link href="__PUBLIC__/stylesheets/admin/style.css" type="text/css" rel="stylesheet" media="screen">
+	<script type="text/javascript" src="__PUBLIC__/javascripts/admin/function.js"></script>
+</head>
+<body onload="createCode()">
+<div id="box">
+	<div id="box_top">
+		<div class="style">
+			<img src="__PUBLIC__/images/logo.png" height="40" border="0">
+		</div>
+	</div>
+	<div id="box_bottom">
+		<div class="add_style">
+			<form action="" method="POST">
+				<p><center>管理员姓名：<input type="text" name="name" class="bar" id="adminName"></center></p>
+				<p><center>管理员密码：<input type="password" name="password" class="bar" id="adminPsd"></center></p>
+				<p><center>验&nbsp;证&nbsp;码&nbsp;：<input type="text" id="input1" class="bar" style="width:100px">
+			        <input type="button" id="checkCode" class="code" style="width:60px" onClick="createCode()" /> <a href="#" onClick="createCode()">看不清楚</a>
+			    </center></p>
+				<p><center><input type="submit" name="submit" value="登录" class="btn" onclick="return check_login()"></center></p>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

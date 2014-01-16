@@ -1,18 +1,13 @@
 <?php
-$routesConfig = include('routes.php');
 $dbConfig = include('db_config.php');
-$secureConfig = include('secure.php');
 
 $appConfig =  array(
     // 调试页
     'SHOW_PAGE_TRACE' =>true,
 
     // 默认模块和Action
-    'MODULE_ALLOW_LIST' => array('Home', 'Mobile'),
+    'MODULE_ALLOW_LIST' => array('Home'),
     'DEFAULT_MODULE' => 'Home',
-
-    // 开启路由
-    'URL_ROUTER_ON' => true,
 
     // 开启布局
     'LAYOUT_ON' => true,
@@ -23,4 +18,4 @@ $appConfig =  array(
     // 'TMPL_ACTION_SUCCESS' => 'Public:success',
 );
 
-return array_merge($appConfig, $routesConfig, $dbConfig, $secureConfig);
+return array_merge($appConfig, $dbConfig);
