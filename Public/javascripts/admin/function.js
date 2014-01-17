@@ -1,3 +1,13 @@
+String.prototype.trim=function(){
+　 return this.replace(/(^\s*)|(\s*$)/g, "");
+}
+String.prototype.ltrim=function(){
+　 return this.replace(/(^\s*)/g,"");
+}
+String.prototype.rtrim=function(){
+　 return this.replace(/(\s*$)/g,"");
+}
+
 function check_login(){
 	var inputCode=document.getElementById("input1").value.toUpperCase();
 	var name=document.getElementById("adminName").value;
@@ -75,4 +85,15 @@ function del_manager(){
 	if(i){
 		window.location.href="delete_manager.php";
 	}
+}
+
+function check_msg() {
+	var msg = document.getElementById("msg").value.trim();
+
+    if (msg == "") {
+    	alert("内容不能为空！");
+    	return false;
+    }
+
+    return true;
 }

@@ -22,8 +22,10 @@ class CommonController extends Controller {
             $lastestMsg = $Message->order('created_at DESC')->find();
 
             if ($lastestMsg) {
+                // 转义特殊字符
+                $content = strip_sql_injection($lastestMsg['content']);
                 // 设置到cookie
-                cookie('latest_msg', $lastestMsg['content']);
+                cookie('latest_msg', $content);
             }
         }
     }

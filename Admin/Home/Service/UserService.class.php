@@ -8,7 +8,7 @@ use Think\Model;
 */
 class UserService extends Model {
     /**
-     * 获取所有订单的总数
+     * 获取所有的总数
      * @return
      */
     public function getCount() {
@@ -18,7 +18,7 @@ class UserService extends Model {
     }
 
     /**
-     * 分页获取订单
+     * 分页获取
      * @param  int $firstRow
      * @param  int $listRows
      * @return array
