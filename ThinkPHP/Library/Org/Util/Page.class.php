@@ -32,7 +32,7 @@ class Page {
     // 分页的栏的总页数
     protected $coolPages   ;
     // 分页显示定制
-    protected $config  =    array('header'=>'条记录','prev'=>'上一页','next'=>'下一页','first'=>'首页','last'=>'尾页','theme'=>' %first% %linkPage%   %end%');
+    protected $config  =    array('header'=>'条记录','prev'=>'上一页','next'=>'下一页','first'=>'首页','last'=>'尾页','theme'=>'%first% %upPage% %linkPage% %downPage% %end%');
     // 默认分页变量名
     protected $varPage;
 

@@ -3,30 +3,38 @@
 	
 		<!-- 输出用户 -->
 		
-		<div class="add_line">
-			<table>
-				<tr width="980px" height="50px">
-					<th width="200px">用户昵称</th><th width="150px">真实姓名</th><th width="200px">注册时间</th><th width="200px">操作</th>
-				</tr>
-			</table>
-		</div>
+			<div class="add_line">
+				<table>
+					<tr width="980px" height="50px">
+						<th width="200px">用户名</th><th width="150px">真实姓名</th><th width="200px">注册时间</th><th width="200px">操作</th>
+					</tr>
+				</table>
+			</div>
 
-		<div class="add_line">
-			<table>
-				<tr width="980px" height="50px">
-					<th width="200px"><a href="{:U('Users/show')}" target="_blank">XXX</a></th><th width="150px">XXX</th><th width="200px">2012-12-12 12:12:12</th><th width="200px"><a href="#" onclick="del()">删除</a></th>
-				</tr>
-			</table>
-		</div>
+            <volist name="users" id="user">
+            <?php 
+	            if ($user['is_active']) { 
+	            	$status  = "不激活";
+	            	$operation = 'deactive';
+	            } else {
+	                $status = "激活";
+	                $operation = 'active';
+	            } 
+            ?>
+
+			<div class="add_line">
+				<table>
+					<tr width="980px" height="50px">
+						<th width="200px"><a href="{:U('Users/show', array('user_id' => $user['id']))}" target="_blank">{$user['username']}</a></th><th width="150px">{$user['real_name']}</th><th width="200px">{$user['created_at']}</th><th width="200px"><a href="{:U('Users/update', array('user_id' => $user['uuid'], 'operation' => $operation, 'p' => $_GET['p']))}" onclick="return confirm('{$status}该用户吗？');">{$status}</a></th>
+					</tr>
+				</table>
+			</div>
+		</volist>
 
 		<!-- 分页系统 -->
 		<div class="add_line_page">
 			<div class="add_line_page_style">
-				<a href="#" style="background-color:#00CCFF;color:white">首页</a>
-				<a href="#">1</a>
-				<a href="#">2</a>
-				<a href="#">3</a>
-				<a href="#">尾页</a>
+                {$page}
 			</div>
 		</div>
 

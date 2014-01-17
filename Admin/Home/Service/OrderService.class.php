@@ -23,7 +23,7 @@ class OrderService extends Model {
      * 获取所有订单的总数
      * @return
      */
-    public function getOrdersCount() {
+    public function getCount() {
         $count = M('Order')->count();
 
         return $count;
@@ -35,7 +35,7 @@ class OrderService extends Model {
      * @param  int $listRows
      * @return array
      */
-    public function getOrderPage($firstRow, $listRows) {
+    public function getPagination($firstRow, $listRows) {
         $Order = D('Order');
         $orders = $Order->relation(true)
                         ->order('id DESC')

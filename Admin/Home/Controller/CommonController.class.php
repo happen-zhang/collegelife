@@ -71,6 +71,25 @@ class CommonController extends Controller {
     }
 
     /**
+     * 分页数据
+     * @param  string $model
+     * @return array
+     */
+    protected function pagination($model) {
+        $service = D($model, 'Service');
+
+        $totalCount = $service->getCount();
+        $page = new \Org\Util\Page($totalCount, C('PAGINATION_NUM'));
+        $result['show'] = $page->show();
+
+        $data = $service->getPagination($page->firstRow, 
+                                        $page->listRows);
+        $result['data'] = $data;
+
+        return $result;
+    }
+
+    /**
     * 检查是否有效的站内表单请求
     * 否则重定向到首页
     * @return boolean

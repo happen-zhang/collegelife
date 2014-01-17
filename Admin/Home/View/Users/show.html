@@ -1,14 +1,14 @@
 <div id="add_main_content">
 	<div class="add_style">
-		<p style="font-size:14px;font-weight:bold"><a href="{:U('Users/index')}">用户管理&gt;</a> XXX用户</p>
+		<p style="font-size:14px;font-weight:bold"><a href="{:U('Users/index')}">用户管理&gt;</a> {$user['username']}</p>
 		<hr />
 		<div class="add_style_inside">
-			<p>真实姓名：XXX</p>
-			<p>用户昵称：XXX</p>
-			<p>用户邮箱：xxx@yahoo.com.cn</p>
-			<p>年级：2012</p>
-			<p>联系方式：移动 13750011111 611111</p>
-			<p>宿舍地址：X栋 000</p>
+			<p>真实姓名：{$user['real_name']}</p>
+			<p>用户昵称：{$user['username']}</p>
+			<p>用户邮箱：{$user['email']}</p>
+			<p>年级：{$user['grade']}</p>
+			<p>联系方式：{$user['tel_type']} {$user['tel_full']} {$user['tel_brief']}</p>
+			<p>宿舍地址：{$user['building_no']}栋 {$user['dormitory_no']}</p>
 			<p style="font-size:14px;font-weight:bold;margin-top:25px">该用户订单情况：</p>
 		</div>
 
@@ -20,14 +20,14 @@
 			</table>
 		</div>
 
-		<!-- 输出订单*20条每页 -->
-		<div class="add_line">
-			<table>
-				<tr width="980px" height="50px">
-					<th width="200px"><a href="{:U('Goods/show')}" target="_blank">1001</a></th><th width="200px">已下单</th><th width="200px">未发货</th><th width="200px">2012-12-12 12:12:12</th><th width="200px">暂未发货</th>
-				</tr>
-			</table>
-		</div>
-
+		<volist name="orders" id="order">
+			<div class="add_line">
+				<table>
+					<tr width="980px" height="50px">
+						<th width="200px"><a href="{:U('Orders/show', array('order_id' => $order['uuid']))}" target="_blank"><?php printf('%05d', $order['id']); ?></a></th><th width="200px">{$order['order_status']}</th><th width="200px">{$order['payment_status']}</th><th width="200px">{$order['created_at']}</th><th width="200px"><?php if ($order['consignment_at'] == '0000-00-00 00:00:00') { echo '暂未发货'; } else { echo $order['consignment_at']; } ?></th>
+					</tr>
+				</table>
+			</div>
+        </volist>
 	</div>
 </div>

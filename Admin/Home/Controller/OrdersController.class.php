@@ -10,17 +10,10 @@ class OrdersController extends CommonController {
      * @return
      */
     public function index(){
-        $orderService = D('Order', 'Service');
+        $result = $this->pagination('Order');
 
-        $totalCount = $orderService->getOrdersCount();
-        $page = new \Org\Util\Page($totalCount, C('PAGINATION_NUM'));
-        $show = $page->show();
-
-        $orders = $orderService->getOrderPage($page->firstRow, 
-        	                                  $page->listRows);
-
-        $this->assign('page', $show);
-        $this->assign('orders', $orders);
+        $this->assign('page', $result['show']);
+        $this->assign('orders', $result['data']);
         $this->display();
     }
 
@@ -35,6 +28,9 @@ class OrdersController extends CommonController {
 
         $orderService = D('Order', 'Service');
         $order = $orderService->getOrderDetail($_GET['order_id']);
+        if (empty($order)) {
+            $this->error('您查看的订单不存在！');
+        }
 
         $this->assign('order', $order);
         $this->assign('goods', $order['goods']);
