@@ -1,0 +1,21 @@
+<div id="add_main_content">
+	<div class="add_style">
+		<p style="font-size:14px;font-weight:bold"><a href="main.php">返回主页&gt;</a> <?php printf('%05d', $order['id']) ?>号产品</p>
+		<hr />
+		<div class="add_style_inside">
+			<p>下单时间：{$order['created_at']}</p>
+			<p>订单状态：{$order['order_status']}</p>
+			<p>交付状态：{$order['payment_status']}</p>
+			<p>预期总额：{$order['payment']}</p>
+			<br/>
+			<volist name="goods" id="item">
+				<p>商品名称：{$item['name']}</p>
+				<p>类型：{$item['category']}</p>
+				<p>单价：&yen;{$item['preferential']}</p>
+				<p>数量：{$item['count']}</p>
+				<p>产品链接：<a href="{:U('Goods/show', array('goods_id' => $item['uuid']))}" target="_blank">点击查看</a></p>
+			</volist>
+		</div>
+		<p>&nbsp;</p>
+	</div>
+</div>

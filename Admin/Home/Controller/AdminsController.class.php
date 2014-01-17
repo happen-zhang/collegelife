@@ -6,14 +6,6 @@ namespace Home\Controller;
  */
 class AdminsController extends CommonController {
     /**
-     * 访问过滤
-     * @return 
-     */
-    public function _initialize() {
-        $this->accessFilter();
-    }
-
-    /**
      * 管理员
      * @return 
      */

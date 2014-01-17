@@ -6,14 +6,6 @@ namespace Home\Controller;
  */
 class UsersController extends CommonController {
     /**
-     * 访问过滤
-     * @return 
-     */
-    public function _initialize() {
-        $this->accessFilter();
-    }
-
-    /**
      * 用户管理页
      * @return
      */

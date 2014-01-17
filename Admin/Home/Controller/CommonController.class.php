@@ -14,6 +14,12 @@ class CommonController extends Controller {
     public function _initialize() {
         // utf-8编码
         header('Content-Type: text/html; charset=utf-8');
+
+        // 访问过滤
+        $filter = array('Index', 'Public');
+        if (!in_array(CONTROLLER_NAME, $filter)) {
+            $this->accessFilter();
+        }
     }
 
     /**
@@ -29,9 +35,9 @@ class CommonController extends Controller {
     * @return boolean
     */
     protected function hasLogin() {
-        $authVal = md5($_SESSION['username'] . C('COOKIE_NAME'));
-        if (isset($_SESSION[C('SESSION_AUTH_KEY_NAME')])
-            && ($_SESSION[C('SESSION_AUTH_KEY_NAME')] == $authVal)) {
+        $authVal = md5($_SESSION['admin_name'] . C('COOKIE_NAME'));
+        if (isset($_SESSION[C('SESSION_AUTH_KEY_ADMIN')])
+            && ($_SESSION[C('SESSION_AUTH_KEY_ADMIN')] == $authVal)) {
             return true;
         } else {
             return false;

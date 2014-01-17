@@ -320,6 +320,7 @@ img:hover{
 .add_line_page_style{
 	padding:20px 20px 20px 40px;
 }
+
 .add_line_page_style a{
 	padding:3px 5px;
 	background-color:white;
@@ -328,6 +329,17 @@ img:hover{
 	border:1px solid #CCCCCC;
 	margin-right:5px;
 }
+
+.add_line_page_style span {
+	padding:3px 11px;
+	background-color:white;
+	color:#333333;
+	text-decoration:none;
+	border:1px solid #CCCCCC;
+	margin-right:5px;
+}
+
+
 .add_line_page_style a:hover{
 	text-decoration:none;
 	background-color:#00CCFF;

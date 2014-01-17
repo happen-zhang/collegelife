@@ -1,8 +1,6 @@
 <?php
 namespace Home\Controller;
 
-use Think\Controller;
-
 /**
 * PublicController
 */
@@ -23,14 +21,18 @@ class PublicController extends CommonController {
     }
 
     /**
-    * 用户登出
+    * 管理员登出
     * @return
     */
     public function logout() {
         $this->accessFilter();
 
-        // 用户登出
+        // 管理员登出
         D('Admin', 'Service')->logout();
         $this->success('登出成功！', U('Index/index'));
+    }
+
+    public function test() {
+        var_dump($_SESSION);
     }
 }

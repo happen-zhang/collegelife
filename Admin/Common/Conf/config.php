@@ -17,6 +17,9 @@ $appConfig =  array(
     // error和success重定向
     // 'TMPL_ACTION_ERROR' => 'Public:error',
     // 'TMPL_ACTION_SUCCESS' => 'Public:success',
+    
+    // 分页列表数
+    'PAGINATION_NUM' => 5,
 );
 
 return array_merge($appConfig, $dbConfig, $secureConfig);
