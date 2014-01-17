@@ -1,38 +1,10 @@
 <?php
 namespace Home\Service;
 
-use Think\Model;
-
 /**
 * UserService
 */
-class UserService extends Model {
-    /**
-     * 获取所有的总数
-     * @return
-     */
-    public function getCount() {
-        $count = M('User')->count();
-
-        return $count;
-    }
-
-    /**
-     * 分页获取
-     * @param  int $firstRow
-     * @param  int $listRows
-     * @return array
-     */
-    public function getPagination($firstRow, $listRows) {
-        $User = D('User');
-        $users = $User->relation(true)
-                        ->order('id DESC')
-                        ->limit($firstRow . ',' . $listRows)
-                        ->select();
-
-        return $users;
-    }
-
+class UserService extends CommonService {
     /**
      * 获取用户信息和订单信息
      * @param  string $id
@@ -82,4 +54,16 @@ class UserService extends Model {
 
         return true;        
     }
+
+    protected function getM() {
+        return M('User');
+    }
+
+    protected function getD() {
+        return D('User');
+    }
+
+    protected function isRelation() {
+        return true;
+    }    
 }

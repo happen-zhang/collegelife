@@ -2,18 +2,18 @@
 namespace Home\Service;
 
 /**
-* MessageService
+* SuggestionService
 */
-class MessageService extends CommonService {
+class SuggestionService extends CommonService {
     protected function getM() {
-        return M('Message');
+        return M('Suggestion');
     }
 
     protected function getD() {
-        return D('Message');
+        return D('Suggestion');
     }
 
     protected function isRelation() {
-        return true;
+        return false;
     }
 }

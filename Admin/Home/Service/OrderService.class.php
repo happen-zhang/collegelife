@@ -1,12 +1,10 @@
 <?php
 namespace Home\Service;
 
-use Think\Model;
-
 /**
 * OrderService
 */
-class OrderService extends Model {
+class OrderService extends CommonService {
     /**
      * 获取所有的订单
      * @return
@@ -17,32 +15,6 @@ class OrderService extends Model {
                             ->select();
 
         return $orders;  
-    }
-
-    /**
-     * 获取所有订单的总数
-     * @return
-     */
-    public function getCount() {
-        $count = M('Order')->count();
-
-        return $count;
-    }
-
-    /**
-     * 分页获取订单
-     * @param  int $firstRow
-     * @param  int $listRows
-     * @return array
-     */
-    public function getPagination($firstRow, $listRows) {
-        $Order = D('Order');
-        $orders = $Order->relation(true)
-                        ->order('id DESC')
-                        ->limit($firstRow . ',' . $listRows)
-                        ->select();
-
-        return $orders;
     }
 
     /**
@@ -118,5 +90,17 @@ class OrderService extends Model {
         $order['goods'] = $goods;
 
         return $order;
-    }    
+    }
+    
+    protected function getM() {
+        return M('Order');
+    }
+
+    protected function getD() {
+        return D('Order');
+    }
+
+    protected function isRelation() {
+        return true;
+    }
 }

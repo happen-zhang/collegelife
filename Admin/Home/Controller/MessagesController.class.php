@@ -2,7 +2,7 @@
 namespace Home\Controller;
 
 /**
- * 
+ * MessagesController
  */
 class MessagesController extends CommonController {
     /**

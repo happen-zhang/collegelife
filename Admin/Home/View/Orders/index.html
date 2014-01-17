@@ -13,7 +13,7 @@
 			<div class="add_line">
 				<table>
 					<tr width="980px" height="50px">
-						<th width="150px"><a href="{:U('Users/show', array('uid' => $order['user']['id']))}" target="_blank">{$order['user']['username']}</a></th><th width="80px"><a href="{:U('Orders/show', array('order_id' => $order['uuid']))}" target="_blank"><?php printf('%05d', $order['id']) ?></a></th><th width="150px">{$order['order_status']}</th><th width="150px">{$order['payment_status']}</th><th width="150px">{$order['created_at']}</th><th width="150px"><?php echo ($order['consignment_at'] == '0000-00-00 00:00:00')? '暂未发货' : $order['consignment_at']; ?></th><th width="150px">
+						<th width="150px"><a href="{:U('Users/show', array('user_id' => $order['user']['id']))}" target="_blank">{$order['user']['username']}</a></th><th width="80px"><a href="{:U('Orders/show', array('order_id' => $order['uuid']))}" target="_blank"><?php printf('%05d', $order['id']) ?></a></th><th width="150px">{$order['order_status']}</th><th width="150px">{$order['payment_status']}</th><th width="150px">{$order['created_at']}</th><th width="150px"><?php echo ($order['consignment_at'] == '0000-00-00 00:00:00')? '暂未发货' : $order['consignment_at']; ?></th><th width="150px">
 							<select name="" onchange="self.location.href=options[selectedIndex].value">
 								<option value="#">选择状态</option>
 								<option value="{:U('Orders/destroy', array('order_id' => $order['uuid'], 'p' => $_GET['p']))}">取消订单</option>

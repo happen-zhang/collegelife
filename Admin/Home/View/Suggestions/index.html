@@ -1,33 +1,19 @@
 <div id="add_main_content">
 	<div class="add_style">
-		
-		<!-- 建议输出 -->
-		<div class="add_line2">
-			<div class="add_line2_inside">
-				<p>XXX 在 2012-12-12 12:12:12 发布：</p>
-				<p>联系方式：aaa@yahoo.com.cn</p>
-				<p>建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容</p>
-				<p><a href="#" onclick="del_jianyi()">删除</a></p>
+		<volist name="suggestions" id="suggestion">
+			<div class="add_line2">
+				<div class="add_line2_inside">
+					<p>{:strip_sql_injection($suggestion['real_name'])} 在 {$suggestion['created_at']} 发布：</p>
+					<p>联系方式：{:strip_sql_injection($suggestion['tel'])}</p>
+					<p>{:strip_sql_injection($suggestion['content'])}</p>
+					<p><a href="{:U('Suggestions/destroy', array('suggestion_id' => $suggestion['id'], 'p' => $_GET['p']))}"  onclick="return confirm('是否确定删除该条建议？')">删除</a></p>
+				</div>
 			</div>
-		</div>
+        </volist>
 
-		<div class="add_line2">
-			<div class="add_line2_inside">
-				<p>XXX 在 2012-12-12 12:12:12 发布：</p>
-				<p>联系方式：aaa@yahoo.com.cn</p>
-				<p>建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容建议内容</p>
-				<p><a href="#" onclick="del_jianyi()">删除</a></p>
-			</div>
-		</div>
-
-		<!-- 分页系统 -->
 		<div class="add_line_page">
 			<div class="add_line_page_style">
-				<a href="#" style="background-color:#00CCFF;color:white">首页</a>
-				<a href="#">1</a>
-				<a href="#">2</a>
-				<a href="#">3</a>
-				<a href="#">尾页</a>
+                {$page}
 			</div>
 		</div>
 
