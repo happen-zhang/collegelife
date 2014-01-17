@@ -45,11 +45,11 @@ class UsersController extends CommonController {
                 $this->redirect('Users/index', array('status' => 'regist'));
             } else {
                 // 数据库错误
-                $this->error($User->getDbError());
+                $this->error('对不起，系统出错了！');
             }
         } else {
             // 数据验证错误
-            $this->error(var_export($User->getError(), false));
+            $this->error(formatArrToStr($User->getError()));
         }
     }
 

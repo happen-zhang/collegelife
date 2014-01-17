@@ -2,25 +2,27 @@
 	<div class="add_style">
 		
 		<div class="add_style_inside">
-			<p>管理员名称：<input type="text" name="" class="bar"></p>
-			<p>管理员密码：<input type="password" name="" class="bar"></p>
-			<p>管理员级别：
-				<select name="level" class="bar" style="height:30px">
-					<option value="1">总管理员</option>
-					<option value="2">分管理员</option>
-				</select>
-			</p>
-			<p>管理楼层分配：</p>
-			<p>
-				<?php
-				for($i=1;$i<40;$i++){
-				?>
-					<input type="checkbox" name="build[]" value="<?php echo $i; ?>"><?php echo $i; ?>栋&nbsp;&nbsp;
-				<?php
-				}
-				?>
-			</p>
-			<p><input type="submit" name="" value="添加管理员" class="add_btn" style="width:140px"></p>
+			<form action="{:U('Admins/create')}" method="POST">
+				<p>管理员名称：<input type="text" name="admin[admin_name]" class="bar"></p>
+				<p>管理员密码：<input type="password" name="admin[password]" class="bar"></p>
+				<p>管理员级别：
+					<select name="admin[rank]" class="bar" style="height:30px">
+						<option value="2">总管理员</option>
+						<option value="1">分管理员</option>
+					</select>
+				</p>
+				<p>管理楼层分配：</p>
+				<p>
+					<?php
+					for($i=1;$i<40;$i++){
+					?>
+						<input type="checkbox" name="admin[buildings][]" value="<?php echo $i; ?>"><?php echo $i; ?>栋&nbsp;&nbsp;
+					<?php
+					}
+					?>
+				</p>
+				<p><input type="submit" value="添加管理员" class="add_btn" style="width:140px"></p>
+			</form>
 		</div>
 
 		<hr />
@@ -36,24 +38,43 @@
 			</table>
 		</div>
 
-		<div class="add_line">
-			<table>
-				<tr width="980px" height="50px">
-					<th width="200px"><a href="{:U('Admins/show')}" target="_blank">XXX</a></th><th width="150px">分管理员</th><th width="200px">2012-12-12 12:12:12</th><th width="200px"><a href="#" onclick="del_manager()">删除</a></th>
-				</tr>
-			</table>
-		</div>
+        <volist name="admins" id="admin">
+            <?php 
+                switch ($admin['rank']) {
+                    case 1:
+                    	$rank = '分管理员';
+                    	break;
+                    case 2:
+                        $rank = '总管理员';
+                        break; 
+                    case 3:
+                    	$rank = '总部';
+                    	break;
+                }
+
+	            if ($admin['is_active']) { 
+	            	$status  = "不激活";
+	            	$operation = 'deactive';
+	            } else {
+	                $status = "激活";
+	                $operation = 'active';
+	            }                
+            ?>
+
+			<div class="add_line">
+				<table>
+					<tr width="980px" height="50px">
+						<th width="200px"><a href="{:U('Admins/show', array('admin_id' => $admin['uuid']))}" target="_blank">{$admin['admin_name']}</a></th><th width="150px">{$rank}</th><th width="200px">{$admin['latest_login_at']}</th><th width="200px"><a href="{:U('Admins/update', array('admin_id' => $admin['uuid'], 'operation' => $operation, 'p' => $_GET['p']))}" onclick="return confirm('{$status}该管理员吗？')">{$status}</a></th>
+					</tr>
+				</table>
+			</div>
+	   </volist>
 
 		<!-- 分页系统 -->
 		<div class="add_line_page">
 			<div class="add_line_page_style">
-				<a href="#" style="background-color:#00CCFF;color:white">首页</a>
-				<a href="#">1</a>
-				<a href="#">2</a>
-				<a href="#">3</a>
-				<a href="#">尾页</a>
+                {$page}
 			</div>
 		</div>
-
 	</div>
 </div>

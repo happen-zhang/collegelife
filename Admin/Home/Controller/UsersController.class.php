@@ -48,11 +48,11 @@ class UsersController extends CommonController {
 
         $userService = D('User', 'Service');
         if ($_GET['operation'] == 'deactive') {
-            if (false == $userService->deactiveUser($_GET['user_id'])) {
+            if (false == $userService->deactive($_GET['user_id'])) {
                 $this->error('系统出错了！');
             }
         } else if ($_GET['operation'] == 'active') {
-            if (false == $userService->activeUser($_GET['user_id'])) {
+            if (false == $userService->active($_GET['user_id'])) {
                 $this->error('系统出错了！');
             }
         } else {

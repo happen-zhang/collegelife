@@ -22,6 +22,6 @@ class OrderModel extends RelationModel {
             'mapping_type' => HAS_MANY,
             'class_name' => 'OrderGoodsShip',
             'foreign_key' => 'order_id',
-        ),        
-    );  
+        ),
+    );
 }

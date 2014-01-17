@@ -129,3 +129,16 @@ function uuid($prefix = '') {
 function datetime() {
     return date('Y-m-d H:i:s');
 }
+
+/**
+ * 格式化数组成字符串
+ * @param  array $array
+ * @return string
+ */
+function formatArrToStr($array) {
+    foreach ($array as $value) {
+        $str .= "[{$value}] ";
+    }
+
+    return $str;
+}

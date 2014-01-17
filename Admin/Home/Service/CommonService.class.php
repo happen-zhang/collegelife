@@ -41,6 +41,42 @@ abstract class CommonService extends Model {
     }
 
     /**
+     * 不激活状态
+     * @param  string $uuid
+     * @return boolean
+     */
+    public function deactive($uuid) {
+        return $this->changeActiveStatus($uuid, 0);
+    }
+
+    /**
+     * 激活状态
+     * @param  string $uuid
+     * @return boolean
+     */
+    public function active($uuid) {
+        return $this->changeActiveStatus($uuid, 1);
+    }
+
+     /**
+     * 改变激活状态
+     * @param  string $uuid   
+     * @param  boolean $active
+     * @return boolean
+     */
+    protected function changeActiveStatus($uuid, $active) {
+        $M = $this->getM();
+
+        $where['uuid'] = $uuid;
+        $data['is_active'] = $active;
+        if (false === $M->where($where)->save($data)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * 获得M
      * @return model
      */

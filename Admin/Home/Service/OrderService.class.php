@@ -26,6 +26,7 @@ class OrderService extends CommonService {
         $Order = M('Order');
         $order['consignment_at'] = datetime();
         $order['order_status'] = '已发货';
+        $order['admin_id'] = $_SESSION['id'];
         $where['uuid'] = $uuid;
         if (false === $Order->where($where)->save($order)) {
             return false;
@@ -43,6 +44,8 @@ class OrderService extends CommonService {
         $Order = M('Order');
         $where['uuid'] = $uuid;
         $order['payment_status'] = '已收款';
+        $order['admin_id'] = $_SESSION['id'];
+        $order['payment_at'] = datetime();
 
         if (false === $Order->where($where)->save($order)) {
             return false;

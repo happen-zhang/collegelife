@@ -19,42 +19,6 @@ class UserService extends CommonService {
         return $user;
     }
 
-    /**
-     * 不激活用户
-     * @param  string $uuid
-     * @return boolean
-     */
-    public function deactiveUser($uuid) {
-        return $this->changeActiveStatus($uuid, 0);
-    }
-
-    /**
-     * 激活用户
-     * @param  string $uuid
-     * @return boolean
-     */
-    public function activeUser($uuid) {
-        return $this->changeActiveStatus($uuid, 1);
-    }
-
-    /**
-     * 改变用户激活状态
-     * @param  string $uuid   
-     * @param  boolean $active
-     * @return boolean
-     */
-    private function changeActiveStatus($uuid, $active) {
-        $User = M('User');
-
-        $where['uuid'] = $uuid;
-        $user['is_active'] = $active;
-        if (false === $User->where($where)->save($user)) {
-            return false;
-        }
-
-        return true;        
-    }
-
     protected function getM() {
         return M('User');
     }
