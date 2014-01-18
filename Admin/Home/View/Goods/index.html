@@ -46,7 +46,7 @@
 		<div class="add_line">
 			<table>
 				<tr width="980px" height="50px">
-					<th width="200px">产品名</th><th width="150px">产品类型</th><th width="200px">数量</th><th width="200px">添加时间</th>
+					<th width="200px">产品名</th><th width="150px">产品类型</th><th width="200px">价格</th><th width="200px">添加时间</th>
 				</tr>
 			</table>
 		</div>
@@ -55,7 +55,7 @@
 			<div class="add_line">
 				<table>
 					<tr width="980px" height="50px">
-						<th width="200px"><a href="{:U('Goods/show', array('goods_id' => $item['uuid']))}" target="_blank">{$item['name']}</a></th><th width="150px">{$curr_category['name']}</th><th width="200px">{$item['stock']}</th><th width="200px">{$item['created_at']}</th>
+						<th width="200px"><a href="{:U('Goods/show', array('goods_id' => $item['uuid']))}" target="_blank">{$item['name']}</a></th><th width="150px">{$curr_category['name']}</th><th width="200px">{$item['preferential']}</th><th width="200px">{$item['created_at']}</th>
 					</tr>
 				</table>
 			</div>

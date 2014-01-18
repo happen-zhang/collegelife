@@ -33,6 +33,6 @@ class PublicController extends CommonController {
     }
 
     public function test() {
-        var_dump(is_numeric('23.55'));
+        var_dump($_SESSION);
     }
 }

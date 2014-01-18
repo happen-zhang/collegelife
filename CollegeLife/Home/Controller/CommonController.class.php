@@ -28,6 +28,16 @@ class CommonController extends Controller {
                 cookie('latest_msg', $content);
             }
         }
+
+        // 记录访客信息
+        if (is_null(cookie('visitor'))) {
+            $Visitor = M('Visitor');
+            $visitor['created_at'] = datetime();
+            $visitor['ip'] = getIpLocation();
+            $Visitor->add($visitor);
+
+            cookie('visitor', $visitor['ip']);
+        }
     }
 
     /**

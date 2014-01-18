@@ -91,7 +91,7 @@
 		<div id="commend_line">
 			<div class="shop_watch_main_style_commend">
 				<strong>{$comment['commenter_name']}</strong> 在 <span style="color:#999999">{$comment['created_at']}</span> 发表：
-				<p>{$comment['content']}</p>
+				<p>{:strip_sql_injection($comment['content'])}</p>
 			</div>
 		</div>    	
     </volist>

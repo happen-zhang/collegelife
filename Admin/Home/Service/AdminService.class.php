@@ -20,9 +20,7 @@ class AdminService extends CommonService {
         $admin['is_active'] = 1;
 
         $Admin = M('Admin');
-        $result = $Admin->where($admin)
-                        ->field(array('id', 'uuid', 'admin_name'))
-                        ->find();
+        $result = $Admin->where($admin)->find();
         if (!empty($result)) {
             // 更新最近登陆时间
             $result['latest_login_at'] = datetime();
@@ -34,7 +32,8 @@ class AdminService extends CommonService {
                      = md5($result['admin_name'] . C('COOKIE_NAME'));
             $_SESSION['aid'] = $result['uuid'];
             $_SESSION['id'] = $result['id'];
-            
+            $_SESSION['rank'] = $result['rank'];
+
             return true;
         } else {
             // 密码错误

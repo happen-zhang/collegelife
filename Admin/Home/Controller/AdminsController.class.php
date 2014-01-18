@@ -6,6 +6,18 @@ namespace Home\Controller;
  */
 class AdminsController extends CommonController {
     /**
+     * 权限过滤
+     * @return
+     */
+    public function _initialize() {
+        parent::_initialize();
+
+        if ($_SESSION['rank'] != 3) {
+            $this->error('您没有权限查看该页！');
+        }
+    }
+
+    /**
      * 管理员
      * @return 
      */

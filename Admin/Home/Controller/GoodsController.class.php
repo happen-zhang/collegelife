@@ -2,7 +2,7 @@
 namespace Home\Controller;
 
 /**
- * 
+ * GoodsController
  */
 class GoodsController extends CommonController {
     /**

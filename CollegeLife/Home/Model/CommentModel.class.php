@@ -26,11 +26,6 @@ class CommentModel extends Model {
             return $_SESSION['username'];
         }
 
-        // ip显示
-        $ip = get_client_ip();
-        $ipLocation = new \Org\Net\IpLocation('UTFWry.dat');
-        $area = $ipLocation->getlocation($ip);
-
-        return $ip . ' ' . $area['country'] . ' ' .$area['area'];
+        return getIpLocation();
     }
 }

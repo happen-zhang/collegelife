@@ -51,12 +51,14 @@ function strip_sql_injection($content) {
             $content[$key] = stripslashes($value);
             $content[$key] = str_replace('\%', '%', $value); // 转义%
             $content[$key] = str_replace('\_', '_', $value); // 转义_
+            $content[$key] = stripslashes($value);
         }
     } else {
         $content = str_replace('&quot;', "'", $content);
         $content = stripslashes($content);
         $content = str_replace('\%', '%', $content); // 转义%
         $content = str_replace('\_', '_', $content); // 转义_
+        $content = stripslashes($content);
     }
 
     return $content;
@@ -141,4 +143,16 @@ function formatArrToStr($array) {
     }
 
     return $str;
+}
+
+/**
+ * 获得ip地址和定位信息
+ * @return string
+ */
+function getIpLocation() {
+    $ip = get_client_ip();
+    $ipLocation = new \Org\Net\IpLocation('UTFWry.dat');
+    $area = $ipLocation->getlocation($ip);
+
+    return $ip . ' ' . $area['country'] . ' ' .$area['area'];
 }

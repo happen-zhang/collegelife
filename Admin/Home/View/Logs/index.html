@@ -1,9 +1,30 @@
 <div id="add_main_content">
 	<div class="add_style">
-		<div class="add_style_inside">
-			<p>用户访问情况：XXX</p>
-			<p>系统日志：XXX</p>
-			<p>管理员登陆时间：XXX</p>
+		<p style="font-size:14px;font-weight:bold">访问信息</p>
+		<div class="add_line">
+			<table>
+				<tr width="980px" height="50px">
+					<th width="400px">访问IP</th><th width="120px">访问时间</th>
+				</tr>
+			</table>
+		</div>
+
+        <volist name="visitors" id="visitor">
+		<div class="add_line">
+			<table>
+				<tr width="980px" height="50px">
+					<th width="400px">{$visitor['ip']}</th><th width="120px">
+					{$visitor['created_at']}</th>
+				</tr>
+			</table>
+		</div>
+        </volist>
+
+		<!-- 分页系统 -->
+		<div class="add_line_page">
+			<div class="add_line_page_style">
+                {$page}
+			</div>
 		</div>
 	</div>
 </div>

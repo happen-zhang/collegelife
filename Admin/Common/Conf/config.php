@@ -1,6 +1,7 @@
 <?php
 $dbConfig = include('Global/Conf/db_config.php');
 $secureConfig = include('Global/Conf/secure_config.php');
+$coustomConfig = include('Global/Conf/coustom_config.php');
 
 $appConfig =  array(
     // 调试页
@@ -21,4 +22,4 @@ $appConfig =  array(
     'UPLOAD_PATH' => './Public/images/uploads/',
 );
 
-return array_merge($appConfig, $dbConfig, $secureConfig);
+return array_merge($appConfig, $dbConfig, $secureConfig, $coustomConfig);
