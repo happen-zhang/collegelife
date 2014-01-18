@@ -1,31 +1,30 @@
 <div id="add_main_content">
 	<div class="add_style">
-		<p style="font-size:14px;font-weight:bold"><a href="{:U('Goods/index')}">添加产品&gt;</a> XXX产品</p>
+		<p style="font-size:14px;font-weight:bold"><a href="{:U('Goods/index', array('category_id' => $goods['category']['id']))}">{$goods['category']['name']}&gt;</a> {$goods['name']}</p>
 		<hr />
 		<div class="add_style_inside">
-			<p>产品名称：XXX</p>
-			<p>产品品牌：XXX</p>
-			<p>产品参数：XXX</p>
-			<p>已购买数量：100笔</p>
+			<p>产品名称：{$goods['name']}</p>
+			<p>产品品牌：{$goods['brand']}</p>
+			<p>产品规格：{$goods['net_wt']}</p>
+			<p>功&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;效：{$goods['feature']}</p>
+			<p>产品规格：{$goods['net_wt']}</p>
+			<p>原&nbsp;&nbsp;产&nbsp;地：{$goods['place_origin']}</p>
+            <p>保质期限：{$goods['qgp']}</p>
+            <p>适用人群：{$goods['suitable']}</p>
+            <p>特别说明：{$goods['remind']}</p>
 		</div>
 		<p>&nbsp;</p>
 		<p style="font-size:14px;font-weight:bold">该产品相关评论</p>
 		<hr />
 
+        <volist name="goods['comments']" id="comment">
 		<div class="add_line2">
 			<div class="add_line2_inside">
-				<p><a href="{:U('Users/show')}">XXX</a> 在 2012-12-12 12:12:12 评论：</p>
-				<p>评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</p>
-				<p><a href="#" onclick="del_comment()">删除</a></p>
+				<p>{$comment[commenter_name]} 在 {$comment['created_at']} 评论：</p>
+				<p>{$comment['content']}</p>
+				<p><a href="{:U('Comments/destroy', array('comment_id' => $comment['id'], 'goods_id' => $goods['uuid']))}" onclick="return confirm('是否删除该评论？')">删除</a></p>
 			</div>
 		</div>
-		<div class="add_line2">
-			<div class="add_line2_inside">
-				<p><a href="{:U('Users/show')}">XXX</a> 在 2012-12-12 12:12:12 评论：</p>
-				<p>评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</p>
-				<p><a href="#" onclick="del_comment()">删除</a></p>
-			</div>
-		</div>
-
+        </volist>
 	</div>
 </div>

@@ -13,13 +13,12 @@ $appConfig =  array(
     // 开启布局
     'LAYOUT_ON' => true,
     'LAYOUT_NAME' => 'Public/layout',
-
-    // error和success重定向
-    // 'TMPL_ACTION_ERROR' => 'Public:error',
-    // 'TMPL_ACTION_SUCCESS' => 'Public:success',
     
     // 分页列表数
     'PAGINATION_NUM' => 5,
+
+    // 上传路径
+    'UPLOAD_PATH' => './Public/images/uploads/',
 );
 
 return array_merge($appConfig, $dbConfig, $secureConfig);

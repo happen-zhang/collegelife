@@ -21,7 +21,14 @@ class GoodsModel extends RelationModel {
         'comments' => array(
             'mapping_type' => HAS_MANY,
             'class_name' => 'comment',
-            'foregin_key' => 'goods_id'
+            'foregin_key' => 'goods_id',
+        ),
+
+        // 一个商品对应多张图片
+        'images' => array(
+            'mapping_type' => HAS_MANY,
+            'class_name' => 'goods_images',
+            'foregin_key' => 'goods_id',
         ),
     );
 }

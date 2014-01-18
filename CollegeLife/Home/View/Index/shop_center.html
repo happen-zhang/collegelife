@@ -15,7 +15,7 @@
 <volist name="goods" id="item">
 	<div id="about_box">
 		<div id="about_box_img">
-			<a href="{:U('Orders/build', array('goods_id' => $item['uuid']))}" title="点击查看详情"><img src="" width="180" height="210" border="0"></a>
+			<a href="{:U('Orders/build', array('goods_id' => $item['uuid']))}" title="点击查看详情"><img src="__PUBLIC__/images/uploads/{$item['logo']}" width="180" height="210" border="0"></a>
 		</div>
 		<div id="about_box_content">
 			<div class="about_box_content_style">

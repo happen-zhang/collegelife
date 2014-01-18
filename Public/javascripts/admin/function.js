@@ -97,3 +97,13 @@ function check_msg() {
 
     return true;
 }
+
+function createFile() {
+    var num = document.getElementById("select_num").value.trim();
+    $(".display_img").remove();
+    
+    var field = "<p><input type='file' name='imgs[]' class='display_img' style='margin-left: 4.3em;' /><p>";
+    for (var i = 0; i < num; i++) {
+    	$("#select_num").after(field);
+    }
+}

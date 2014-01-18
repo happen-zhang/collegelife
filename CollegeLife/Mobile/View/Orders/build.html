@@ -1,6 +1,6 @@
 <div class="add_line"></div>
 <div class="add_img">
-	<img src="__PUBLIC__/images/bg_1.jpg" width="100%" border="0">
+	<img src="__PUBLIC__/images/uploads/{$goods['logo']}" width="100%" border="0">
 </div>
 <div class="add_shop_style">
 	{$goods['name']}
@@ -42,5 +42,6 @@
 
 </form>
 
-<center><img src="__PUBLIC__/images/bg_1.jpg" width="100%"></center>
-<center><img src="__PUBLIC__/images/bg_2.jpg" width="100%"></center>
+<volist name="goods['images']" id="image">
+<center><img src="__PUBLIC__/images/uploads/{$image['path']}" width="100%"></center>
+</volist>

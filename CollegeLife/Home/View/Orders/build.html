@@ -101,8 +101,9 @@
 <div id="shop_watch_main" style="margin-bottom:0px">
 	<center>
 		<div class="shop_watch_main_style">
-			<img src="__PUBLIC__/images/bg_1.jpg" width="1035">
-			<img src="__PUBLIC__/images/bg_2.jpg" width="1035">
+			<volist name="goods['images']" id="image">
+			    <img src="__PUBLIC__/images/uploads/{$image['path']}" width="1035" />
+			</volist>
 		</div>		
 	</center>
 </div>
