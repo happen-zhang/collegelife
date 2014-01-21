@@ -41,7 +41,7 @@ class OrderService extends CommonService {
      * @return boolean
      */
     public function payOrder($uuid) {
-        $Order = M('Order');
+        $Order = D('Order');
         $where['uuid'] = $uuid;
         $order['payment_status'] = '已收款';
         $order['admin_id'] = $_SESSION['id'];
@@ -49,6 +49,13 @@ class OrderService extends CommonService {
 
         if (false === $Order->where($where)->save($order)) {
             return false;
+        }
+
+        // 增加商品销量
+        $order = $Order->relation(true)->where($where)->find();
+        foreach ($order['order_goods_ships'] as $subOrder) {
+            $goodsId = $subOrder['goods_id'];
+            M('Goods')->where(array('id' => $goodsId))->setInc('sold_count');
         }
 
         return true;

@@ -2,7 +2,7 @@
 namespace Home\Controller;
 
 /**
- * 
+ * OrdersController
  */
 class OrdersController extends CommonController {
     /**
@@ -55,7 +55,7 @@ class OrdersController extends CommonController {
             }
         } else if ($_GET['operation'] == 'collect') {
             if (false == $orderService->payOrder($uuid)) {
-              $this->error('系统出错了！');
+                $this->error('系统出错了！');
             }
         } else {
             $this->error('无效的操作！');
