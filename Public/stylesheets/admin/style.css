@@ -402,3 +402,7 @@ img:hover{
 	background-color:#ff9900;
 	color:white;
 }
+
+.hide {
+	display: none;
+}

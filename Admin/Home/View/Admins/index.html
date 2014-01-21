@@ -6,21 +6,25 @@
 				<p>管理员名称：<input type="text" name="admin[admin_name]" class="bar"></p>
 				<p>管理员密码：<input type="password" name="admin[password]" class="bar"></p>
 				<p>管理员级别：
-					<select name="admin[rank]" class="bar" style="height:30px">
-						<option value="2">总管理员</option>
+					<select name="admin[rank]" class="bar" style="height:30px"  onchange="toggle_buildings(this.value)">
 						<option value="1">分管理员</option>
+						<option value="2">总管理员</option>
 					</select>
 				</p>
+				<div class="buildings">
 				<p>管理楼层分配：</p>
 				<p>
 					<?php
 					for($i=1;$i<40;$i++){
+						if (!in_array($i, $buildings)) {
 					?>
 						<input type="checkbox" name="admin[buildings][]" value="<?php echo $i; ?>"><?php echo $i; ?>栋&nbsp;&nbsp;
 					<?php
+					    }
 					}
 					?>
 				</p>
+			</div>
 				<p><input type="submit" value="添加管理员" class="add_btn" style="width:140px"></p>
 			</form>
 		</div>

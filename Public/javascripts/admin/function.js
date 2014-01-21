@@ -107,3 +107,11 @@ function createFile() {
     	$("#select_num").after(field);
     }
 }
+
+function toggle_buildings(value) {
+    if (value != 1) {
+        $(".buildings").hide();
+    } else {
+    	$(".buildings").show();
+    }
+}
