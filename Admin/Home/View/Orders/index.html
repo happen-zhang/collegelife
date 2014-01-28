@@ -18,7 +18,7 @@
 								<option value="#">选择状态</option>
 								<if condition="$_SESSION['rank'] eq 3">
 									<?php if ($order['order_status'] == '未发货') {?>
-									<option value="{:U('Orders/destroy', array('order_id' => $order['uuid'], 'p' => $_GET['p']))}">取消订单</option>
+									<option value="<?php echo U('Orders/destroy', array('order_id' => $order['uuid'], 'p' => $_GET['p'])); ?>">取消订单</option>
 									<?php } ?>
 								</if>
 								<?php if ($order['order_status'] == '未发货') { ?>
