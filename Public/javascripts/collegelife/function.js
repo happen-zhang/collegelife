@@ -380,6 +380,7 @@ function show_commend(){
 }
 
 function check_contact(){
+	var inputCode=document.getElementById("input1").value.toUpperCase();
 	var name=document.getElementById("contact_name").value;
 	var cell=document.getElementById("contact_num").value;
 	var textarea=document.getElementById("contact_area").value;
@@ -392,6 +393,13 @@ function check_contact(){
 	}else if(textarea == ""){
 		alert("请输入您的建议再提交");
 		return false;
+	} else if(inputCode.length <=0) {
+	   alert("请输入验证码");
+	   return false;
+	} else if(inputCode != code ){
+	   alert("验证码输入错误");
+	   createCode();
+	   return false;
 	}
 }
 
