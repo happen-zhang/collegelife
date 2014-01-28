@@ -10,6 +10,8 @@ class OrdersController extends CommonController {
      * @return
      */
     public function index(){
+        $result = D('Order', 'Service')->getCount();
+
         $result = $this->pagination('Order');
 
         $this->assign('page', $result['show']);

@@ -13,10 +13,23 @@ class UserService extends CommonService {
     public function getUserDetail($id) {
         $User = D('User');
         $user = $User->relation(true)
-                     ->where(array('id' => $_GET['user_id']))
+                     ->where(array('id' => $id))
                      ->find();
         
         return $user;
+    }
+
+    /**
+     * 获取指定栋号的用户
+     * @param  array  $buildingNo
+     * @param  array  $fields
+     * @return array
+     */
+    public function getUserByBuildingNo(array $buildingNo, array $fields) {
+        $where['building_no'] = array('in', $buildingNo);
+        $users = M('User')->where($where)->field($fields)->select();
+
+        return $users;
     }
 
     protected function getM() {

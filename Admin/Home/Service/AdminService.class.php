@@ -53,6 +53,37 @@ class AdminService extends CommonService {
     }
 
     /**
+     * 获得指定id管理员所管理的楼栋号
+     * @param  int $id
+     * @return array
+     */
+    public function getAdminBuildings($id) {
+        // 得到管理楼栋号
+        $where['id'] = $id;
+        $fields = array('buildings');
+        $admin = M('Admin')->where($where)->field($fields)->find();
+        $buildings = explode(',', $admin['buildings']);
+
+        return $buildings;        
+    }
+
+    /**
+     * 获得管理员所管理的用户
+     * @param  $adminId
+     * @return array
+     */
+    public function getUserBelongsAdmin($adminId, array $fields) {
+        // 得到管理楼栋号
+        $buildings = $this->getAdminBuildings($adminId);
+
+        // 获取楼栋号的用户
+        $userService = D('user', 'Service');
+        $users = $userService->getUserByBuildingNo($buildings, $fields);
+
+        return $users;
+    }
+
+    /**
      * 获得管理员信息和处理订单详情
      * @param  string $uuid
      * @return array
