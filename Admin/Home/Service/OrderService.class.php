@@ -51,11 +51,14 @@ class OrderService extends CommonService {
             return false;
         }
 
-        // 增加商品销量
+        // 增加商品销量 更新用户已购信息
         $order = $Order->relation(true)->where($where)->find();
+        $bought['user_id'] = $order['user_id'];
         foreach ($order['order_goods_ships'] as $subOrder) {
             $goodsId = $subOrder['goods_id'];
+            $bought['goods_id'] = $goodsId;
             M('Goods')->where(array('id' => $goodsId))->setInc('sold_count');
+            M('Bought')->add($bought);
         }
 
         return true;

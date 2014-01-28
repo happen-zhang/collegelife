@@ -118,6 +118,22 @@ class UserService extends Model {
     }
 
     /**
+     * 获取用户已经购买过的商品
+     * @param  string $uuid
+     * @return 
+     */
+    public function userHasBought($uuid) {
+        $where['uuid'] = $uuid;
+        $user = D('User')->relation(true)->where()->find();
+        $bought = array();
+        foreach ($user['bought'] as $item) {
+            $bought[] = $item['goods_id'];
+        }
+
+        return $bought;
+    }
+
+    /**
      * 按uuid获取用户
      * @param  string $uuid
      * @return array

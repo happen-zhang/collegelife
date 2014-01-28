@@ -18,6 +18,13 @@ class UserModel extends RelationModel {
             'class_name' => 'order',
             'foreign_key' => 'user_id',
         ),
+
+        // 一个用户对应多个已购买过的商品
+        'bought' => array(
+            'mapping_type' => HAS_MANY,
+            'class_name' => 'bought',
+            'foreign_key' => 'user_id',
+        )
     );
 
     // 自动验证

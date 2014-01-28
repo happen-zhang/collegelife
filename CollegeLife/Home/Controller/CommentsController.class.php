@@ -10,12 +10,24 @@ class CommentsController extends CommonController {
      * @return
      */
     public function create() {
+        // 未登陆不给于评论
+        if (!$this->hasLogin()) {
+            $this->returnJson('', 0, '请先登陆后再评论！');
+        }
+
         $this->unvalidFormReq();
 
         if (!isset($_POST['goods_id'])
             || !is_numeric($_POST['goods_id'])
             || !isset($_POST['comment_content'])) {
             $this->returnJson('', 0, '无效的操作！');
+        }
+
+        // 购买过的用户才能评论
+        $userService = D('User', 'Service');
+        $bought = $userService->userHasBought($_SESSION['uid']);
+        if (!in_array($_POST['goods_id'], $bought)) {
+            $this->returnJson('', 0, '请购买完成后再评论！');
         }
 
         $Comment = D('Comment');
