@@ -55,6 +55,16 @@ class CommonController extends Controller {
     }
 
     /**
+     * 管理员权限过滤
+     * @return
+     */
+    protected function adminPowerFilter() {
+        if (!isset($_SESSION['rank']) || $_SESSION['rank'] != 3) {
+            $this->error('您没有权限查看该页！');
+        }
+    }
+
+    /**
      * 设置token
      * @return
      */

@@ -11,10 +11,7 @@ class AdminsController extends CommonController {
      */
     public function _initialize() {
         parent::_initialize();
-
-        if ($_SESSION['rank'] != 3) {
-            $this->error('您没有权限查看该页！');
-        }
+        $this->adminPowerFilter();
     }
 
     /**

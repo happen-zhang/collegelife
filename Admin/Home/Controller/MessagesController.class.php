@@ -6,6 +6,15 @@ namespace Home\Controller;
  */
 class MessagesController extends CommonController {
     /**
+     * 权限过滤
+     * @return
+     */
+    public function _initialize() {
+        parent::_initialize();
+        $this->adminPowerFilter();
+    }
+    
+    /**
      * 通知管理
      * @return
      */

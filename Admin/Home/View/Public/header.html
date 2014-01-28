@@ -8,9 +8,15 @@
 		<div class="style">
 			<a href="{:U('Orders/index')}" <if condition="CONTROLLER_NAME eq 'Orders'"> style="background-color:#00CCFF;color:white" </if>>订单管理</a>
 			<a href="{:U('Logs/index')}" <if condition="CONTROLLER_NAME eq 'Logs'"> style="background-color:#00CCFF;color:white" </if>>访问统计</a>
+			<if condition="$_SESSION['rank'] eq 3">
 			<a href="{:U('Goods/index')}" <if condition="CONTROLLER_NAME eq 'Goods'"> style="background-color:#00CCFF;color:white" </if>>产品管理</a>
+			</if>
+			<if condition="$_SESSION['rank'] eq 3">
 			<a href="{:U('Users/index')}" <if condition="CONTROLLER_NAME eq 'Users'"> style="background-color:#00CCFF;color:white" </if>>用户管理</a>
+			</if>
+			<if condition="$_SESSION['rank'] eq 3">
 			<a href="{:U('Messages/index')}" <if condition="CONTROLLER_NAME eq 'Messages'"> style="background-color:#00CCFF;color:white" </if>>通知管理</a>
+			</if>
 			<a href="{:U('Suggestions/index')}" <if condition="CONTROLLER_NAME eq 'Suggestions'"> style="background-color:#00CCFF;color:white" </if>>建议管理</a>
 			<if condition="$_SESSION['rank'] eq 3">
 			<a href="{:U('Admins/index')}" <if condition="CONTROLLER_NAME eq 'Admins'"> style="background-color:#00CCFF;color:white" </if>>管理员</a>

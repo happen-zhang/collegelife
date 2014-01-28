@@ -6,6 +6,15 @@ namespace Home\Controller;
  */
 class GoodsController extends CommonController {
     /**
+     * 权限过滤
+     * @return
+     */
+    public function _initialize() {
+        parent::_initialize();
+        $this->adminPowerFilter();
+    }
+        
+    /**
      * 商品管理
      * @return
      */
