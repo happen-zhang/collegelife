@@ -17,10 +17,19 @@
 							<select name="" onchange="self.location.href=options[selectedIndex].value">
 								<option value="#">选择状态</option>
 								<if condition="$_SESSION['rank'] eq 3">
+									<?php if ($order['order_status'] == '未发货') {?>
 									<option value="{:U('Orders/destroy', array('order_id' => $order['uuid'], 'p' => $_GET['p']))}">取消订单</option>
+									<?php } ?>
 								</if>
-								<option value="{:U('Orders/update', array('operation' => 'consignment', 'order_id' => $order['uuid'], 'p' => $_GET['p']))}">正在发货</option>		
-								<option value="{:U('Orders/update', array('operation' => 'collect', 'order_id' => $order['uuid'], 'p' => $_GET['p']))}">已收款</option>	
+								<?php if ($order['order_status'] == '未发货') { ?>
+								<option value="{:U('Orders/update', array('operation' => 'consignment', 'order_id' => $order['uuid'], 'p' => $_GET['p']))}">正在发货</option>	
+								<?php } else { 
+									      if ($order['payment_status'] == '未收款') {
+							    ?>
+									      <option value="{:U('Orders/update', array('operation' => 'collect', 'order_id' => $order['uuid'], 'p' => $_GET['p']))}">已收款</option>
+								<?php    } ?>
+								          
+								<?php } ?>
 							</select>
 						</th>
 					</tr>
