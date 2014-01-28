@@ -11,7 +11,11 @@ class GoodsController extends CommonController {
      */
     public function _initialize() {
         parent::_initialize();
-        $this->adminPowerFilter();
+
+        $dispowerFilter = array('show');
+        if (!in_array(ACTION_NAME, $dispowerFilter)) {
+            $this->adminPowerFilter();
+        }
     }
         
     /**

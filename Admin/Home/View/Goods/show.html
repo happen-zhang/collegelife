@@ -22,7 +22,9 @@
 			<div class="add_line2_inside">
 				<p>{$comment[commenter_name]} 在 {$comment['created_at']} 评论：</p>
 				<p>{$comment['content']}</p>
+				<if condition="$_SESSION['rank'] eq 3">
 				<p><a href="{:U('Comments/destroy', array('comment_id' => $comment['id'], 'goods_id' => $goods['uuid']))}" onclick="return confirm('是否删除该评论？')">删除</a></p>
+			    </if>
 			</div>
 		</div>
         </volist>

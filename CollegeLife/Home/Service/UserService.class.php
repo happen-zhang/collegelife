@@ -124,7 +124,7 @@ class UserService extends Model {
      */
     public function userHasBought($uuid) {
         $where['uuid'] = $uuid;
-        $user = D('User')->relation(true)->where()->find();
+        $user = D('User')->relation(true)->where($where)->find();
         $bought = array();
         foreach ($user['bought'] as $item) {
             $bought[] = $item['goods_id'];
