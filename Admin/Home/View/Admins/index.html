@@ -12,17 +12,18 @@
 					</select>
 				</p>
 				<div class="buildings">
-				<p>管理楼层分配：</p>
-				<p>
+				<p> 管理楼层分配：
+					<select name="admin[buildings][]">
 					<?php
-					for($i=1;$i<40;$i++){
-						if (!in_array($i, $buildings)) {
+					for($i=1;$i<45;$i++){
+						// if (!in_array($i, $buildings)) {
 					?>
-						<input type="checkbox" name="admin[buildings][]" value="<?php echo $i; ?>"><?php echo $i; ?>栋&nbsp;&nbsp;
+						<option value="<?php echo $i; ?>"><?php echo $i; ?>栋</option>
 					<?php
-					    }
+					    // }
 					}
 					?>
+					</select>
 				</p>
 			</div>
 				<p><input type="submit" value="添加管理员" class="add_btn" style="width:140px"></p>

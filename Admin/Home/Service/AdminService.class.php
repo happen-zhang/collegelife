@@ -94,6 +94,7 @@ class AdminService extends CommonService {
                            ->find();
         $admin['rank'] = $this->getRank($admin['rank']);
         $admin['buildings'] = implode('栋 ', explode(',', $admin['buildings']));
+        $admin['buildings'] .= '栋';
 
         return $admin;
     }

@@ -2,7 +2,7 @@
 namespace Home\Controller;
 
 /**
- * 
+ * AdminsController
  */
 class AdminsController extends CommonController {
     /**
@@ -22,15 +22,15 @@ class AdminsController extends CommonController {
         $result = $this->pagination('Admin');
 
         // 取出被选过的楼房
-        $buildings = '';
-        foreach ($result['data'] as $item) {
-            $buildings .= ',' . $item['buildings'];
-        }
-        $buildings = array_unique(explode(',', $buildings));
+        // $buildings = '';
+        // foreach ($result['data'] as $item) {
+        //     $buildings .= ',' . $item['buildings'];
+        // }
+        // $buildings = array_unique(explode(',', $buildings));
 
+        // $this->assign('buildings', $buildings);
         $this->assign('page', $result['show']);
         $this->assign('admins', $result['data']);
-        $this->assign('buildings', $buildings);
         $this->display();
     }
 
@@ -108,3 +108,4 @@ class AdminsController extends CommonController {
         $this->redirect('Admins/index', array('p' => $_GET['p']));
     }
 }
+
