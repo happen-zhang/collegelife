@@ -1,6 +1,6 @@
 <div id="add_main_content">
 	<div class="add_style">
-		<p style="font-size:14px;font-weight:bold"><a href="main.php">返回主页&gt;</a> <?php printf('%05d', $order['id']) ?>号产品</p>
+		<p style="font-size:14px;font-weight:bold"><a href="main.php">返回主页&gt;</a> <?php printf('%05d', $order['id']) ?>号订单</p>
 		<hr />
 		<div class="add_style_inside">
 			<p>下单时间：{$order['created_at']}</p>
@@ -15,6 +15,24 @@
 				<p>数量：{$item['count']}</p>
 				<p>产品链接：<a href="{:U('Goods/show', array('goods_id' => $item['uuid']))}" target="_blank">点击查看</a></p>
 			</volist>
+			<br/>
+			<p style="font-size:14px;font-weight:bold;margin-top:25px">订单操作状态：</p>
+			<div class="add_line" style="width: 940px;">
+				<table >
+					<tr width="900px" height="50px">
+						<th width="200px">订单号</th><th width="200px">管理员</th><th width="200px">货物状态</th><th width="200px">修改时间</th>
+					</tr>
+				</table>
+			</div>
+			<div class="add_line" style="width: 940px;">
+				<table >
+					<volist name="doOrders" id="doOrder">
+					<tr width="980px" height="50px">
+						<th width="200px"><a href="{:U('Orders/show', array('order_id' => $order['uuid']))}" target="_blank"><?php printf('%05d', $order['id']); ?></a></th><th width="200px"><?php echo $doOrder['admin_name']; ?></th><th width="200px"><?php echo $doOrder['do_status']; ?></th><th width="200px"><?php echo $doOrder['modified_at']; ?></th>
+					</tr>
+				    </volist>
+				</table>
+			</div>
 		</div>
 		<p>&nbsp;</p>
 	</div>

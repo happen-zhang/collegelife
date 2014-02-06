@@ -32,6 +32,9 @@ class OrderService extends CommonService {
             return false;
         }
 
+        // 订单日志
+        $this->orderLog($uuid, $order['order_status']);
+
         return true;
     }
 
@@ -50,6 +53,9 @@ class OrderService extends CommonService {
         if (false === $Order->where($where)->save($order)) {
             return false;
         }
+
+        // 订单日志
+        $this->orderLog($uuid, $order['payment_status']);
 
         // 增加商品销量 更新用户已购信息
         $order = $Order->relation(true)->where($where)->find();
@@ -176,5 +182,43 @@ class OrderService extends CommonService {
         $userIds = implode(',', $userIds);
 
         return $userIds;
+    }
+
+    /**
+     * 记录订单状态
+     * @param  string $uuid     
+     * @param  string $doStatus 
+     * @return 
+     */
+    public function orderLog($uuid, $doStatus) {
+        // 记录对订单的操作
+        $order = M('Order')->where(array('uuid' => $uuid))->find();
+        $doOrder['order_id'] = $order['id'];
+        $doOrder['admin_id'] = $_SESSION['id'];
+        $doOrder['do_status'] = $doStatus;
+        $doOrder['modified_at'] = datetime();
+        M('AdminDoOrder')->add($doOrder);
+    }
+
+    /**
+     * 获得订单操作状态
+     * @return array
+     */
+    public function getAdminDoOrder($uuid) {
+        $order = M('Order')->where(array('uuid' => $uuid))
+                           ->field(array('id'))
+                           ->find();
+        $AdminDoOrder = M('AdminDoOrder');
+        $doOrders = $AdminDoOrder->where(array('order_id' => $order['id']))
+                                 ->select();
+
+        foreach ($doOrders as $key => $doOrder) {
+            $admin = M('Admin')->where(array('id' => $doOrder['admin_id']))
+                               ->field('admin_name')
+                               ->find();
+            $doOrders[$key]['admin_name'] = $admin['admin_name'];
+        }
+
+        return $doOrders;
     }
 }

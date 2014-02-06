@@ -34,8 +34,12 @@ class OrdersController extends CommonController {
             $this->error('您查看的订单不存在！');
         }
 
+        // 订单日志
+        $doOrders = $orderService->getAdminDoOrder($_GET['order_id']);
+
         $this->assign('order', $order);
         $this->assign('goods', $order['goods']);
+        $this->assign('doOrders', $doOrders);
         $this->display();
     }
 
@@ -74,6 +78,9 @@ class OrdersController extends CommonController {
         if (!isset($_GET['order_id'])) {
             $this->error('无效的操作！');
         }
+
+        $doStatus = '取消订单';
+        D('Order', 'Service')->orderLog($_GET['order_id'], $doStatus);
 
         $Order = M('Order');
         $where['uuid'] = $_GET['order_id'];
