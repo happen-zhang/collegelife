@@ -24,4 +24,7 @@
 			<a href="{:U('Public/logout')}">登出</a>
 		</div>
 	</div>
+	<div style="clear:both;">
+	    <p style="padding: 5px 0px 0px 10px; font-size: 13px; font-weight: 800">欢迎您：<?php echo getAdminRank($_SESSION['rank']); ?>&nbsp;&nbsp;<?php echo $_SESSION['admin_name']; ?></p>
+	</div>
 </div>

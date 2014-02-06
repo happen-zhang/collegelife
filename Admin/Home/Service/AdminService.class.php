@@ -105,22 +105,7 @@ class AdminService extends CommonService {
      * @return string
      */
     public function getRank($rank) {
-        $rankStr = '分管理员';
-        switch ($rank) {
-            case 1:
-                $rankStr = '分管理员';
-                break;
-
-            case 2:
-                $rankStr = '总管理员';
-                break;
-
-            case 3:
-                $rankStr = '总部';
-                break;
-        }
-
-        return $rankStr;
+        return getAdminRank($rank);
     }
 
     /**
