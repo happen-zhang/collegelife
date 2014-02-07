@@ -33,14 +33,6 @@ class ApplicationsController extends CommonController {
     }
 
     /**
-     * 商品详情
-     * @return
-     */
-    public function show() {
-
-    }
-
-    /**
      * 申请货款
      * @return
      */
@@ -56,5 +48,51 @@ class ApplicationsController extends CommonController {
         }
 
         $this->redirect('Applications/index');
-    }   
+    }
+
+    /**
+     * 处理货款
+     * @return
+     */
+    public function edit() {
+        if ($_SESSION['rank'] != 2) {
+            $this->error('您不可以访问该页面！');
+        }
+
+        $adminService = D('Admin', 'Service');
+        $applyService = D('Apply', 'Service');
+
+        $fields = array('id');
+        $building = $adminService->getAdminBuildings($_SESSION['id']);
+        $admins = $adminService->getAdminsByBuilding($building[0], $fields);
+        foreach ($admins as $admin) {
+            $adminIds .= $admin['id'] . ',';
+        }
+        
+        $applies = $applyService->getAppliesByAdminIds($adminIds);
+
+        $this->assign('applies', $applies);
+        $this->display();
+    }
+
+    /**
+     * 处理货款
+     * @return
+     */
+    public function update() {
+        if (!isset($_GET['apply_id'])) {
+            $this->error('无效的操作！');
+        }
+
+        $Apply = M('Apply');
+        $where['id'] = $_GET['apply_id'];
+        $apply['is_delivey'] = 1;
+
+        $flag = $Apply->where($where)->save($apply);
+        if ($flag === false) {
+            $this->error('系统出错了！');
+        }
+
+        $this->redirect('Applications/edit', array('p' => $_GET['p']));        
+    }
 }

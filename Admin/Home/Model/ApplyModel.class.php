@@ -9,7 +9,6 @@ use Think\Model\RelationModel;
 class ApplyModel extends RelationModel {
     // 关联
     protected $_link = array(
-        // 一个管理员有多个处理订单
         'goods' => array(
             'mapping_type' => BELONGS_TO,
             'class_name' => 'goods',

@@ -253,4 +253,15 @@ class AdminService extends CommonService {
 
         return $applies;
     }
+
+    /**
+     * 获得同一栋的所有管理员
+     * @return array
+     */
+    public function getAdminsByBuilding($building, $fields) {
+        $Admin = $this->getM();
+
+        $where['buildings'] = $building;
+        return $Admin->where($where)->field($fields)->select();
+    }
 }

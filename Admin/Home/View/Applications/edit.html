@@ -1,0 +1,36 @@
+<div id="add_main_content">
+	<div class="add_style">
+		<p style="font-size:14px;font-weight:bold">货款管理</p>
+		<div class="add_line">
+			<table>
+				<tr width="980px" height="50px">
+					<th width="150px">管理员</th><th width="80px">产品名</th><th width="150px">提货数量</th><th width="150px">提货时间</th><th width="150px">提货状态</th><th width="150px">操作</th>
+				</tr>
+			</table>
+		</div>
+ 
+		<volist name="applies" id="apply">
+			<div class="add_line">
+				<table>
+					<tr width="980px" height="50px">
+						<th width="150px"><a href="{:U('Admins/show', array('admin_id' => $apply['admin_uuid']))}" target="_blank">{$apply['admin_name']}</a></th><th width="80px"><a href="{:U('Goods/show', array('goods_id' => $apply['goods']['uuid']))}" target="_blank">{$apply['goods']['name']}</a></th><th width="150px">{$apply['goods_count']}</th><th width="150px">{$apply['applied_at']}</th><th width="150px"><?php if ($apply['is_delivey']) { echo '已发货款'; } else { echo '未发货款'; } ?></th><th width="150px">
+							<select name="" onchange="self.location.href=options[selectedIndex].value">
+								<option value="#">选择状态</option>
+								<?php if (!$apply['is_delivey']) { ?>
+								<option value="<?php echo U('Applications/update', array('apply_id' => $apply['id'], 'p' => $_GET['p'])); ?>">已发货款</option>
+								<?php } ?>
+							</select>
+						</th>
+					</tr>
+				</table>
+			</div>
+		</volist>
+
+		<!-- 分页系统 -->
+		<div class="add_line_page">
+			<div class="add_line_page_style">
+                {$page}
+			</div>
+		</div>
+	</div>
+</div>
