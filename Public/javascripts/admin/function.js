@@ -115,3 +115,15 @@ function toggle_buildings(value) {
     	$(".buildings").show();
     }
 }
+
+function check_apply() {
+    var apply_cnt = document.getElementById("apply_cnt");
+    var reg = /^[0-9]+$/;
+
+    if (!reg.test(apply_cnt.value)) {
+    	alert('请输入有效的数字！');
+    	return false;
+    }
+
+    return true;
+}

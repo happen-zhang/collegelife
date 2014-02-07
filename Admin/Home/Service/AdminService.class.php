@@ -237,4 +237,20 @@ class AdminService extends CommonService {
 
         return $transactions;
     }
+
+    /**
+     * 获得申请货款
+     * @param  int $adminId
+     * @return array
+     */
+    public function getApplies($adminId) {
+        $where['applicant'] = $adminId;
+        $Apply = D('Apply');
+        $applies = $Apply->relation(true)
+                         ->where($where)
+                         ->order('id DESC')
+                         ->select();
+
+        return $applies;
+    }
 }

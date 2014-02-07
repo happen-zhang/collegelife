@@ -18,8 +18,14 @@
 			<a href="{:U('Messages/index')}" <if condition="CONTROLLER_NAME eq 'Messages'"> style="background-color:#00CCFF;color:white" </if>>通知管理</a>
 			</if>
 			<a href="{:U('Suggestions/index')}" <if condition="CONTROLLER_NAME eq 'Suggestions'"> style="background-color:#00CCFF;color:white" </if>>建议管理</a>
+			<if condition="$_SESSION['rank'] eq 2">
+			<a href="{:U('Applications/index')}" <if condition="CONTROLLER_NAME eq 'Applications'"> style="background-color:#00CCFF;color:white" </if>>处理货款</a>
+			</if>
 			<if condition="$_SESSION['rank'] neq 1">
 			<a href="{:U('Admins/index')}" <if condition="CONTROLLER_NAME eq 'Admins'"> style="background-color:#00CCFF;color:white" </if>>管理员</a>
+			</if>
+			<if condition="$_SESSION['rank'] eq 1">
+			<a href="{:U('Applications/index')}" <if condition="CONTROLLER_NAME eq 'Applications'"> style="background-color:#00CCFF;color:white" </if>>申请货款</a>			
 			</if>
 			<a href="{:U('Public/logout')}">登出</a>
 		</div>
