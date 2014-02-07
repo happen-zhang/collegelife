@@ -128,4 +128,67 @@ class AdminService extends CommonService {
     protected function isRelation() {
         return false;
     }
+
+    public function getCount() {
+        if ($_SESSION['rank'] == 2) {
+            // 得到总管理管理的栋号d
+            $buildings = $this->getAdminBuildings($_SESSION['id']);
+
+            return $this->getAdminConut($buildings[0], 1);
+        }
+        
+        return $this->getAdminConut();
+    }
+
+    public function getPagination($firstRow, $listRows) {
+        if ($_SESSION['rank'] == 2) {
+            $buildings = $this->getAdminBuildings($_SESSION['id']);
+
+            return $this->getAdmins($firstRow, $listRows, $buildings[0], 1);
+        }
+
+        return $this->getAdmins($firstRow, $listRows);
+    }
+
+    /**
+     * 得到管理的总数
+     * @return int
+     */
+    public function getAdminConut($buildings, $rank) {
+        $where = array();
+        if (isset($buildings)) {
+            $where['buildings'] = array('like', '%' . $buildings . '%');
+        }
+
+        if (isset($rank)) {
+            $where['rank'] = 1;
+        }
+
+        $count = $this->getM()->where($where)->count();
+
+        return $count;
+    }
+
+    /**
+     * 得到管理员
+     * @param  string $buildings
+     * @param  int $rank
+     * @return array
+     */
+    public function getAdmins($firstRow, $listRows, $buildings, $rank) {
+        $where = array();
+        if (isset($buildings)) {
+            $where['buildings'] = array('like', '%' . $buildings . '%');
+        }
+
+        if (isset($rank)) {
+            $where['rank'] = 1;
+        }
+
+        $D = $this->getD();
+        return $D->order('latest_login_at DESC')
+                  ->where($where)
+                  ->limit($firstRow . ',' . $listRows)
+                  ->select();
+    }
 }

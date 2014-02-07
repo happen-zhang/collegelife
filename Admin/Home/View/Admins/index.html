@@ -1,6 +1,7 @@
 <div id="add_main_content">
 	<div class="add_style">
 		
+	    <?php if ($_SESSION['rank'] == 3) { ?>
 		<div class="add_style_inside">
 			<form action="{:U('Admins/create')}" method="POST">
 				<p>管理员名称：<input type="text" name="admin[admin_name]" class="bar"></p>
@@ -31,6 +32,7 @@
 		</div>
 
 		<hr />
+        <?php } ?>
 
 		<!-- 输出管理员 -->
 		<p style="font-size:14px;font-weight:bold">管理员查看</p>

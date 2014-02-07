@@ -11,7 +11,9 @@ class AdminsController extends CommonController {
      */
     public function _initialize() {
         parent::_initialize();
-        $this->adminPowerFilter();
+        if ($_SESSION['rank'] == 1) {
+            $this->adminPowerFilter();
+        }
     }
 
     /**
