@@ -22,13 +22,15 @@ class ApplicationsController extends CommonController {
      * @return
      */
     public function index(){
+        $result = $this->pagination('Apply');
         $adminService = D('Admin', 'Service');
 
         $goods = M('Goods')->field(array('id', 'name'))->select();
         $applies = $adminService->getApplies($_SESSION['id']);
 
         $this->assign('goods', $goods);
-        $this->assign('applies', $applies);
+        $this->assign('applies', $result['data']);
+        $this->assign('page', $result['show']);
         $this->display();
     }
 

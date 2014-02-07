@@ -17,6 +17,26 @@ class ApplyService extends CommonService {
         return false;
     }
 
+    public function getCount() {
+        $where['applicant'] = $_SESSION['id'];
+        $count = $this->getM()->where($where)->count();
+
+        return $count;
+    }
+
+    public function getPagination($firstRow, $listRows) {
+        $D = $this->getD();
+
+        $where['applicant'] = $_SESSION['id'];
+        $data = $D->relation(true)
+                  ->order('id DESC')
+                  ->where($where)
+                  ->limit($firstRow . ',' . $listRows)
+                  ->select();
+
+        return $data;
+    }    
+
     /**
      * 得到申请
      * @param  string $adminIds
