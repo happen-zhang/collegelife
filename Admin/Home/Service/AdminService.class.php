@@ -179,7 +179,7 @@ class AdminService extends CommonService {
     public function getAdmins($firstRow, $listRows, $buildings, $rank) {
         $where = array();
         if (isset($buildings)) {
-            $where['buildings'] = array('like', '%' . $buildings . '%');
+            $where['buildings'] = $buildings;
         }
 
         if (isset($rank)) {
@@ -188,9 +188,9 @@ class AdminService extends CommonService {
 
         $D = $this->getD();
         return $D->order('latest_login_at DESC')
-                  ->where($where)
-                  ->limit($firstRow . ',' . $listRows)
-                  ->select();
+                 ->where($where)
+                 ->limit($firstRow . ',' . $listRows)
+                 ->select();
     }
 
     /**
