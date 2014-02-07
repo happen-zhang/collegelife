@@ -71,8 +71,15 @@ class ApplicationsController extends CommonController {
             $adminIds .= $admin['id'] . ',';
         }
         
-        $applies = $applyService->getAppliesByAdminIds($adminIds);
+        $totalCount = $applyService->getAppliesCntByAdminIds($adminIds);
+        $page = new \Org\Util\Page($totalCount, C('PAGINATION_NUM'));
+        $show = $page->show();
 
+        $applies = $applyService->getAppliesByAdminIds($adminIds,
+                                                       $page->firstRow,
+                                                       $page->listRows);
+
+        $this->assign('page', $show);
         $this->assign('applies', $applies);
         $this->display();
     }

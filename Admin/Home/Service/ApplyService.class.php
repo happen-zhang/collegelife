@@ -42,11 +42,12 @@ class ApplyService extends CommonService {
      * @param  string $adminIds
      * @return array
      */
-    public function getAppliesByAdminIds($adminIds) {
+    public function getAppliesByAdminIds($adminIds, $firstRow, $listRows) {
         $Apply = D('Apply');
         $where['applicant'] = array('in', $adminIds);
         $applies = $Apply->relation(true)
                          ->where($where)
+                         ->limit($firstRow . ',' . $listRows)
                          ->select();
 
         foreach ($applies as $key => $apply) {
@@ -59,5 +60,16 @@ class ApplyService extends CommonService {
         }
 
         return $applies;
+    }
+
+    /**
+     * 得到申请总数
+     * @param  string $adminIds
+     * @return int
+     */
+    public function getAppliesCntByAdminIds($adminIds) {
+        $Apply = M('Apply');
+        $where['applicant'] = array('in', $adminIds);
+        return $Apply->where($where)->count();
     }
 }
