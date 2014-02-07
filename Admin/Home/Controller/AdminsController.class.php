@@ -66,10 +66,10 @@ class AdminsController extends CommonController {
         $Admin = D('Admin');
         $admin = $_POST['admin'];
         $admin['buildings'] = implode(',', $admin['buildings']);
-        if ($admin['rank'] != 1) {
-            // 不是分管理员则不能拥有楼房管理权限
-            unset($admin['buildings']);
-        }
+        // if ($admin['rank'] != 1) {
+        //     // 不是分管理员则不能拥有楼房管理权限
+        //     unset($admin['buildings']);
+        // }
 
         if ($admin = $Admin->create($admin)) {
             if (false === $Admin->add($admin)) {
