@@ -26,7 +26,7 @@ class OrderService extends CommonService {
         $Order = M('Order');
         $order['consignment_at'] = datetime();
         $order['order_status'] = '已发货';
-        $order['admin_id'] = $_SESSION['id'];
+        // $order['admin_id'] = $_SESSION['id'];
         $where['uuid'] = $uuid;
         if (false === $Order->where($where)->save($order)) {
             return false;
@@ -56,6 +56,9 @@ class OrderService extends CommonService {
 
         // 订单日志
         $this->orderLog($uuid, $order['payment_status']);
+
+        // 分管理收款
+        $this->orderTransaction($uuid, $_SESSION['id']);
 
         // 增加商品销量 更新用户已购信息
         $order = $Order->relation(true)->where($where)->find();
@@ -220,5 +223,21 @@ class OrderService extends CommonService {
         }
 
         return $doOrders;
+    }
+
+    /**
+     * 分管理收款转账
+     * @param  string $uuid
+     * @return fixed
+     */
+    public function orderTransaction($uuid, $adminId) {
+        $order = M('Order')->where(array('uuid' => $uuid))->find();
+        
+        $transaction['order_id'] = $order['id'];
+        $transaction['admin_id'] = $adminId;
+        $transaction['payment'] = $order['payment'];
+        $transaction['payment_at'] = $order['payment_at'];
+
+        return M('Transaction')->add($transaction);
     }
 }

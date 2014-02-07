@@ -30,6 +30,12 @@ class AdminsController extends CommonController {
         // }
         // $buildings = array_unique(explode(',', $buildings));
 
+        if ($_SESSION['rank'] == 2) {
+            $buildings = D('Admin', 'Service')
+                         ->getAdminBuildings($_SESSION['id']);
+            $this->assign('building', $buildings[0]);
+        }
+
         // $this->assign('buildings', $buildings);
         $this->assign('page', $result['show']);
         $this->assign('admins', $result['data']);
@@ -51,8 +57,12 @@ class AdminsController extends CommonController {
             $this->error('您查看的管理员不存在！');
         }
 
+        $doOrders = $adminService->getAdminDoOrder($admin['id']);
+
         $this->assign('admin', $admin);
         $this->assign('orders', $admin['orders']);
+        $this->assign('transactions', $admin['transactions']);
+        $this->assign('doOrders', $doOrders);
         $this->display();
     }
 
@@ -108,6 +118,27 @@ class AdminsController extends CommonController {
         }
 
         $this->redirect('Admins/index', array('p' => $_GET['p']));
+    }
+
+    /**
+     * 转账
+     * @return
+     */
+    public function transaction() {
+        if (!isset($_GET['transaction_id'])) {
+            $this->error('无效的操作！');
+        }
+
+        $Transaction = M('Transaction');
+        $where['id'] = $_GET['transaction_id'];
+        $transaction['is_transaction'] = 1;
+
+        $flag = $Transaction->where($where)->save($transaction);
+        if ($flag === false) {
+            $this->error('系统出错了！');
+        }
+
+        $this->redirect('Admins/show', array('admin_id' => $_GET['admin_id']));
     }
 }
 

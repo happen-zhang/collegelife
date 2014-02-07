@@ -8,25 +8,48 @@
 			<p>管理楼层：</p>
 			<p style="font-weight:bold">{$admin['buildings']}</p>
 			<p>最近登录：{$admin['latest_login_at']}</p>
-			<p style="font-size:14px;font-weight:bold;margin-top:25px">该管理员订单情况：</p>
+			<p style="font-size:14px;font-weight:bold;margin-top:25px">该管理员转账情况：</p>
 		</div>
 
+        
 		<div class="add_line">
 			<table>
 				<tr width="980px" height="50px">
-					<th width="200px">订单号</th><th width="200px">订单状态</th><th width="200px">收款</th><th width="200px">交易时间</th>
+					<th width="180px">订单号</th><th width="180px">收款</th><th width="180px">交易时间</th><th width="180px">转账状态</th><th width="180px">操作</th>
 				</tr>
 			</table>
 		</div>
 
-		<volist name="orders" id="order">
+		<volist name="transactions" id="transaction">
 			<div class="add_line">
 				<table>
 					<tr width="980px" height="50px">
-						<th width="200px"><a href="{:U('Orders/show', array('order_id' => $order['uuid']))}" target="_blank"><?php printf('%05d', $order['id']); ?></a></th><th width="200px">{$order['order_status']}</th><th width="200px"><?php if ($order['payment_status'] == '已收款') { echo $order['payment']; } else { echo 0; } ?></th><th width="200px"><?php if ($order['payment_at'] == '0000-00-00 00:00:00') { echo '暂未收款'; } else { echo $order['payment_at']; } ?></th>
+						<th width="180px"><a href="{:U('Orders/show', array('order_id' => $transaction['order_uuid']))}" target="_blank"><?php printf('%05d', $transaction['order_id']); ?></a></th><th width="180px"><?php  echo $transaction['payment']; ?></th><th width="180px"><?php echo $transaction['payment_at']; ?></th><th width="180px"><?php if ($transaction['is_transaction']) { echo '已转账'; } else { echo '未转账'; } ?></th><th width="180px"><select onchange="self.location.href=options[selectedIndex].value"><option value="#">选择状态</option><?php if ($transaction['is_transaction'] == 0) {?><option value="<?php echo U('Admins/transaction', array('transaction_id' => $transaction['id'], 'admin_id' => $_GET['admin_id'])); ?>">已转账</option><?php } ?></select></th>
 					</tr>
 				</table>
 			</div>
         </volist>
+        
+
+        <div class="add_style_inside">
+			<p style="font-size:14px;font-weight:bold;margin-top:25px">该管理员操作订单：</p>
+		</div>
+		<div class="add_line">
+				<table >
+					<tr width="900px" height="50px">
+						<th width="200px">订单号</th><th width="200px">管理员</th><th width="200px">货物状态</th><th width="200px">修改时间</th>
+					</tr>
+				</table>
+		</div>
+
+        <volist name="doOrders" id="doOrder">
+		<div class="add_line">
+			<table>
+				<tr width="980px" height="50px">
+					<th width="200px"><a href="{:U('Orders/show', array('order_id' => $doOrder['uuid']))}" target="_blank"><?php printf('%05d', $doOrder['order_id']); ?></a></th><th width="200px"><?php echo $doOrder['admin_name']; ?></th><th width="200px"><?php echo $doOrder['do_status']; ?></th><th width="200px"><?php echo $doOrder['modified_at']; ?></th>
+				</tr>
+			</table>
+		</div>
+		</volist>
 	</div>
 </div>

@@ -95,6 +95,7 @@ class AdminService extends CommonService {
         $admin['rank'] = $this->getRank($admin['rank']);
         $admin['buildings'] = implode('栋 ', explode(',', $admin['buildings']));
         $admin['buildings'] .= '栋';
+        $admin['transactions'] = $this->getAdminTransaction($admin['id']);
 
         return $admin;
     }
@@ -190,5 +191,50 @@ class AdminService extends CommonService {
                   ->where($where)
                   ->limit($firstRow . ',' . $listRows)
                   ->select();
+    }
+
+    /**
+     * 获得订单操作状态
+     * @return array
+     */
+    public function getAdminDoOrder($adminId) {
+        $AdminDoOrder = M('AdminDoOrder');
+        $doOrders = $AdminDoOrder->where(array('admin_id' => $adminId))
+                                 ->select();
+
+        $admin = M('Admin')->where(array('id' => $adminId))
+                           ->field(array('admin_name'))
+                           ->find();
+
+        foreach ($doOrders as $key => $doOrder) {
+            $doOrders[$key]['admin_name'] = $admin['admin_name'];
+
+            $order = M('Order')->where(array('id' => $doOrder['order_id']))
+                               ->field(array('uuid'))
+                               ->find();
+
+            $doOrders[$key]['uuid'] = $order['uuid'];
+        }
+
+        return $doOrders;
+    }
+
+    /**
+     * 得到管理员转账
+     * @return array
+     */
+    public function getAdminTransaction($adminId) {
+        $where['admin_id'] = $adminId;
+        $transactions = M('Transaction')->where($where)->select();
+
+        foreach ($transactions as $key => $transaction) {
+            $order = M('Order')->where(array('id' => $transaction['order_id']))
+                               ->field(array('uuid'))
+                               ->find();
+
+            $transactions[$key]['order_uuid'] = $order['uuid'];
+        }
+
+        return $transactions;
     }
 }
