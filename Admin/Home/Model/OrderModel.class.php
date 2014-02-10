@@ -14,7 +14,7 @@ class OrderModel extends RelationModel {
             'mapping_type' => BELONGS_TO,
             'class_name' => 'user',
             'foreign_key' => 'user_id',
-            'mapping_fields' => 'id, username',
+            'mapping_fields' => 'id, username, building_no',
         ),
 
         // 一个订单对应多个订单详情

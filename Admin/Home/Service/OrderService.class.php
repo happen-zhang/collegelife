@@ -60,6 +60,9 @@ class OrderService extends CommonService {
         // 分管理收款
         $this->orderTransaction($uuid, $_SESSION['id']);
 
+        // 修改订单确认状态
+        $this->confirm($uuid, 0);
+
         // 增加商品销量 更新用户已购信息
         $order = $Order->relation(true)->where($where)->find();
         $bought['user_id'] = $order['user_id'];
@@ -134,42 +137,6 @@ class OrderService extends CommonService {
     }
 
     /**
-     * 
-     * @param  int $firstRow
-     * @param  int $listRows
-     * @return array
-     */
-    public function getPagination($firstRow, $listRows) {
-        if ($_SESSION['rank'] == 3) {
-            return parent::getPagination($firstRow, $listRows);
-        }
-
-        $userIds = $this->getUseridByAdmin($_SESSION['id']);
-        $where['user_id'] = array('in', $userIds);
-
-        $D = $this->getD();
-        $orders = $D->relation(true)
-                    ->where($where)
-                    ->order('id DESC')
-                    ->limit($firstRow . ',' . $listRows)
-                    ->select();
-
-        return $orders;
-    }
-
-    protected function getM() {
-        return M('Order');
-    }
-
-    protected function getD() {
-        return D('Order');
-    }
-
-    protected function isRelation() {
-        return true;
-    }
-
-    /**
      * 返回用户id数组
      * @param  int $id
      * @return array
@@ -240,4 +207,77 @@ class OrderService extends CommonService {
 
         return M('Transaction')->add($transaction);
     }
+
+    /**
+     * 修改订单确认状态
+     * @return fixed
+     */
+    public function confirm($uuid, $status) {
+        $Order = $this->getM();
+        if (false === $Order->where(array('uuid' => $uuid))
+                            ->save(array('confirm_status' => $status))) {
+            return false;
+        }
+
+        // 记录日志
+        if ($_SESSION['rank'] == 3) {
+            $this->orderLog($uuid, '确认订单');
+        }
+
+        return true;
+    }
+
+    /**
+     * 订单分配给指定的分管理
+     * @param  string $uuid
+     * @return fixed
+     */
+    public function assignTo($orderUUID, $adminUUID) {
+        $admin = M('Admin')->where(array('uuid' => $adminUUID))->find();
+
+        if (false === $this->getM()
+                           ->where(array('uuid' => $orderUUID))
+                           ->save(array('assign_to' => $admin['id']))) {
+            return false;
+        }
+
+        // 记录日志
+        $this->orderLog($orderUUID, "分配到 $admin[admin_name]");
+    }
+
+    /**
+     * 
+     * @param  int $firstRow
+     * @param  int $listRows
+     * @return array
+     */
+    public function getPagination($firstRow, $listRows) {
+        if ($_SESSION['rank'] == 3) {
+            return parent::getPagination($firstRow, $listRows);
+        }
+
+        $userIds = $this->getUseridByAdmin($_SESSION['id']);
+        $where['user_id'] = array('in', $userIds);
+
+        $D = $this->getD();
+        $orders = $D->relation(true)
+                    ->where($where)
+                    ->order('id DESC')
+                    ->limit($firstRow . ',' . $listRows)
+                    ->select();
+
+        return $orders;
+    }
+
+    protected function getM() {
+        return M('Order');
+    }
+
+    protected function getD() {
+        return D('Order');
+    }
+
+    protected function isRelation() {
+        return true;
+    }    
 }

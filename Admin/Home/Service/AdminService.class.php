@@ -53,6 +53,16 @@ class AdminService extends CommonService {
     }
 
     /**
+     * 按id查找
+     * @return admin
+     */
+    public function findById($id) {
+        return $this->getM()
+                    ->where(array('id' => $id))
+                    ->find();
+    }
+
+    /**
      * 获得指定id管理员所管理的楼栋号
      * @param  int $id
      * @return array
@@ -116,18 +126,6 @@ class AdminService extends CommonService {
      */
     public function deactiveAdmin($uuid) {
         return $this->changeActiveStatus($uuid, 0);
-    }
-
-    protected function getM() {
-        return M('Admin');
-    }
-
-    protected function getD() {
-        return D('Admin');
-    }
-
-    protected function isRelation() {
-        return false;
     }
 
     public function getCount() {
@@ -263,5 +261,42 @@ class AdminService extends CommonService {
 
         $where['buildings'] = $building;
         return $Admin->where($where)->field($fields)->select();
+    }
+
+    /**
+     * 返回指定栋号的一类管理员
+     * @param  string $building
+     * @param  int $rank
+     * @return array
+     */
+    public function getOneAdminsByBuilding($building, $rank) {
+        $where['buildings'] = $building;
+        $where['rank'] = $rank;
+
+        return $this->getM()
+                    ->where($where)
+                    ->select();
+    }
+
+    /**
+     * 得到指定栋的总管理员
+     * @param  string $building
+     * @return
+     */
+    public function getSeniorByBuilding($building) {
+        $admins = $this->getOneAdminsByBuilding($building, 2);
+        return $admins[0];
+    }
+
+    protected function getM() {
+        return M('Admin');
+    }
+
+    protected function getD() {
+        return D('Admin');
+    }
+
+    protected function isRelation() {
+        return false;
     }
 }

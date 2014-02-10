@@ -24,15 +24,16 @@
 					</tr>
 				</table>
 			</div>
+			<volist name="doOrders" id="doOrder">
 			<div class="add_line" style="width: 940px;">
 				<table >
-					<volist name="doOrders" id="doOrder">
-					<tr width="980px" height="50px">
+					<tr width="900px" height="50px">
 						<th width="200px"><a href="{:U('Orders/show', array('order_id' => $order['uuid']))}" target="_blank"><?php printf('%05d', $order['id']); ?></a></th><th width="200px"><?php echo $doOrder['admin_name']; ?></th><th width="200px"><?php echo $doOrder['do_status']; ?></th><th width="200px"><?php echo $doOrder['modified_at']; ?></th>
 					</tr>
-				    </volist>
+				    
 				</table>
 			</div>
+			</volist>
 		</div>
 		<p>&nbsp;</p>
 	</div>
