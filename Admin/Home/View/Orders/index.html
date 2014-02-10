@@ -4,7 +4,7 @@
 		<div class="add_line">
 			<table>
 				<tr width="980px" height="50px">
-					<th width="150px">用户名</th><th width="80px">订单号</th><th width="150px">订单状态</th><th width="150px">交付状态</th><th width="150px">用户下单时间</th><th width="150px">发货时间</th><?php if ($_SESSION['rank'] != 2) { ?><th width="150px">操作</th><?php } ?>
+					<th width="150px">用户名</th><th width="80px">订单号</th><th width="120px">订单状态</th><th width="120px">交付状态</th><th width="150px">用户下单时间</th><th width="150px">发货时间</th><th width="150px">订单确认状态</th><?php if ($_SESSION['rank'] != 2) { ?><th width="150px">操作</th><?php } ?>
 				</tr>
 			</table>
 		</div>
@@ -13,23 +13,98 @@
 			<div class="add_line">
 				<table>
 					<tr width="980px" height="50px">
-						<th width="150px"><a href="{:U('Users/show', array('user_id' => $order['user']['id']))}" target="_blank">{$order['user']['username']}</a></th><th width="80px"><a href="{:U('Orders/show', array('order_id' => $order['uuid']))}" target="_blank"><?php printf('%05d', $order['id']) ?></a></th><th width="150px">{$order['order_status']}</th><th width="150px">{$order['payment_status']}</th><th width="150px">{$order['created_at']}</th><th width="150px"><?php echo ($order['consignment_at'] == '0000-00-00 00:00:00')? '暂未发货' : $order['consignment_at']; ?></th><?php if ($_SESSION['rank'] != 2) { ?><th width="150px">
+						<th width="150px"><a href="{:U('Users/show', array('user_id' => $order['user']['id']))}" target="_blank">{$order['user']['username']}</a></th>
+						<th width="80px"><a href="{:U('Orders/show', array('order_id' => $order['uuid']))}" target="_blank"><?php printf('%05d', $order['id']) ?></a></th>
+						<th width="120px">{$order['order_status']}</th>
+						<th width="120px">{$order['payment_status']}</th>
+						<th width="150px">{$order['created_at']}</th>
+						<th width="150px"><?php echo ($order['consignment_at'] == '0000-00-00 00:00:00')? '暂未发货' : $order['consignment_at']; ?></th>
+                        <th width="150px">
+                        <?php if ($_SESSION['rank'] == 1) {
+                                  if ($order['confirm_status'] == 3) {
+                                      echo '正等待总部确认订单'; 
+                                  } else if ($order['confirm_status'] == 2) {
+                                      echo '正等待总代理发货';
+                                  } else if ($order['confirm_status'] == 1) {
+                                      echo '进行发货或者收款操作';
+                                  } else if ($order['confirm_status'] == 0){
+                                      echo '订单已完成';
+                                  }
+                              }
+                        ?>
+
+                        <?php
+                            // 总代理选择一个分代理发货
+                            if ($_SESSION['rank'] == 2) {
+                                if ($order['confirm_status'] == 2) {
+                        ?>
+                                <select name="">
+                                    <option value="">AAAA</option>
+                                    <option value="">BBBB</option>
+                                    <option value="">CCCC</option>
+                                    <option value="">DDDD</option>
+                                    <option value="">EEEE</option>
+                                </select>
+                        <?php   } else if ($order['confirm_status'] == 3) {
+                                    echo '正等待总部确认订单';
+                                } else if ($order['confirm_status'] == 1) {
+                                	echo '正等待XXX发货给用户';
+                                } else if ($order['confirm_status'] == 0){
+                                    echo '订单已完成';
+                                }
+                            }
+                        ?>
+
+                        <?php
+                            // 总部确认订单
+                            if ($_SESSION['rank'] == 3) {
+                                if ($order['confirm_status'] == 3) {
+                        ?>
+                                <select name="">
+                                    <option value="#">选择操作</option>
+                                    <option value="">确认订单</option>
+                                </select>
+                        <?php   } else if ($order['confirm_status'] == 2) {
+                                    echo '正等待XXX发货给分管理';
+                                } else if ($order['confirm_status'] == 1) {
+                                	echo '正等待XXX发货给用户';
+                                } else if ($order['confirm_status'] == 0){
+                                    echo '订单已完成';
+                                }
+                            } 
+                        ?>
+                        </th>
+
+						<?php if ($_SESSION['rank'] != 2) { ?>
+						<th width="150px">
 							<select name="" onchange="self.location.href=options[selectedIndex].value">
 								<option value="#">选择状态</option>
-								<if condition="$_SESSION['rank'] eq 3">
-									<?php if ($order['order_status'] == '未发货') {?>
+								<?php
+								// 总部才可以取消订单
+								if ($_SESSION['rank'] == 3) { 
+							        if ($order['order_status'] == '未发货') { ?>
 									<option value="<?php echo U('Orders/destroy', array('order_id' => $order['uuid'], 'p' => $_GET['p'])); ?>">取消订单</option>
-									<?php } ?>
-								</if>
-								<?php if ($order['order_status'] == '未发货') { ?>
-								<option value="{:U('Orders/update', array('operation' => 'consignment', 'order_id' => $order['uuid'], 'p' => $_GET['p']))}">正在发货</option>	
-								<?php } else { 
-									      if ($order['payment_status'] == '未收款') {
+								<?php
+								    }
+							    } 
+								?>
+
+								<?php
+								if ($_SESSION['rank'] == 1
+									&& $order['confirm_status'] == 1) {
+								    if ($order['order_status'] == '未发货') { 
+								?>
+								    <option value="{:U('Orders/update', array('operation' => 'consignment', 'order_id' => $order['uuid'], 'p' => $_GET['p']))}">正在发货</option>	
+								<?php 
+							        } else { 
+								        if ($order['payment_status'] == '未收款') {
 							    ?>
-									      <option value="{:U('Orders/update', array('operation' => 'collect', 'order_id' => $order['uuid'], 'p' => $_GET['p']))}">已收款</option>
-								<?php    } ?>
-								          
-								<?php } ?>
+									    <option value="{:U('Orders/update', array('operation' => 'collect', 'order_id' => $order['uuid'], 'p' => $_GET['p']))}">已收款</option>
+								<?php
+							            }
+							        }
+							    }
+							    ?>
 							</select>
 						</th>
 						<?php } ?>
