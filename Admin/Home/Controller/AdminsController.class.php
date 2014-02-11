@@ -11,7 +11,9 @@ class AdminsController extends CommonController {
      */
     public function _initialize() {
         parent::_initialize();
-        if ($_SESSION['rank'] == 1) {
+
+        $disfilter = array('edit', 'updatePassword');
+        if ($_SESSION['rank'] == 1 && !in_array(ACTION_NAME, $disfilter)) {
             $this->adminPowerFilter();
         }
     }
@@ -121,6 +123,36 @@ class AdminsController extends CommonController {
     }
 
     /**
+     * 修改密码
+     * @return
+     */
+    public function edit() {
+        $this->display();
+    }
+
+    /**
+     * 修改密码
+     * @return
+     */
+    public function updatePassword() {
+        if (!isset($_POST['new_password'])
+            || !isset($_POST['origin_password'])) {
+            $this->error('无效的操作！');
+        }
+
+        $adminService = D('Admin', 'Service');
+        $flag = $adminService->updatePassword($_POST['origin_password'],
+                                              $_POST['new_password']);
+        if ($flag == 0) {
+            $this->error('原密码错误，请输入正确的原密码！');
+        } else if (flag == -1) {
+            $this->error('修改密码失败！');
+        }
+
+        $this->success('密码修改成功！');
+    }
+
+    /**
      * 转账
      * @return
      */
@@ -141,4 +173,3 @@ class AdminsController extends CommonController {
         $this->redirect('Admins/show', array('admin_id' => $_GET['admin_id']));
     }
 }
-

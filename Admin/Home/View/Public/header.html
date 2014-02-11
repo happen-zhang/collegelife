@@ -22,12 +22,12 @@
 			<a href="{:U('Applications/edit')}" <if condition="CONTROLLER_NAME eq 'Applications'"> style="background-color:#00CCFF;color:white" </if>>处理货款</a>
 			</if>
 			<if condition="$_SESSION['rank'] neq 1">
-			<a href="{:U('Admins/index')}" <if condition="CONTROLLER_NAME eq 'Admins'"> style="background-color:#00CCFF;color:white" </if>>管理员</a>
+			<a href="{:U('Admins/index')}" <?php if (CONTROLLER_NAME == 'Admins' && ACTION_NAME != 'edit') { ?> style="background-color:#00CCFF;color:white" <?php } ?>>管理员</a>
 			</if>
 			<if condition="$_SESSION['rank'] eq 1">
 			<a href="{:U('Applications/index')}" <if condition="CONTROLLER_NAME eq 'Applications'"> style="background-color:#00CCFF;color:white" </if>>申请货款</a>			
 			</if>
-			<a href="{:U('Logs/index')}" <if condition="CONTROLLER_NAME eq 'Logs'"> style="background-color:#00CCFF;color:white" </if>>修改密码</a>			
+			<a href="{:U('Admins/edit')}" <?php if (CONTROLLER_NAME == 'Admins' && ACTION_NAME == 'edit') { ?> style="background-color:#00CCFF;color:white" <?php } ?>>修改密码</a>			
 			<a href="{:U('Public/logout')}">登出</a>
 		</div>
 	</div>

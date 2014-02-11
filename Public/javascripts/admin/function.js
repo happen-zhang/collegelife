@@ -127,3 +127,26 @@ function check_apply() {
 
     return true;
 }
+
+function check_password() {
+	var origin_password = document.getElementById("origin_password").value.trim();
+    var new_password = document.getElementById("new_password").value.trim();
+    var confirm_password = document.getElementById("confirm_password").value.trim();
+
+    if (origin_password == "") {
+        alert("原密码不能为空");
+        return false;    	
+    }
+
+    if (new_password == "") {
+        alert("新密码不能为空");
+        return false;    	
+    }
+
+    if (new_password != confirm_password) {
+        alert("您两次填写的密码不一致！");
+        return false;
+    }
+
+    return true;
+}
