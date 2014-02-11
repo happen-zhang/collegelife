@@ -1,13 +1,13 @@
 <div id="add_main_top">
 	<div id="add_main_top_left">
 		<div class="style">
-			<img src="__PUBLIC__/images/logo.png" width="200">
+			<img src="__PUBLIC__/images/logo.png" width="180">
 		</div>
 	</div>
-	<div id="add_main_top_right">
+	<div id="add_main_top_right" <?php  if ($_SESSION['rank'] == 3) { echo 'style="width: 800px"'; }?>>
 		<div class="style">
 			<a href="{:U('Orders/index')}" <if condition="CONTROLLER_NAME eq 'Orders'"> style="background-color:#00CCFF;color:white" </if>>订单管理</a>
-			<a href="{:U('Logs/index')}" <if condition="CONTROLLER_NAME eq 'Logs'"> style="background-color:#00CCFF;color:white" </if>>访问统计</a>
+			<a href="{:U('Logs/index')}" <if condition="CONTROLLER_NAME eq 'Logs'"> style="background-color:#00CCFF;color:white" </if>>访问统计</a>		
 			<if condition="$_SESSION['rank'] eq 3">
 			<a href="{:U('Goods/index')}" <if condition="CONTROLLER_NAME eq 'Goods'"> style="background-color:#00CCFF;color:white" </if>>产品管理</a>
 			</if>
@@ -27,6 +27,7 @@
 			<if condition="$_SESSION['rank'] eq 1">
 			<a href="{:U('Applications/index')}" <if condition="CONTROLLER_NAME eq 'Applications'"> style="background-color:#00CCFF;color:white" </if>>申请货款</a>			
 			</if>
+			<a href="{:U('Logs/index')}" <if condition="CONTROLLER_NAME eq 'Logs'"> style="background-color:#00CCFF;color:white" </if>>修改密码</a>			
 			<a href="{:U('Public/logout')}">登出</a>
 		</div>
 	</div>
