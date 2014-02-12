@@ -10,6 +10,10 @@ class LogsController extends CommonController {
      * @return
      */
     public function index(){
+        $this->display();
+    }
+
+    public function ip() {
         $result = $this->pagination('Visitor');
 
         $this->assign('page', $result['show']);
