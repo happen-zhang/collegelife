@@ -1,30 +1,21 @@
+<style>
+  #logs ul {
+    
+  }
+
+  #logs li {
+  	margin-top: 5px;
+  }
+</style>
+
 <div id="add_main_content">
-	<div class="add_style">
-		<p style="font-size:14px;font-weight:bold">访问信息</p>
-		<div class="add_line">
-			<table>
-				<tr width="980px" height="50px">
-					<th width="400px">访问IP</th><th width="120px">访问时间</th>
-				</tr>
-			</table>
-		</div>
-
-        <volist name="visitors" id="visitor">
-		<div class="add_line">
-			<table>
-				<tr width="980px" height="50px">
-					<th width="400px">{$visitor['ip']}</th><th width="120px">
-					{$visitor['created_at']}</th>
-				</tr>
-			</table>
-		</div>
-        </volist>
-
-		<!-- 分页系统 -->
-		<div class="add_line_page">
-			<div class="add_line_page_style">
-                {$page}
-			</div>
-		</div>
+	<div class="add_style" id="logs">
+		<p style="font-size:14px;font-weight:bold">信息一览</p>
+			<ul style="font-size: 14px">
+				<li><a href="#">财务收支</a></li>
+				<li><a href="#">销售情况</a></li>
+				<li><a href="#">订单信息</a></li>
+				<li><a href="{U('Logs/ip')}">访问统计</a></li>
+			</ul>
 	</div>
 </div>
