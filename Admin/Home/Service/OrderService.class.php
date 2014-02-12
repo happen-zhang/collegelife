@@ -246,6 +246,60 @@ class OrderService extends CommonService {
     }
 
     /**
+     * 已处理订单数
+     * @return int
+     */
+    public function processedOrdersCount() {
+        return $this->getM()
+                    ->where(array('confirm_status' => 0))
+                    ->count();
+    }
+
+    /**
+     * 得到已处理的订单
+     * @return array
+     */
+    public function getProcessedOrders($firstRow, $listRows, $fields) {
+        return $this->getM()
+                    ->field($fields)
+                    ->where(array('confirm_status' => 0))
+                    ->limit($firstRow . ',' . $listRows)
+                    ->select();
+    }
+
+    /**
+     * 已处理订单分页
+     * @return array
+     */
+    public function processedOrdersPage() {
+        
+    }
+
+    /**
+     * 未已处理订单数
+     * @return int
+     */
+    public function nprocessedOrdersCount() {
+        $where['confirm_status'] = array('in', '1,2,3');
+        return $this->getM()
+                    ->where($where)
+                    ->count();
+    }    
+
+    /**
+     * 得到未处理的订单
+     * @return array
+     */
+    public function getnProcessedOrders($firstRow, $listRows, $fields) {
+        $where['confirm_status'] = array('in', '1,2,3');
+        return $this->getM()
+                    ->field($fields)
+                    ->where($where)
+                    ->limit($firstRow . ',' . $listRows)
+                    ->select();
+    }    
+
+    /**
      * 
      * @param  int $firstRow
      * @param  int $listRows
