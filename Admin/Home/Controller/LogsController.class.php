@@ -15,21 +15,41 @@ class LogsController extends CommonController {
 
     /**
      * 订单统计
-     * @return [type] [description]
+     * @return
      */
     public function order() {
         $orderService = D('Order', 'Service');
+        $adminService = D('Admin', 'Service');
 
-        $processeds = $orderService->getProcessedOrders(0, 1000, array('id', 'uuid', 'payment', 'payment_at'));
-        $nprocesseds = $orderService->getnProcessedOrders(0, 1000, array('id', 'uuid', 'confirm_status'));
+        $fields = array('id', 'uuid', 'user_id',
+                        'payment','payment_at',
+                        'assign_to', 'confirm_status');
 
+        $presult = $orderService->processedOrdersPage($fields);
+        $npresult = $orderService->nprocessedOrdersPage($fields);
+
+        $processeds = $presult['data'];
+        $nprocesseds = $npresult['data'];
         $processedsCnt = $orderService->processedOrdersCount();
         $nprocessedsCnt = $orderService->nprocessedOrdersCount();
+
+        // 待处理等待订单
+        foreach ($nprocesseds as $key => $nprocessed) {
+            if ($nprocessed['confirm_status'] == 2) {
+                $nprocesseds[$key]['senior'] = $adminService
+                 ->getSeniorByBuilding($nprocessed['user']['building_no']);
+            } else if ($nprocessed['confirm_status'] == 1) {
+                $nprocesseds[$key]['assigner'] = $adminService
+                 ->findById($nprocessed['assign_to']);
+            }
+        }
 
         $this->assign('processeds', $processeds);
         $this->assign('nprocesseds', $nprocesseds);
         $this->assign('processedsCnt', $processedsCnt);
         $this->assign('nprocessedsCnt', $nprocessedsCnt);
+        $this->assign('p_page', $presult['show']);
+        $this->assign('np_page', $npresult['show']);
         $this->display();
     }
 

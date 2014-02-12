@@ -77,6 +77,19 @@ abstract class CommonService extends Model {
     }
 
     /**
+     * 得到一个分页对象
+     * @param  string $varName
+     * @return \Org\Util\Page
+     */
+    protected function getPage($varName, $totalCount) {
+        $page = new \Org\Util\Page($totalCount,
+                                   C('PAGINATION_NUM'),
+                                   $varName);
+
+        return $page;
+    }
+
+    /**
      * 获得M
      * @return model
      */

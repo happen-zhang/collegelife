@@ -24,11 +24,11 @@
 	    </volist>
 
 		<!-- 分页系统 -->
-<!-- 		<div class="add_line_page">
+		<div class="add_line_page">
 			<div class="add_line_page_style" style="float:right">
-                {$page}
+                {$p_page}
 			</div>
-		</div> -->
+		</div>
 	</div>
 
 	<div class="add_style">
@@ -48,7 +48,15 @@
 				<tr width="980px" height="50px">
 					<th width="440px"><a href="{:U('Orders/show', array('order_id' => $nprocessed['uuid']))}" target="_blank"><?php printf('%05d', $nprocessed['id']) ?></a></th>
 					<th width="440px">
-						{$nprocessed['confirm_status']}
+					<?php
+                        if ($nprocessed['confirm_status'] == 3) {
+                            echo '订单尚未确认';
+                        } else if ($nprocessed['confirm_status'] == 2) {
+                            echo "正等待 <a href='" . U('Admins/show', array('admin_id' => $nprocessed['senior']['uuid'])) . "' target='_blank'>" . $nprocessed['senior']['admin_name'] . " </a>发货到分管理";
+                        } else if ($nprocessed['confirm_status'] == 1) {
+                            echo "正等待 <a href='" . U('Admins/show', array('admin_id' => $nprocessed['assigner']['uuid'])) . "' target='_blank'>". $nprocessed['assigner']['admin_name'] . "</a> 发货给用户";
+                        }
+					?>
 					</th>
 				</tr>
 			</table>
@@ -56,11 +64,11 @@
        </volist>
 
 		<!-- 分页系统 -->
-<!-- 		<div class="add_line_page">
+		<div class="add_line_page">
 			<div class="add_line_page_style" style="float:right">
-                {$page}
+                {$np_page}
 			</div>
-		</div> -->
+		</div>
 	</div>
 
 

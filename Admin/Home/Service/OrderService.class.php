@@ -264,6 +264,7 @@ class OrderService extends CommonService {
                     ->field($fields)
                     ->where(array('confirm_status' => 0))
                     ->limit($firstRow . ',' . $listRows)
+                    ->order('id DESC')
                     ->select();
     }
 
@@ -271,8 +272,16 @@ class OrderService extends CommonService {
      * 已处理订单分页
      * @return array
      */
-    public function processedOrdersPage() {
-        
+    public function processedOrdersPage($fields) {
+        $page = $this->getPage('p_page', $this->processedOrdersCount());
+
+        $result['show'] = $page->show();
+        $data = $this->getProcessedOrders($page->firstRow, 
+                                          $page->listRows,
+                                          $fields);
+        $result['data'] = $data;
+
+        return $result;
     }
 
     /**
@@ -292,12 +301,30 @@ class OrderService extends CommonService {
      */
     public function getnProcessedOrders($firstRow, $listRows, $fields) {
         $where['confirm_status'] = array('in', '1,2,3');
-        return $this->getM()
+        return $this->getD()
+                    ->relation(true)
                     ->field($fields)
                     ->where($where)
                     ->limit($firstRow . ',' . $listRows)
+                    ->order('id DESC')
                     ->select();
-    }    
+    }
+
+    /**
+     * 已处理订单分页
+     * @return array
+     */
+    public function nprocessedOrdersPage($fields) {
+        $page = $this->getPage('np_page', $this->nprocessedOrdersCount());
+
+        $result['show'] = $page->show();
+        $data = $this->getnProcessedOrders($page->firstRow, 
+                                           $page->listRows,
+                                           $fields);
+        $result['data'] = $data;
+
+        return $result;
+    }
 
     /**
      * 

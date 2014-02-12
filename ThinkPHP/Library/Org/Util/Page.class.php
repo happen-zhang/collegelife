@@ -43,10 +43,10 @@ class Page {
      * @param array $listRows  每页显示记录数
      * @param array $parameter  分页跳转的参数
      */
-    public function __construct($totalRows,$listRows='',$parameter='',$url='') {
+    public function __construct($totalRows,$listRows='',$varPage,$parameter='',$url='') {
         $this->totalRows    =   $totalRows;
         $this->parameter    =   $parameter;
-        $this->varPage      =   C('VAR_PAGE') ? C('VAR_PAGE') : 'p' ;
+        $this->varPage      =   isset($varPage) ? $varPage : 'p' ;
         if(!empty($listRows)) {
             $this->listRows =   intval($listRows);
         }
