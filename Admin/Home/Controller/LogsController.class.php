@@ -14,6 +14,18 @@ class LogsController extends CommonController {
     }
 
     /**
+     * 产品销量统计
+     * @return
+     */
+    public function goods() {
+        $categoryService = D('Category', 'Service');
+        $categories = $categoryService->findAll();
+
+        $this->assign('categories', $categories);
+        $this->display();
+    }
+
+    /**
      * 订单统计
      * @return
      */

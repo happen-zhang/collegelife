@@ -1,0 +1,25 @@
+<div id="add_main_content">
+    <volist name="categories" id="category">
+	<div class="add_style">
+		<p style="font-size:14px;font-weight:bold">分类名称：{$category['name']}</p>
+		<div class="add_line">
+			<table>
+				<tr width="980px" height="50px">
+					<th width="440px">产品名称</th>
+					<th width="440px">销售量</th>
+				</tr>
+			</table>
+		</div>
+		<volist name="category['goods']" id="goods">
+		<div class="add_line">
+			<table>
+				<tr width="980px" height="50px">
+					<th width="440px"><a href="{:U('Goods/show', array('goods_id' => $goods['uuid']))}" target="_blank">{$goods['name']}</a></th>
+					<th width="440px">{$goods['sold_count']}</th>
+				</tr>
+			</table>
+		</div>
+	    </volist>
+	</div>
+    </volist>
+</div>
