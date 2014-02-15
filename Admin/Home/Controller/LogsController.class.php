@@ -2,9 +2,19 @@
 namespace Home\Controller;
 
 /**
- * 
+ * LogsController
  */
 class LogsController extends CommonController {
+    /**
+     * 权限过滤
+     * @return
+     */
+    public function _initialize() {
+        parent::_initialize();
+
+        $this->adminPowerFilter();
+    }
+
     /**
      * 日志管理
      * @return
