@@ -333,7 +333,7 @@ class OrderService extends CommonService {
      * @return array
      */
     public function getPagination($firstRow, $listRows) {
-        if ($_SESSION['rank'] == 3) {
+        if ($_SESSION['rank'] == 3 || $_SESSION['rank'] == 2) {
             return parent::getPagination($firstRow, $listRows);
         }
 
