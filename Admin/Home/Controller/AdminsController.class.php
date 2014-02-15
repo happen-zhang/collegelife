@@ -151,25 +151,4 @@ class AdminsController extends CommonController {
 
         $this->success('密码修改成功！');
     }
-
-    /**
-     * 转账
-     * @return
-     */
-    public function transaction() {
-        if (!isset($_GET['transaction_id'])) {
-            $this->error('无效的操作！');
-        }
-
-        $Transaction = M('Transaction');
-        $where['id'] = $_GET['transaction_id'];
-        $transaction['is_transaction'] = 1;
-
-        $flag = $Transaction->where($where)->save($transaction);
-        if ($flag === false) {
-            $this->error('系统出错了！');
-        }
-
-        $this->redirect('Admins/show', array('admin_id' => $_GET['admin_id']));
-    }
 }

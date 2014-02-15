@@ -24,7 +24,25 @@
 			<div class="add_line">
 				<table>
 					<tr width="980px" height="50px">
-						<th width="180px"><a href="{:U('Orders/show', array('order_id' => $transaction['order_uuid']))}" target="_blank"><?php printf('%05d', $transaction['order_id']); ?></a></th><th width="180px"><?php  echo $transaction['payment']; ?></th><th width="180px"><?php echo $transaction['payment_at']; ?></th><th width="180px"><?php if ($transaction['is_transaction']) { echo '已转账'; } else { echo '未转账'; } ?></th><th width="180px"><select onchange="self.location.href=options[selectedIndex].value"><option value="#">选择状态</option><?php if ($transaction['is_transaction'] == 0) {?><option value="<?php echo U('Admins/transaction', array('transaction_id' => $transaction['id'], 'admin_id' => $_GET['admin_id'])); ?>">已转账</option><?php } ?></select></th>
+						<th width="180px">
+							<a href="{:U('Orders/show', array('order_id' => $transaction['order_uuid']))}" target="_blank"><?php printf('%05d', $transaction['order_id']); ?></a>
+						</th>
+						<th width="180px"><?php  echo $transaction['payment']; ?>
+						</th>
+						<th width="180px"><?php echo $transaction['payment_at']; ?>
+						</th>
+						<th width="180px">
+							<?php if ($transaction['is_transaction']) { echo '已转账'; } else { echo '未转账'; } ?>
+						</th>
+						<th width="180px">
+							<select onchange="self.location.href=options[selectedIndex].value">
+								<option value="#">选择状态</option>
+								<?php if ($transaction['is_transaction'] == 0) {?>
+								<option value="<?php echo U('Admins/transaction', array('transaction_id' => $transaction['id'], 'admin_id' => $_GET['admin_id'])); ?>">已转账
+								</option>
+								<?php } ?>
+							</select>
+						</th>
 					</tr>
 				</table>
 			</div>

@@ -163,4 +163,93 @@ class OrdersController extends CommonController {
 
         $this->redirect('Orders/index', array('p' => $_GET['p']));
     }
+
+    /**
+     * 转账
+     * @return
+     */
+    public function transaction() {
+        if ($_SESSION['rank'] == 3) {
+            echo '您无法访问该页面！';
+        }
+
+        $orderService = D('Order', 'Service');
+        $transactionService = D('Transaction', 'Service');
+        $adminService = D('Admin', 'Service');
+
+        if ($_SESSION['rank'] == 1) {
+            $cnt = $orderService->transactionOrdersCount($_SESSION['id']);
+            $page = new \Org\Util\Page($cnt, C('PAGINATION_NUM'));
+            $orders = $orderService->getTransactionOrders($_SESSION['id'],
+                                                          $page->firstRow,
+                                                          $page->listRows);
+            $admins = $adminService->findByRank(2);
+        } else if ($_SESSION['rank'] == 2) {
+            $transactions = $transactionService
+                             ->findByAssigner($_SESSION['id']);
+            foreach ($transactions as $transaction) {
+                $ids .= $transaction['order_id'] . ',';
+           }
+
+           $cnt = $orderService->getCountByIds($ids);
+           $page = new \Org\Util\Page($cnt, C('PAGINATION_NUM'));
+           $orders = $orderService->findByIds($ids,
+                                              $page->firstRow,
+                                              $page->listRows);
+        }
+
+        $this->assign('page', $page->show());
+        $this->assign('admins', $admins);
+        $this->assign('orders', $orders);
+        $this->display();
+    }
+
+    /**
+     * 转账
+     * @return
+     */
+    public function assignTransaction() {
+        if (!isset($_GET['transaction_id'])
+            || !isset($_GET['assign_to'])) {
+            $this->error('无效的操作！');
+        }
+
+        $Transaction = M('Transaction');
+        $where['id'] = $_GET['transaction_id'];
+        $transaction['is_transaction'] = 1;
+        $transaction['assign_to'] = $_GET['assign_to'];
+        $transaction['transaction_at'] = datetime();
+
+        $flag = $Transaction->where($where)->save($transaction);
+        if ($flag === false) {
+            $this->error('系统出错了！');
+        }
+
+        $this->redirect('Orders/transaction',
+                        array('admin_id' => $_GET['admin_id'],
+                              'p' => $_GET['p']));
+    }
+
+   /**
+    * 转账
+    * @return
+    */
+   public function confirmTransaction() {
+        if (!isset($_GET['transaction_id'])) {
+            $this->error('无效的操作！');
+        }
+
+        $Transaction = M('Transaction');
+        $where['id'] = $_GET['transaction_id'];
+        $transaction['is_transaction'] = 2;
+
+        $flag = $Transaction->where($where)->save($transaction);
+        if ($flag === false) {
+            $this->error('系统出错了！');
+        }
+
+        $this->redirect('Orders/transaction',
+                        array('admin_id' => $_GET['admin_id'],
+                              'p' => $_GET['p']));       
+   }
 }

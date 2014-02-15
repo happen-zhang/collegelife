@@ -209,6 +209,66 @@ class OrderService extends CommonService {
     }
 
     /**
+     * 得到指定分管理已经完成的订单
+     * @param  int $adminId
+     * @return array
+     */
+    public function getTransactionOrders($adminId, $firstRow, $listRows) {
+        $where['assign_to'] = $adminId;
+        $where['confirm_status'] = 0;
+
+        return $this->getD()
+                    ->relation(true)
+                    ->where($where)
+                    ->order('id DESC')
+                    ->limit($firstRow . ',' . $listRows)
+                    ->select();
+    }
+
+    /**
+     * 
+     * @param  int $adminId
+     * @return int
+     */
+    public function transactionOrdersCount($adminId) {
+        $where['assign_to'] = $adminId;
+        $where['confirm_status'] = 0;
+
+        return $this->getM()
+                    ->where($where)
+                    ->count();
+    }
+
+    /**
+     * 按id查找
+     * @param  string $ids
+     * @return array
+     */
+    public function findByIds($ids, $firstRow, $listRows) {
+        $where['id'] = array('in', $ids);
+
+        return $this->getD()
+                    ->relation(true)
+                    ->where($where)
+                    ->order('id DESC')
+                    ->limit($firstRow . ',' . $listRows)
+                    ->select();
+    }
+
+    /**
+     * 
+     * @param  string $ids
+     * @return int
+     */
+    public function getCountByIds($ids) {
+        $where['id'] = array('in', $ids);
+
+        return $this->getM()
+                    ->where($where)
+                    ->count();     
+    }
+
+    /**
      * 修改订单确认状态
      * @return fixed
      */

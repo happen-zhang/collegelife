@@ -23,5 +23,12 @@ class OrderModel extends RelationModel {
             'class_name' => 'OrderGoodsShip',
             'foreign_key' => 'order_id',
         ),
+
+        // 已完成订单有一个转账
+        'transaction' => array(
+            'mapping_type' => HAS_ONE,
+            'class_name' => 'transaction',
+            'foreign_key' => 'order_id'
+        )
     );
 }
