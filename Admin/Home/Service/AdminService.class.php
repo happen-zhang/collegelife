@@ -136,7 +136,9 @@ class AdminService extends CommonService {
             return $this->getAdminConut($buildings[0], 1);
         }
         
-        return $this->getAdminConut();
+        return $this->getM()
+                    ->where(array('id' => array('neq', $_SESSION['id'])))
+                    ->count();
     }
 
     public function getPagination($firstRow, $listRows) {
@@ -147,7 +149,11 @@ class AdminService extends CommonService {
             return $this->getAdmins($firstRow, $listRows, null, 1);
         }
 
-        return $this->getAdmins($firstRow, $listRows);
+        return $this->getD()
+                    ->order('latest_login_at DESC')
+                    ->where(array('id' => array('neq', $_SESSION['id'])))
+                    ->limit($firstRow . ',' . $listRows)
+                    ->select();
     }
 
     /**
@@ -185,11 +191,11 @@ class AdminService extends CommonService {
             $where['rank'] = 1;
         }
 
-        $D = $this->getD();
-        return $D->order('latest_login_at DESC')
-                 ->where($where)
-                 ->limit($firstRow . ',' . $listRows)
-                 ->select();
+        return $this->getD()
+                    ->order('latest_login_at DESC')
+                    ->where($where)
+                    ->limit($firstRow . ',' . $listRows)
+                    ->select();
     }
 
     /**
