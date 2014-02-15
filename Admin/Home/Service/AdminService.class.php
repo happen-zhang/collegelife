@@ -141,9 +141,10 @@ class AdminService extends CommonService {
 
     public function getPagination($firstRow, $listRows) {
         if ($_SESSION['rank'] == 2) {
-            $buildings = $this->getAdminBuildings($_SESSION['id']);
-
-            return $this->getAdmins($firstRow, $listRows, $buildings[0], 1);
+            // $buildings = $this->getAdminBuildings($_SESSION['id']);
+            // return $this->getAdmins($firstRow, $listRows, $buildings[0], 1);
+            
+            return $this->getAdmins($firstRow, $listRows, null, 1);
         }
 
         return $this->getAdmins($firstRow, $listRows);
