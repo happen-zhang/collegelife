@@ -32,11 +32,11 @@ class AdminsController extends CommonController {
         // }
         // $buildings = array_unique(explode(',', $buildings));
 
-        if ($_SESSION['rank'] == 2) {
-            $buildings = D('Admin', 'Service')
-                         ->getAdminBuildings($_SESSION['id']);
-            $this->assign('building', $buildings[0]);
-        }
+        // if ($_SESSION['rank'] == 2) {
+        //     $buildings = D('Admin', 'Service')
+        //                  ->getAdminBuildings($_SESSION['id']);
+        //     $this->assign('building', $buildings[0]);
+        // }
 
         // $this->assign('buildings', $buildings);
         $this->assign('page', $result['show']);
