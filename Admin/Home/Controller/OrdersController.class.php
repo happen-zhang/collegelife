@@ -21,16 +21,17 @@ class OrdersController extends CommonController {
         foreach ($orders as $key => $order) {
             $building = $order['user']['building_no'];
             if ($order['confirm_status'] == 2) {
-                if ($_SESSION['rank'] == 3) {
-                    // 总管理员确认信息
-                    $senior = $adminService->getSeniorByBuilding($building);
-                    $orders[$key]['senior'] = $senior;
-                }
+                // if ($_SESSION['rank'] == 3) {
+                //     // 总管理员确认信息
+                //     $senior = $adminService->getSeniorByBuilding($building);
+                //     $orders[$key]['senior'] = $senior;
+                // }
 
                 if ($_SESSION['rank'] == 2) {
                     // 总管理员选择分管理员
-                    $admins = $adminService
-                               ->getOneAdminsByBuilding($building, 1);
+                    // $admins = $adminService
+                    //            ->getOneAdminsByBuilding($building, 1);
+                    $admins = $adminService->findByRank(1);
 
                     foreach ($admins as $admin) {
                         $orders[$key]['admin_names'][] = $admin['admin_name'];

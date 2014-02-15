@@ -316,6 +316,17 @@ class AdminService extends CommonService {
         return 1;
     }
 
+    /**
+     * 按rank获得管理员
+     * @param  int $rank
+     * @return array
+     */
+    public function findByRank($rank) {
+        return $this->getM()
+                    ->where(array('rank'=> $rank))
+                    ->select();
+    }
+
     protected function getM() {
         return M('Admin');
     }
