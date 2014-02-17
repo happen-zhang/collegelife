@@ -50,6 +50,8 @@ class AdminService extends CommonService {
         unset($_SESSION['admin_name']);
         unset($_SESSION[C('SESSION_AUTH_KEY_ADMIN')]);
         unset($_SESSION['aid']);
+        unset($_SESSION['id']);
+        unset($_SESSION['rank']);
     }
 
     /**
