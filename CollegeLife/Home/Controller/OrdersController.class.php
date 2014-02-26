@@ -156,4 +156,28 @@ class OrdersController extends CommonController {
         // 操作成功
         $this->redirect('Orders/index', array('status' => 1));
     }
+
+    /**
+     * 取消订单
+     * @return
+     */
+    public function cancel() {
+        if (!isset($_GET['order_id']) || !isset($_GET['hash'])
+            || !isset($_SESSION['uid'])
+            || $_SESSION[C('TOKEN_NAME')] != $_GET['hash']) {
+            $this->error('无效的操作！');
+        }
+
+        $uuid = sql_injection($_GET['order_id']);
+        $flag = M('Order')->where(array('uuid' => $uuid))
+                          ->save(array('is_cancel' => 1));
+
+        if (false === $flag) {
+            // 操作失败
+            $this->redirect('Orders/index', array('status' => 2));
+        }
+
+        // 操作成功
+        $this->redirect('Orders/index', array('status' => 1));
+    }
 }
