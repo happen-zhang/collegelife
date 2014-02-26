@@ -1,34 +1,54 @@
 <div id="shop_list">
-	<div class="shop_list_style">
-		<div class="info_title" style="border:0px">我的订单&nbsp;&nbsp;&nbsp;
-			<present name="Think.get.status">
-				<if condition = "$Think.get.status eq 1">
-					<span style="font-size:12px;font-weight:normal;color:red">[订单取消成功]</span>
-				<elseif condition = "$Think.get.status eq 2" />
-					<span style="font-size:12px;font-weight:normal;color:red">[修改失败]</span>
-				</if>
-			</present>
-		</div>		
-		<div id="shop_list_box">
-			<div class="shop_list_box_style">
-				<table>
-					<tr width="1000px" height="30px">
-						<th width="200px">订单名称</th><th width="200px">状态</th><th width="200px">支付状态</th><th width="200px">下单时间</th><th width="200px">操作</th>
-					</tr>
-				</table>
-			</div>
-		</div>
+    <div class="shop_list_style">
+        <div class="info_title" style="border:0px">我的订单&nbsp;&nbsp;&nbsp;
+            <present name="Think.get.status">
+                <if condition = "$Think.get.status eq 1">
+                <span style="font-size:12px;font-weight:normal;color:red">[订单取消成功]</span>
+                <elseif condition = "$Think.get.status eq 2" />
+                <span style="font-size:12px;font-weight:normal;color:red">[修改失败]</span>
+                </if>
+            </present>
+        </div>
+        <div id="shop_list_box">
+            <div class="shop_list_box_style">
+                <table>
+                    <tr width="1000px" height="30px">
+                        <th width="200px">订单名称</th>
+                        <th width="200px">状态</th>
+                        <th width="200px">支付状态</th>
+                        <th width="200px">下单时间</th>
+                       <th width="200px">操作</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
- 	    <volist name="orders" id="order">
-			<div id="shop_list_box">
-				<div class="shop_list_box_style">
-					<table>
-						<tr width="1000px" height="30px" align="center">
-							<td width="200px"><a href="{:U('Orders/show', array('order_id' => $order[uuid]))}" target="_blank"><?php printf('%05d', $order['id']); ?>号订单</a></td><td width="200px">{$order['order_status']}</td><td width="200px">{$order['payment_status']}</td><td width="200px">{$order[created_at]}</td><td width="200px"><if condition="$order['payment_status'] eq '未收款'"><if condition="$order['order_status'] eq '未发货'"><span onclick="check_list('<?php printf('%05d', $order['id']); ?>', '{:U('Orders/destory', array('order_id' => $order[uuid], 'hash' => $__hash__))}')">取消订单</span><else/><span style="text-decoration: none">货物已发出，请您做好货准备</span></if><else/><span style="text-decoration: none">交易完成</span></if></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</volist>
-	</div>
+        <volist name="orders" id="order">
+            <div id="shop_list_box">
+                <div class="shop_list_box_style">
+                    <table>
+                        <tr width="1000px" height="30px" align="center">
+                            <td width="200px"><a href="{:U('Orders/show', array('order_id' => $order[uuid]))}" target="_blank"><?php printf('%05d', $order['id']); ?>号订单</a></td>
+                            <td width="200px">{$order['order_status']}</td>
+                            <td width="200px">{$order['payment_status']}</td>
+                            <td width="200px">{$order[created_at]}</td>
+                            <td width="200px">
+                            <if condition="$order['payment_status'] eq '未收款'">
+                                <if condition="$order['confirm_status'] eq 3">
+                                <span onclick="check_list('<?php printf('%05d', $order['id']); ?>', '{:U('Orders/destory', array('order_id' => $order[uuid], 'hash' => $__hash__))}')">取消订单</span>
+                                <elseif condition="$order['confirm_status'] eq 2" />
+                                <span style="text-decoration: none">订单已确认，正等待发货</span>
+                                <elseif condition="$order['confirm_status'] eq 1" />
+                                <span style="text-decoration: none">货物已发出，请您做好货准备</span>
+                                </if>
+                                <else/>
+                                <span style="text-decoration: none">交易完成</span>
+                            </if>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </volist>
+    </div>
 </div>
