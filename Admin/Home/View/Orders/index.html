@@ -112,7 +112,7 @@
 								// 总部才可以取消订单
 								if ($_SESSION['rank'] == 3) {
                       // 总部确认订单或者未确认订单时可以进行取消操作
-							        if ($order['confirm_status'] >= 2 && !$order['is_cancel']) { ?>
+							        if ($order['confirm_status'] == 3 && !$order['is_cancel']) { ?>
 									<option value="<?php echo U('Orders/cancel', array('order_id' => $order['uuid'], 'p' => $_GET['p'])); ?>">取消订单</option>
 								<?php
 								    }
