@@ -47,11 +47,10 @@ class AdminService extends CommonService {
     */
     public function logout() {
         // 清除session
-        unset($_SESSION['admin_name']);
-        unset($_SESSION[C('SESSION_AUTH_KEY_ADMIN')]);
-        unset($_SESSION['aid']);
-        unset($_SESSION['id']);
-        unset($_SESSION['rank']);
+        if (isset($_SESSION[C('SESSION_AUTH_KEY_ADMIN')])) {
+            unset($_SESSION);
+            session_destroy();            
+        }
     }
 
     /**
