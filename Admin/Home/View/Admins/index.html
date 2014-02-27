@@ -1,7 +1,7 @@
 <div id="add_main_content">
 	<div class="add_style">
 		
-	    <?php if ($_SESSION['rank'] == 3) { ?>
+	    <?php if ($_SESSION['rank'] == 3 || $_SESSION['rank'] == 2) { ?>
 		<div class="add_style_inside">
 			<form action="{:U('Admins/create')}" method="POST">
 				<p>管理员名称：<input type="text" name="admin[admin_name]" class="bar"></p>
@@ -9,7 +9,9 @@
 				<p>管理员级别：
 					<select name="admin[rank]" class="bar" style="height:30px" onchange="toggle_buildings(this.value)">
 						<option value="1">分管理员</option>
+						<?php if ($_SESSION['rank'] == 3) { ?>
 						<option value="2">总管理员</option>
+						<?php } ?>
 					</select>
 				</p>
 				<div class="buildings">
