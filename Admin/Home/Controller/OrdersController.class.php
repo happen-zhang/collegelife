@@ -141,6 +141,9 @@ class OrdersController extends CommonController {
             $this->error('系统出错了！');
         }
 
+        // 取消操作写入日志
+        D('Order', 'Service')->orderLog($_GET['order_id'], '取消订单');
+
         $this->redirect('Orders/index', array('p' => $_GET['p']));
     }
 
