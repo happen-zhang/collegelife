@@ -126,6 +126,25 @@ class OrdersController extends CommonController {
     }
 
     /**
+     * 取消订单
+     * @return
+     */
+    public function cancel() {
+        if (!isset($_GET['order_id'])) {
+            $this->error('无效的操作！');
+        }
+
+        $flag = D('Order')->where(array('uuid' => $_GET['order_id']))
+                          ->save(array('is_cancel' => 1));
+
+        if (false === $flag) {
+            $this->error('系统出错了！');
+        }
+
+        $this->redirect('Orders/index', array('p' => $_GET['p']));
+    }
+
+    /**
      * 总部确认订单
      * @return
      */
