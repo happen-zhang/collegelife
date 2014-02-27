@@ -1,6 +1,6 @@
 <div id="add_main_content">
 	<div class="add_style">
-		<p style="font-size:14px;font-weight:bold"><a href="main.php">返回主页&gt;</a> <?php printf('%05d', $order['id']) ?>号订单</p>
+		<p style="font-size:14px;font-weight:bold"><a href="{:U('Order/index')}">返回主页&gt;</a> <?php printf('%05d', $order['id']) ?>号订单</p>
 		<hr />
 		<div class="add_style_inside">
 			<p>下单时间：{$order['created_at']}</p>
@@ -9,13 +9,23 @@
 			<p>预期总额：{$order['payment']}</p>
 			<br/>
 			<volist name="goods" id="item">
-				<p>商品名称：{$item['name']}</p>
-				<p>类型：{$item['category']}</p>
-				<p>单价：&yen;{$item['preferential']}</p>
-				<p>数量：{$item['count']}</p>
-				<p>产品链接：<a href="{:U('Goods/show', array('goods_id' => $item['uuid']))}" target="_blank">点击查看</a></p>
+			<p>商品名称：{$item['name']}</p>
+			<p>类型：{$item['category']}</p>
+			<p>单价：&yen;{$item['preferential']}</p>
+			<p>数量：{$item['count']}</p>
+			<p>产品链接：<a href="{:U('Goods/show', array('goods_id' => $item['uuid']))}" target="_blank">点击查看</a></p>
 			</volist>
 			<br/>
+			<p style="font-size:14px;font-weight:bold;margin-top:25px">用户信息：<a href="{:U('Users/show', array('user_id' => $user['id']))}">{$user['username']}</a></p>
+			<p>真实姓名：{$user['real_name']}</p>
+			<p>年级：{$user['grade']}</p>
+			<p>号码类型：{$user['tel_type']}</p>
+			<p>长号：{$user['tel_full']}</p>
+			<p>短号：{$user['tel_brief']}</p>
+			<p>楼房栋号：{$user['building_no']}</p>
+            <p>宿舍号码：{$user['dormitory_no']}</p>
+			<br/>
+
 			<p style="font-size:14px;font-weight:bold;margin-top:25px">订单操作状态：</p>
 			<div class="add_line" style="width: 940px;">
 				<table >

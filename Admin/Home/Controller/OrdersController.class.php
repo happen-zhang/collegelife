@@ -71,6 +71,7 @@ class OrdersController extends CommonController {
         $doOrders = $orderService->getAdminDoOrder($_GET['order_id']);
 
         $this->assign('order', $order);
+        $this->assign('user', $order['user']);
         $this->assign('goods', $order['goods']);
         $this->assign('doOrders', $doOrders);
         $this->display();
