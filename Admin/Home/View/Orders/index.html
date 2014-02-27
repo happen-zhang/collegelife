@@ -35,7 +35,7 @@
                       if ($order['is_cancel']) {
                         echo '订单已取消';
                       } else if ($order['confirm_status'] == 3) {
-                      	echo '等待总部确认';
+                      	echo '订单正等待确认';
                           // echo '正等待总部确认订单'; 
                       } else if ($order['confirm_status'] == 2) {
                           echo '正等待总代理发货';
@@ -67,8 +67,12 @@
                     </select>
             <?php   
                     } else if ($order['confirm_status'] == 3) {
-                        echo '等待总部确认';
-                        // echo '正等待总部确认订单';
+            ?>
+                      <select onchange="self.location.href=options[selectedIndex].value">
+                        <option value="#">选择操作</option>
+                        <option value="<?php echo U('Orders/confirmOrder', array('order_id' => $order['uuid'], 'p' => $_GET['p'])); ?>">确认订单</option>
+                      </select>
+            <?php
                     } else if ($order['confirm_status'] == 1) {
                         echo '分代理已发货';
                         // echo "正等待 <a href='" . U('Admins/show', array('admin_id' => $order['assigner']['uuid'])) . "' target='_blank'>". $order['assigner']['admin_name'] . "</a> 发货给用户";
@@ -82,23 +86,20 @@
                 // 总部确认订单
                 if ($_SESSION['rank'] == 3) {
                       if ($order['is_cancel']) {
-                        echo '订单已取消';
-                      } else if ($order['confirm_status'] == 3) {
-            ?>
-                    <select onchange="self.location.href=options[selectedIndex].value">
-                        <option value="#">选择操作</option>
-                        <option value="<?php echo U('Orders/confirmOrder', array('order_id' => $order['uuid'], 'p' => $_GET['p'])); ?>">确认订单</option>
-                    </select>
-            <?php   } else if ($order['confirm_status'] == 2) {
-            	        echo '总部已确认订单';
-                        // echo "正等待 <a href='" . U('Admins/show', array('admin_id' => $order['senior']['uuid'])) . "' target='_blank'>" . $order['senior']['admin_name'] . " </a>发货到分管理";
+                      echo '订单已取消';
+                    } else if ($order['confirm_status'] == 3) {
+                      echo '订单正等待确认';
+                    } else if ($order['confirm_status'] == 2) {
+            	        // echo '订单已确认';
+                      echo '正等待总管理发货给分管理'; 
+                      // echo "正等待 <a href='" . U('Admins/show', array('admin_id' => $order['senior']['uuid'])) . "' target='_blank'>" . $order['senior']['admin_name'] . " </a>发货到分管理";
                     } else if ($order['confirm_status'] == 1) {
                     	echo '分代理已发货';
                         // echo "正等待 <a href='" . U('Admins/show', array('admin_id' => $order['assigner']['uuid'])) . "' target='_blank'>". $order['assigner']['admin_name'] . "</a> 发货给用户";
                     } else if ($order['confirm_status'] == 0){
                         echo '订单已完成';
                     }
-                } 
+                }
             ?>
             </th>
 

@@ -280,7 +280,8 @@ class OrderService extends CommonService {
         }
 
         // 记录日志
-        if ($_SESSION['rank'] == 3) {
+        if (($_SESSION['rank'] == 3 || $_SESSION['rank'] == 2)
+             && $status == 2) {
             $this->orderLog($uuid, '确认订单');
         }
 
