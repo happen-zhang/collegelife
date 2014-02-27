@@ -147,6 +147,25 @@ class GoodsController extends CommonController {
     }
 
     /**
+     * 删除产品
+     * @return
+     */
+    public function destroy() {
+        if (!isset($_GET['goods_id'])) {
+            $this->error('无效的操作！');
+        }
+
+        $flag = D('Goods')->where(array('uuid' => $_GET['goods_id']))
+                          ->delete();
+
+        if (false === $flag) {
+            $this->error('系统出错了！');
+        }
+
+        $this->redirect('Goods/index');
+    }
+
+    /**
      * 上传图片
      * @return
      */
