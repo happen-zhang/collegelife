@@ -46,7 +46,11 @@
 		<div class="add_line">
 			<table>
 				<tr width="980px" height="50px">
-					<th width="200px">产品名</th><th width="150px">产品类型</th><th width="200px">价格</th><th width="200px">添加时间</th>
+					<th width="200px">产品名</th>
+					<th width="150px">产品类型</th>
+					<th width="200px">价格</th>
+					<th width="200px">添加时间</th>
+					<th width="200px">操作</th>
 				</tr>
 			</table>
 		</div>
@@ -55,7 +59,17 @@
 			<div class="add_line">
 				<table>
 					<tr width="980px" height="50px">
-						<th width="200px"><a href="{:U('Goods/show', array('goods_id' => $item['uuid']))}" target="_blank">{$item['name']}</a></th><th width="150px">{$curr_category['name']}</th><th width="200px">{$item['preferential']}</th><th width="200px">{$item['created_at']}</th>
+						<th width="200px"><a href="{:U('Goods/show', array('goods_id' => $item['uuid']))}" target="_blank">{$item['name']}</a><th>
+						<th width="150px">{$curr_category['name']}</th>
+						<th width="200px">{$item['preferential']}</th>
+						<th width="200px">{$item['created_at']}</th>
+						<th width="200px">
+						    <select onchange="self.location.href=options[selectedIndex].value">
+                                <option value="#">选择操作</option>
+                                <option value="<?php echo U('Goods/edit', array('goods_id' => $item['uuid'], 'p' => $_GET['p'])); ?>">修改产品</option>
+                                <option value="<?php echo U('Goods/destroy', array('goods_id' => $item['uuid'], 'p' => $_GET['p'])); ?>">删除产品</option>
+                            </select>
+						</th>
 					</tr>
 				</table>
 			</div>

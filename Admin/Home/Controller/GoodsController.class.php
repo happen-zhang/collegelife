@@ -105,6 +105,48 @@ class GoodsController extends CommonController {
     }
 
     /**
+     * 产品编辑
+     * @return
+     */
+    public function edit() {
+        if (!isset($_GET['goods_id'])) {
+            $this->error('您查看的商品不存在！');
+        }
+
+        $goodsService = D('Goods', 'Service');
+        $goods = $goodsService->getGoods($_GET['goods_id']);
+        if (is_null($goods)) {
+            $this->error('您需要编辑的产品不存在！');
+        }
+
+        $Category = M('Category');
+        $categories = $Category->field('id, name')->select();
+
+        $this->assign('goods', $goods);
+        $this->assign('categories', $categories);
+        $this->display();               
+    }
+
+    /**
+     * 更新产品
+     * @return
+     */
+    public function update() {
+        if (!isset($_POST['goods_id']) || !isset($_POST['goods'])) {
+            $this->error('无效的操作！');
+        }
+
+        $Goods = D('Goods');
+        $flag = $Goods->where(array('uuid' => $_POST['goods_id']))
+                      ->save($_POST['goods']);
+        if (false === $flag) {
+            $this->error('系统出错了！');
+        }
+
+        $this->redirect('Goods/index');
+    }
+
+    /**
      * 上传图片
      * @return
      */
