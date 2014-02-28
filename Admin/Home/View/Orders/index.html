@@ -58,7 +58,7 @@
                         echo '订单已取消';
                       } else if ($order['confirm_status'] == 2) {
             ?>
-                    <select onchange="self.location.href=options[selectedIndex].value">
+                    <select onchange="return confirmOperation(options[selectedIndex].value)">
                     	<option value="#">选择分管理员</option>
                     <?php 
                     foreach ($order['admin_names'] as $key => $admin_name) { ?>
@@ -68,7 +68,7 @@
             <?php   
                     } else if ($order['confirm_status'] == 3) {
             ?>
-                      <select onchange="self.location.href=options[selectedIndex].value">
+                      <select onchange="return confirmOperation(options[selectedIndex].value)">
                         <option value="#">选择操作</option>
                         <option value="<?php echo U('Orders/confirmOrder', array('order_id' => $order['uuid'], 'p' => $_GET['p'])); ?>">确认订单</option>
                       </select>
@@ -106,13 +106,13 @@
             <!-- 订单操作 -->
 						<?php if ($_SESSION['rank'] != 2) { ?>
 						<th width="120px">
-							<select onchange="self.location.href=options[selectedIndex].value">
+							<select onchange="return confirmOperation(options[selectedIndex].value)">
 								<option value="#">选择状态</option>
 								<?php
 								// 总部才可以取消订单
 								if ($_SESSION['rank'] == 3) {
-                      // 总部确认订单或者未确认订单时可以进行取消操作
-							        if ($order['confirm_status'] == 3 && !$order['is_cancel']) { ?>
+                  // 总部确认订单或者未确认订单时可以进行取消操作
+							    if ($order['confirm_status'] == 3 && !$order['is_cancel']) { ?>
 									<option value="<?php echo U('Orders/cancel', array('order_id' => $order['uuid'], 'p' => $_GET['p'])); ?>">取消订单</option>
 								<?php
 								    }

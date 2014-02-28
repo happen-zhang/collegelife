@@ -34,7 +34,7 @@
                 if ($_SESSION['rank'] == 1) {
                     if ($order['transaction']['is_transaction'] == 0) {
             ?>
-              <select onchange="self.location.href=options[selectedIndex].value">
+              <select onchange="return confirmOperation(options[selectedIndex].value)">
                 <option value="#">选择总管理</option>
                 <volist name="admins" id="admin">
                 <option value="{:U('Orders/assignTransaction', array('transaction_id' => $order['transaction']['id'], 'assign_to' => $admin['id'], 'p' => $_GET['p']))}">
@@ -51,7 +51,7 @@
                 } else if ($_SESSION['rank'] == 2) {
                     if ($order['transaction']['is_transaction'] == 1) {
              ?>
-              <select onchange="self.location.href=options[selectedIndex].value">
+              <select onchange="return confirmOperation(options[selectedIndex].value)">
                 <option value="#">选择状态</option>
                 <option value="{:U('Orders/confirmTransaction', array('transaction_id' => $order['transaction']['id'], 'p' => $_GET['p']))}">
                   已收款

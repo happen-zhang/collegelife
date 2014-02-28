@@ -150,3 +150,13 @@ function check_password() {
 
     return true;
 }
+
+function confirmOperation(url) {
+    if (url != "#" && url != "") {
+        if (confirm('是否确认进行该操作？')) {
+            window.location.href = url;
+        }        
+    }
+
+    return false;
+}

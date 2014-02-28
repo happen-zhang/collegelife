@@ -1,84 +1,84 @@
 <div id="add_main_content">
-	<div class="add_style">
-		<div class="add_style_inside">
-			<form action="{:U('Goods/create')}" enctype="multipart/form-data" method="POST">
-				<p>产品名称：<input type="text" name="goods[name]" class="bar"></p>
-				<p>产品类型：<select name="goods[category_id]" style="width: 23.3em; height: 2.1em;">
-					<volist name="categories" id="category">
-						<option value="{$category['id']}">{$category['name']}</option>
+    <div class="add_style">
+        <div class="add_style_inside">
+            <form action="{:U('Goods/create')}" enctype="multipart/form-data" method="POST">
+                <p>产品名称：<input type="text" name="goods[name]" class="bar"></p>
+                <p>产品类型：<select name="goods[category_id]" style="width: 23.3em; height: 2.1em;">
+                    <volist name="categories" id="category">
+                        <option value="{$category['id']}">{$category['name']}</option>
                     </volist>
-				</select>
-				</p>
-				<p>产品描述：<textarea name="goods[description]" style="margin-bottom: -2px; width: 23em; height: 5em;"></textarea>
-				<p>产品品牌：<input type="text" name="goods[brand]" class="bar"></p>
-				<p>产品功效：<input type="text" name="goods[feature]" class="bar"></p>
-				<p>产品尺寸：<input type="text" name="goods[net_wt]" class="bar"></p>
-	            <p>产品产地：<input type="text" name="goods[place_origin]" class="bar"></p>
-				<p> 保质期&nbsp;&nbsp;&nbsp;&nbsp;：<input type="text" name="goods[qgp]" class="bar"></p>
-				<p>适应人群：<input type="text" name="goods[suitable]" class="bar"></p>
-				<p>特别说明：<input type="text" name="goods[remind]" class="bar"></p>
-				<p>产品原价：<input type="text" name="goods[price]" class="bar"></p>
-				<p>特惠价格：<input type="text" name="goods[preferential]" class="bar"></p>
-				<p>库存数量：<input type="text" name="goods[stock]" class="bar"></p>
+                </select>
+                </p>
+                <p>产品描述：<textarea name="goods[description]" style="margin-bottom: -2px; width: 23em; height: 5em;"></textarea>
+                <p>产品品牌：<input type="text" name="goods[brand]" class="bar"></p>
+                <p>产品功效：<input type="text" name="goods[feature]" class="bar"></p>
+                <p>产品尺寸：<input type="text" name="goods[net_wt]" class="bar"></p>
+                <p>产品产地：<input type="text" name="goods[place_origin]" class="bar"></p>
+                <p> 保质期&nbsp;&nbsp;&nbsp;&nbsp;：<input type="text" name="goods[qgp]" class="bar"></p>
+                <p>适应人群：<input type="text" name="goods[suitable]" class="bar"></p>
+                <p>特别说明：<input type="text" name="goods[remind]" class="bar"></p>
+                <p>产品原价：<input type="text" name="goods[price]" class="bar"></p>
+                <p>特惠价格：<input type="text" name="goods[preferential]" class="bar"></p>
+                <p>库存数量：<input type="text" name="goods[stock]" class="bar"></p>
 
                 <p>商品图标：<input type="file" name="logo" /></p>
                 <p>展示图片：<select id="select_num" onchange="createFile()" style="width: 23em; height: 2.3em;">
-                	<option value="0" selected>0</option>
-                	<option value="1">1</option>
-                	<option value="2">2</option>
-                	<option value="3">3</option>
-                	<option value="4">4</option>
-                	<option value="5">5</option>
+                    <option value="0" selected>0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                 </select></p>
 
-				<p><input type="submit" value="添加产品" class="add_btn"></p>
-			</form>
-		</div>
+                <p><input type="submit" value="添加产品" class="add_btn"></p>
+            </form>
+        </div>
 
-		<!-- 输出产品 -->
-		<hr />
-		<p style="font-size:14px;font-weight:bold">产品类型：
-		<volist name="categories" id="category">
-			<a href="{:U('Goods/index', array('category_id' => $category['id']))}" <?php if (isset($_GET['category_id'])) { if ($_GET['category_id'] == $category['id']) { echo "style='color:#ff9900;'"; }} else if ($i == 1) { echo "style='color:#ff9900;'"; } ?>> &nbsp;&nbsp;&nbsp;{$category['name']}</a>
-		</volist>
-		</p>
+        <!-- 输出产品 -->
+        <hr />
+        <p style="font-size:14px;font-weight:bold">产品类型：
+        <volist name="categories" id="category">
+            <a href="{:U('Goods/index', array('category_id' => $category['id']))}" <?php if (isset($_GET['category_id'])) { if ($_GET['category_id'] == $category['id']) { echo "style='color:#ff9900;'"; }} else if ($i == 1) { echo "style='color:#ff9900;'"; } ?>> &nbsp;&nbsp;&nbsp;{$category['name']}</a>
+        </volist>
+        </p>
 		
-		<div class="add_line">
-			<table>
-				<tr width="980px" height="50px">
-					<th width="200px">产品名</th>
-					<th width="150px">产品类型</th>
-					<th width="200px">价格</th>
-					<th width="200px">添加时间</th>
-					<th width="200px">操作</th>
-				</tr>
-			</table>
-		</div>
+        <div class="add_line">
+            <table>
+                <tr width="980px" height="50px">
+                    <th width="200px">产品名</th>
+                    <th width="150px">产品类型</th>
+                    <th width="200px">价格</th>
+                    <th width="200px">添加时间</th>
+                    <th width="200px">操作</th>
+                </tr>
+            </table>
+        </div>
 
         <volist name="goods" id="item">
-			<div class="add_line">
-				<table>
-					<tr width="980px" height="50px">
-						<th width="200px"><a href="{:U('Goods/show', array('goods_id' => $item['uuid']))}" target="_blank">{$item['name']}</a><th>
-						<th width="150px">{$curr_category['name']}</th>
-						<th width="200px">{$item['preferential']}</th>
-						<th width="200px">{$item['created_at']}</th>
-						<th width="200px">
-						    <select onchange="self.location.href=options[selectedIndex].value">
+            <div class="add_line">
+                <table>
+                    <tr width="980px" height="50px">
+                        <th width="200px"><a href="{:U('Goods/show', array('goods_id' => $item['uuid']))}" target="_blank">{$item['name']}</a><th>
+                        <th width="150px">{$curr_category['name']}</th>
+                        <th width="200px">{$item['preferential']}</th>
+                        <th width="200px">{$item['created_at']}</th>
+                        <th width="200px">
+                            <select onchange="return confirmOperation(options[selectedIndex].value)">
                                 <option value="#">选择操作</option>
                                 <option value="<?php echo U('Goods/edit', array('goods_id' => $item['uuid'], 'p' => $_GET['p'])); ?>">修改产品</option>
                                 <option value="<?php echo U('Goods/destroy', array('goods_id' => $item['uuid'], 'p' => $_GET['p'])); ?>">删除产品</option>
                             </select>
-						</th>
-					</tr>
-				</table>
-			</div>
-		</volist>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+        </volist>
 
-		<div class="add_line_page">
-			<div class="add_line_page_style">
+        <div class="add_line_page">
+            <div class="add_line_page_style">
                 {$page}
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </div>
