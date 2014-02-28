@@ -302,18 +302,18 @@ class AdminService extends CommonService {
      * @param  string $newPassword
      * @return int
      */
-    public function updatePassword($originPassword, $newPassword) {
+    public function updatePassword($uuid, $originPassword, $newPassword) {
         $where['password'] = md5($originPassword);
-        $where['admin_name'] = $_SESSION['admin_name'];
+        $where['uuid'] = $uuid;
 
         // 原密码错误
         $admin = $this->getM()->where($where)->find();
-
         if (empty($admin)) {
             return 0;
         }
 
         // 更新密码失败
+        unset($where['password']);
         $newPassword = md5($newPassword);
         $update['password'] = $newPassword;
         if (false === $this->getM()->where($where)->save($update)) {

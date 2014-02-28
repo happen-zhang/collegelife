@@ -127,6 +127,15 @@ class AdminsController extends CommonController {
      * @return
      */
     public function edit() {
+        $adminService = D('Admin', 'Service');
+
+        if ($_SESSION['rank'] == 3) {
+            $subAdmins = $adminService->findByRank(2);
+        } else if ($_SESSION['rank'] == 2) {
+            $subAdmins = $adminService->findByRank(1);
+        }
+
+        $this->assign('subAdmins', $subAdmins);
         $this->display();
     }
 
@@ -140,8 +149,15 @@ class AdminsController extends CommonController {
             $this->error('无效的操作！');
         }
 
+        if (isset($_POST['sub_admin']) && !empty($_POST['sub_admin'])) {
+            $adminId = $_POST['sub_admin'];
+        } else {
+            $adminId = $_SESSION['aid'];
+        }
+
         $adminService = D('Admin', 'Service');
-        $flag = $adminService->updatePassword($_POST['origin_password'],
+        $flag = $adminService->updatePassword($adminId,
+                                              $_POST['origin_password'],
                                               $_POST['new_password']);
         if ($flag == 0) {
             $this->error('原密码错误，请输入正确的原密码！');

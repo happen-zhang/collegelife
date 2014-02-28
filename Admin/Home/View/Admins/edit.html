@@ -1,12 +1,22 @@
 <div id="add_main_content">
-	<div class="add_style">
-		<div class="add_style_inside">
-			<form action="{:U('Admins/updatePassword')}" method="POST">
-				<p>原&nbsp;密&nbsp;码&nbsp;&nbsp;：<input type="password" name="origin_password" id="origin_password" class="bar"></p>
-				<p>新&nbsp;密&nbsp;码&nbsp;&nbsp;：<input type="password" name="new_password" id="new_password" class="bar"></p>
-				<p>确认密码：<input type="password" name="confirm_password" id="confirm_password" class="bar"></p>
-				<p><input type="submit" value="保存" class="add_btn" style="width:140px" onclick="return check_password();"></p>
-			</form>
-		</div>
-	</div>
+    <div class="add_style">
+        <div class="add_style_inside">
+            <form action="{:U('Admins/updatePassword')}" method="POST">
+                <?php if ($_SESSION['rank'] == 2
+                          || $_SESSION['rank'] == 3) { ?>
+                总管理员：
+                <select name="sub_admin">
+                    <option value="">选择总管理员</option>
+                    <volist name="subAdmins" id="subAdmin">
+                    <option value="{$subAdmin['uuid']}">{$subAdmin['admin_name']}</option>
+                    </volist>
+                </select>
+                <?php } ?>
+                <p>原&nbsp;密&nbsp;码&nbsp;&nbsp;：<input type="password" name="origin_password" id="origin_password" class="bar"></p>
+                <p>新&nbsp;密&nbsp;码&nbsp;&nbsp;：<input type="password" name="new_password" id="new_password" class="bar"></p>
+                <p>确认密码：<input type="password" name="confirm_password" id="confirm_password" class="bar"></p>
+                <p><input type="submit" value="保存" class="add_btn" style="width:140px" onclick="return check_password();"></p>
+            </form>
+        </div>
+    </div>
 </div>
