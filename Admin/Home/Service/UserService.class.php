@@ -44,8 +44,6 @@ class UserService extends CommonService {
         $update['password'] = $newPassword;
 
         return $this->getM()->where($where)->save($update);
-        // $this->getM()->getDbError();
-        // exit();
     }
 
     protected function getM() {
