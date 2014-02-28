@@ -1,42 +1,49 @@
 <div id="add_main_content">
-	<div class="add_style">
-	
-		<!-- 输出用户 -->
-		
-			<div class="add_line">
-				<table>
-					<tr width="980px" height="50px">
-						<th width="200px">用户名</th><th width="150px">真实姓名</th><th width="200px">注册时间</th><th width="200px">操作</th>
-					</tr>
-				</table>
-			</div>
+    <div class="add_style">
+        <div class="add_line">
+            <table>
+                <tr width="980px" height="50px">
+                    <th width="200px">用户名</th>
+                    <th width="150px">真实姓名</th>
+                    <th width="200px">注册时间</th>
+                    <th width="200px">操作</th>
+                </tr>
+            </table>
+        </div>
 
-            <volist name="users" id="user">
-            <?php 
-	            if ($user['is_active']) { 
-	            	$status  = "不激活";
-	            	$operation = 'deactive';
-	            } else {
-	                $status = "激活";
-	                $operation = 'active';
-	            } 
-            ?>
+        <volist name="users" id="user">
+        <?php 
+            if ($user['is_active']) { 
+                $status  = "不激活";
+                $operation = 'deactive';
+            } else {
+                $status = "激活";
+                $operation = 'active';
+            } 
+        ?>
 
-			<div class="add_line">
-				<table>
-					<tr width="980px" height="50px">
-						<th width="200px"><a href="{:U('Users/show', array('user_id' => $user['id']))}" target="_blank">{$user['username']}</a></th><th width="150px">{$user['real_name']}</th><th width="200px">{$user['created_at']}</th><th width="200px"><a href="{:U('Users/update', array('user_id' => $user['uuid'], 'operation' => $operation, 'p' => $_GET['p']))}" onclick="return confirm('{$status}该用户吗？');">{$status}</a></th>
-					</tr>
-				</table>
-			</div>
-		</volist>
+            <div class="add_line">
+                <table>
+                    <tr width="980px" height="50px">
+                        <th width="200px"><a href="{:U('Users/show', array('user_id' => $user['id']))}" target="_blank">{$user['username']}</a></th>
+                        <th width="150px">{$user['real_name']}</th>
+                        <th width="200px">{$user['created_at']}</th>
+                        <th width="200px">
+                        	<select onchange="return confirmOperation(options[selectedIndex].value)">
+                                <option value="#">选择操作</option>
+                                <option value="{:U('Users/editPassword', array('user_id' => $user['uuid'], 'p' => $_GET['p']))}">修改密码</option>
+                                <option value="{:U('Users/update', array('user_id' => $user['uuid'], 'operation' => $operation, 'p' => $_GET['p']))}">{$status}</option>
+                            </select>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+        </volist>
 
-		<!-- 分页系统 -->
-		<div class="add_line_page">
-			<div class="add_line_page_style">
+        <div class="add_line_page">
+            <div class="add_line_page_style">
                 {$page}
-			</div>
-		</div>
-
+            </div>
+        </div>
 	</div>
 </div>
