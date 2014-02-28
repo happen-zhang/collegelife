@@ -50,7 +50,7 @@ class CommonController extends Controller {
     */
     protected function accessFilter() {
         if (!$this->hasLogin()) {
-            $this->error('请先进行登陆！');
+            $this->error('请先进行登陆！', __MODULE__ . '/Index/index');
         }
     }
 
