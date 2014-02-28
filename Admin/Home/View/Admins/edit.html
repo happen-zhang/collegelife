@@ -4,9 +4,9 @@
             <form action="{:U('Admins/updatePassword')}" method="POST">
                 <?php if ($_SESSION['rank'] == 2
                           || $_SESSION['rank'] == 3) { ?>
-                总管理员：
+                管&nbsp;理&nbsp;员&nbsp;&nbsp;：
                 <select name="sub_admin">
-                    <option value="">选择总管理员</option>
+                    <option value="">选择管理员</option>
                     <volist name="subAdmins" id="subAdmin">
                     <option value="{$subAdmin['uuid']}">{$subAdmin['admin_name']}</option>
                     </volist>
