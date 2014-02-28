@@ -335,6 +335,24 @@ class AdminService extends CommonService {
                     ->select();
     }
 
+    /**
+     * 返回用户id数组
+     * @param  int $id
+     * @return array
+     */
+    private function getUseridByAdmin($id) {
+        // 获取管理员所管理的用户
+        $adminService = D('Admin', 'Service');
+        $users = $adminService->getUserBelongsAdmin($id, array('id'));
+        $userIds = array();
+        foreach ($users as $user) {
+            $userIds[] = $user['id'];
+        }
+        $userIds = implode(',', $userIds);
+
+        return $userIds;
+    }
+
     protected function getM() {
         return M('Admin');
     }

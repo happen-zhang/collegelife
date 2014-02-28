@@ -121,38 +121,20 @@ class OrderService extends CommonService {
      * 分管理员按楼栋数管理订单
      * @return array
      */
-    public function getCount() {
-        if ($_SESSION['rank'] == 3) {
-            return parent::getCount();
-        }
+    // public function getCount() {
+    //     if ($_SESSION['rank'] == 3 || $_SESSION['rank'] == 2) {
+    //         return parent::getCount();
+    //     }
 
-        // 获取管理员所管理的用户的id
-        $userIds = $this->getUseridByAdmin($_SESSION['id']);
+    //     // 获取管理员所管理的用户的id
+    //     $userIds = D('Admin', 'Service')->getUseridByAdmin($_SESSION['id']);
 
-        // 用户的订单数
-        $where['user_id'] = array('in', $userIds);
-        $orderCnt = M('Order')->where($where)->count();
+    //     // 用户的订单数
+    //     $where['user_id'] = array('in', $userIds);
+    //     $orderCnt = M('Order')->where($where)->count();
 
-        return $orderCnt;
-    }
-
-    /**
-     * 返回用户id数组
-     * @param  int $id
-     * @return array
-     */
-    private function getUseridByAdmin($id) {
-        // 获取管理员所管理的用户
-        $adminService = D('Admin', 'Service');
-        $users = $adminService->getUserBelongsAdmin($id, array('id'));
-        $userIds = array();
-        foreach ($users as $user) {
-            $userIds[] = $user['id'];
-        }
-        $userIds = implode(',', $userIds);
-
-        return $userIds;
-    }
+    //     return $orderCnt;
+    // }
 
     /**
      * 记录订单状态
@@ -393,23 +375,23 @@ class OrderService extends CommonService {
      * @param  int $listRows
      * @return array
      */
-    public function getPagination($firstRow, $listRows) {
-        if ($_SESSION['rank'] == 3 || $_SESSION['rank'] == 2) {
-            return parent::getPagination($firstRow, $listRows);
-        }
+    // public function getPagination($firstRow, $listRows) {
+    //     if ($_SESSION['rank'] == 3 || $_SESSION['rank'] == 2) {
+    //         return parent::getPagination($firstRow, $listRows);
+    //     }
 
-        $userIds = $this->getUseridByAdmin($_SESSION['id']);
-        $where['user_id'] = array('in', $userIds);
+    //     $userIds = $this->getUseridByAdmin($_SESSION['id']);
+    //     $where['user_id'] = array('in', $userIds);
 
-        $D = $this->getD();
-        $orders = $D->relation(true)
-                    ->where($where)
-                    ->order('id DESC')
-                    ->limit($firstRow . ',' . $listRows)
-                    ->select();
+    //     $D = $this->getD();
+    //     $orders = $D->relation(true)
+    //                 ->where($where)
+    //                 ->order('id DESC')
+    //                 ->limit($firstRow . ',' . $listRows)
+    //                 ->select();
 
-        return $orders;
-    }
+    //     return $orders;
+    // }
 
     protected function getM() {
         return M('Order');
