@@ -1,148 +1,148 @@
 body{
-	font-family: Helvetica,'微软雅黑';
-	margin:0px;
-	padding:0px;
-	background-color:#E1E0DE;
-	font-size:12px;
+    font-family: Helvetica,'微软雅黑';
+    margin:0px;
+    padding:0px;
+    background-color:#E1E0DE;
+    font-size:12px;
 }
 img:hover{
-	opacity:0.9;
+    opacity:0.9;
 }
 #box{
-	width:500px;
-	height:250px;
-	margin:0 auto;
-	margin-top:20px;
-	background-color:white;
-	border:1px solid #CCCCCC;
-	position:relative;
-	z-index:0;
+    width:500px;
+    height:250px;
+    margin:0 auto;
+    margin-top:20px;
+    background-color:white;
+    border:1px solid #CCCCCC;
+    position:relative;
+    z-index:0;
 }
 #box_top{
-	width:500px;
-	height:55px;
-	position:absolute;
-	z-index:1;
-	left:0px;
-	top:0px;
-	border-bottom:1px solid #CCCCCC;
+    width:500px;
+    height:55px;
+    position:absolute;
+    z-index:1;
+    left:0px;
+    top:0px;
+    border-bottom:1px solid #CCCCCC;
 }
 .style{
-	padding:10px;
+    padding:10px;
 }
 #box_bottom{
-	width:500px;
-	height:195px;
-	position:absolute;
-	z-index:1;
-	left:0px;
-	top:55px;
+    width:500px;
+    height:195px;
+    position:absolute;
+    z-index:1;
+    left:0px;
+    top:55px;
 }
 .bar{
-	width:200px;
-	height:20px;
-	border:1px solid #CCCCCC;
-	padding:2px 3px;
+    width:200px;
+    height:20px;
+    border:1px solid #CCCCCC;
+    padding:2px 3px;
 }
 .btn{
-	width:275px;
-	height:30px;
-	border:1px solid #CCCCCC;
-	color:white;
-	background-color:#297e94;
-	cursor:pointer;
+    width:275px;
+    height:30px;
+    border:1px solid #CCCCCC;
+    color:white;
+    background-color:#297e94;
+    cursor:pointer;
 }
 .btn:hover{
-	background-color:#3eb5d4;
+    background-color:#3eb5d4;
 }
 #main_top{
-	width:700px;
-	height:50px;
-	margin:0 auto;
-	margin-top:15px;
-	background-color:white;
-	border:1px solid #CCCCCC;
-	border-bottom:0px;
+    width:700px;
+    height:50px;
+    margin:0 auto;
+    margin-top:15px;
+    background-color:white;
+    border:1px solid #CCCCCC;
+    border-bottom:0px;
 }
 .main_logo{
-	float:left;
+    float:left;
 }
 .main_logout,.menu{
-	width:80px;
-	height:30px;
-	background-color:white;
-	color:#999999;
-	border:1px solid #CCCCCC;
-	float:right;
-	cursor:pointer;
+    width:80px;
+    height:30px;
+    background-color:white;
+    color:#999999;
+    border:1px solid #CCCCCC;
+    float:right;
+    cursor:pointer;
 }
 .menu{
-	width:68px;
-	height:24px;
-	margin-right:10px;
-	float:none;
+    width:68px;
+    height:24px;
+    margin-right:10px;
+    float:none;
 }
 .main_logout:hover,.menu:hover{
-	background-color:#297e94;
-	color:white;
+    background-color:#297e94;
+    color:white;
 }
 #main_box,#main_menu{
-	width:700px;
-	height:180px;
-	margin:0 auto;
-	background-color:white;
-	border:1px solid #CCCCCC;
-	border-top:1px dotted #CCCCCC;
+    width:700px;
+    height:180px;
+    margin:0 auto;
+    background-color:white;
+    border:1px solid #CCCCCC;
+    border-top:1px dotted #CCCCCC;
 }
 #main_menu{
-	height:75px;
+    height:75px;
 }
 .style a{
-	color:#297e94;
-	text-decoration:underline;;
+    color:#297e94;
+    text-decoration:underline;;
 }
 .style a:hover{
-	text-decoration:none;
+    text-decoration:none;
 }
 /* add for video,design,web,photo */
 #add_box{
-	width:700px;
-	height:290px;
-	margin:0 auto;
-	background-color:white;
-	border:1px solid #CCCCCC;
-	border-top:0px;
+    width:700px;
+    height:290px;
+    margin:0 auto;
+    background-color:white;
+    border:1px solid #CCCCCC;
+    border-top:0px;
 }
 #msg_box{
-	width:700px;
-	min-height:100px;
-	height:auto;
-	margin:0 auto;
-	background-color:white;
-	border:1px solid #CCCCCC;
-	border-top:0px;
+    width:700px;
+    min-height:100px;
+    height:auto;
+    margin:0 auto;
+    background-color:white;
+    border:1px solid #CCCCCC;
+    border-top:0px;
 }
 .msg_del,.all_del{
-	padding:1px 2px;
-	border:1px solid #CCCCCC;
-	color:#333333;
-	cursor:pointer;
+    padding:1px 2px;
+    border:1px solid #CCCCCC;
+    color:#333333;
+    cursor:pointer;
 }
 .all_del{
-	float:right;
-	padding:1px 5px;
+    float:right;
+    padding:1px 5px;
 }
 .msg_del:hover,.all_del:hover{
-	background-color:#297e94;
-	color:white;
+    background-color:#297e94;
+    color:white;
 }
 #openBox{
-	width:700px;
-	height:37px;
-	margin:0 auto;
-	background-color:white;
-	border:1px solid #CCCCCC;
-	border-top:0px;
+    width:700px;
+    height:37px;
+    margin:0 auto;
+    background-color:white;
+    border:1px solid #CCCCCC;
+    border-top:0px;
 }
 
 #loginBox,#loginBox1{
@@ -246,165 +246,165 @@ img:hover{
     height: 100%;
    }
    .add_textarea_contact{
-   	width:700px;
-   	height:150px;
-   	border:1px solid #CCCCCC;
-   	padding:5px;
+       width:700px;
+       height:150px;
+       border:1px solid #CCCCCC;
+       padding:5px;
    }
 #add_main_top{
-	width:1000px;
-	height:100px;
-	margin:0 auto;
-	margin-top:20px;
-	background-color:white;
-	border:1px solid #CCCCCC;
+    width:1000px;
+    height:100px;
+    margin:0 auto;
+    margin-top:20px;
+    background-color:white;
+    border:1px solid #CCCCCC;
 }
 #add_main_top_left{
-	float:left;
+    float:left;
 }
 #add_main_top_right{
-	width:700px;
-	height:70px;
-	float:right;
-	margin-top:30px;
+    width:700px;
+    height:70px;
+    float:right;
+    margin-top:30px;
 }
 .style a{
-	padding:6px 12px;
-	background-color:white;
-	border:1px solid #CCCCCC;
-	color:#333333;
-	margin-left:10px;
-	text-decoration:none;
+    padding:6px 12px;
+    background-color:white;
+    border:1px solid #CCCCCC;
+    color:#333333;
+    margin-left:10px;
+    text-decoration:none;
 }
 .style a:hover{
-	background-color:#00CCFF;
-	color:white;
+    background-color:#00CCFF;
+    color:white;
 }
 #add_main_content{
-	width:1000px;
-	height:auto;
-	background-color:white;
-	border:1px solid #CCCCCC;
-	border-top:0px;
-	margin:0 auto;
-	margin-bottom:15px;
+    width:1000px;
+    height:auto;
+    background-color:white;
+    border:1px solid #CCCCCC;
+    border-top:0px;
+    margin:0 auto;
+    margin-bottom:15px;
 }
 .add_line{
-	width:980px;
-	height:50px;
-	border-bottom:1px dotted #CCCCCC;
+    width:980px;
+    height:50px;
+    border-bottom:1px dotted #CCCCCC;
 }
 .add_line:hover{
-	background-color:#eeeeee;
+    background-color:#eeeeee;
 }
 .add_line_box{
-	width:100px;
-	height:50px;
-	border-right:1px solid #CCCCCC;
-	float:left;
+    width:100px;
+    height:50px;
+    border-right:1px solid #CCCCCC;
+    float:left;
 }
 .add_style{
-	padding:10px;
-	padding-top: 20px;
+    padding:10px;
+    padding-top: 20px;
 }
 .add_style a{
-	color:#333333;
-	text-decoration:underline;
+    color:#333333;
+    text-decoration:underline;
 }
 .add_style a:hover{
-	text-decoration:none;
+    text-decoration:none;
 }
 .add_line_page{
-	width:980px;
-	height:60px;
+    width:980px;
+    height:60px;
 }
 .add_line_page_style{
-	padding:20px 20px 20px 40px;
+    padding:20px 20px 20px 40px;
 }
 
 .add_line_page_style a{
-	padding:3px 5px;
-	background-color:white;
-	color:#333333;
-	text-decoration:none;
-	border:1px solid #CCCCCC;
-	margin-right:5px;
+    padding:3px 5px;
+    background-color:white;
+    color:#333333;
+    text-decoration:none;
+    border:1px solid #CCCCCC;
+    margin-right:5px;
 }
 
 .add_line_page_style span {
-	padding:3px 11px;
-	background-color:white;
-	color:#333333;
-	text-decoration:none;
-	border:1px solid #CCCCCC;
-	margin-right:5px;
+    padding:3px 11px;
+    background-color:white;
+    color:#333333;
+    text-decoration:none;
+    border:1px solid #CCCCCC;
+    margin-right:5px;
 }
 
 
 .add_line_page_style a:hover{
-	text-decoration:none;
-	background-color:#00CCFF;
-	color:white;
-	background-color:
+    text-decoration:none;
+    background-color:#00CCFF;
+    color:white;
+    background-color:
 }
 .add_style_inside{
-	padding-left:25px;
-	padding-top: 15px;
+    padding-left:25px;
+    padding-top: 15px;
 }
 .add_style a{
-	text-decoration:none;
+    text-decoration:none;
 }
 .add_style a:hover{
-	color:#ff9900;
+    color:#ff9900;
 }
 .bar{
-	width:300px;
-	height:20px;
-	border:1px solid #CCCCCC;
-	padding:3px 5px;
+    width:300px;
+    height:20px;
+    border:1px solid #CCCCCC;
+    padding:3px 5px;
 }
 .textarea{
-	width:360px;
-	height:120px;
-	border:1px solid #CCCCCC;
-	padding:5px;
-	margin-top:5px;
+    width:360px;
+    height:120px;
+    border:1px solid #CCCCCC;
+    padding:5px;
+    margin-top:5px;
 }
 .add_btn{
-	width:80px;
-	height:25px;
-	border:1px solid #CCCCCC;
-	color:white;
-	background-color:#00CCFF;
-	cursor:pointer;
+    width:80px;
+    height:25px;
+    border:1px solid #CCCCCC;
+    color:white;
+    background-color:#00CCFF;
+    cursor:pointer;
 }
 .add_btn:hover{
-	background-color:#ff9900;
-	color:white;
+    background-color:#ff9900;
+    color:white;
 }
 .add_line2{
-	width:980px;
-	height:auto;
-	border-bottom:1px dotted #CCCCCC;
+    width:980px;
+    height:auto;
+    border-bottom:1px dotted #CCCCCC;
 }
 .add_line2:hover{
-	background-color:#eeeeee;
+    background-color:#eeeeee;
 }
 .add_line2_inside{
-	padding:10px;
-	letter-spacing:1px;
-	line-height:20px;
+    padding:10px;
+    letter-spacing:1px;
+    line-height:20px;
 }
 .add_line2_inside a{
-	padding:3px 5px;
-	background-color:#00CCFF;
-	color:white;
+    padding:3px 5px;
+    background-color:#00CCFF;
+    color:white;
 }
 .add_line2_inside a:hover{
-	background-color:#ff9900;
-	color:white;
+    background-color:#ff9900;
+    color:white;
 }
 
 .hide {
-	display: none;
+    display: none;
 }
