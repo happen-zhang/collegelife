@@ -1,103 +1,104 @@
 <div id="add_main_content">
-	<div class="add_style">
-		
-	    <?php if ($_SESSION['rank'] == 3 || $_SESSION['rank'] == 2) { ?>
-		<div class="add_style_inside">
-			<form action="{:U('Admins/create')}" method="POST">
-				<p>管理员名称：<input type="text" name="admin[admin_name]" class="bar"></p>
-				<p>管理员密码：<input type="password" name="admin[password]" class="bar"></p>
-				<p>管理员级别：
-					<select name="admin[rank]" class="bar" style="height:30px" onchange="toggle_buildings(this.value)">
-						<option value="1">分管理员</option>
-						<?php if ($_SESSION['rank'] == 3) { ?>
-						<option value="2">总管理员</option>
-						<?php } ?>
-					</select>
-				</p>
-				<div class="buildings">
-				<p> 管理楼层分配：
-					<select name="admin[buildings][]">
-					<?php
-					for($i=1;$i<45;$i++){
-						// if (!in_array($i, $buildings)) {
-					?>
-						<option value="<?php echo $i; ?>"><?php echo $i; ?>栋</option>
-					<?php
-					    // }
-					}
-					?>
-					</select>
-				</p>
-			</div>
-				<p><input type="submit" value="添加管理员" class="add_btn" style="width:140px"></p>
-			</form>
-		</div>
-
-		<hr />
+    <div class="add_style">
+        <?php if ($_SESSION['rank'] == 3 || $_SESSION['rank'] == 2) { ?>
+        <div class="add_style_inside">
+            <form action="{:U('Admins/create')}" method="POST">
+                <p>管理员名称：<input type="text" name="admin[admin_name]" class="bar"></p>
+                <p>管理员密码：<input type="password" name="admin[password]" class="bar"></p>
+                <p>管理员级别：
+                    <select name="admin[rank]" class="bar" style="height:30px" onchange="toggle_buildings(this.value)">
+                        <option value="1">分管理员</option>
+                        <?php if ($_SESSION['rank'] == 3) { ?>
+                        <option value="2">总管理员</option>
+                        <?php } ?>
+                    </select>
+                </p>
+                <div class="buildings">
+                <!--
+                <p> 管理楼层分配：
+                    <select name="admin[buildings][]">
+                    <?php
+                    for($i=1;$i<45;$i++){
+                        // if (!in_array($i, $buildings)) {
+                    ?>
+                        <option value="<?php echo $i; ?>"><?php echo $i; ?>栋</option>
+                    <?php
+                        // }
+                    }
+                    ?>
+                    </select>
+                </p>
+                -->
+                </div>
+                <p><input type="submit" value="添加管理员" class="add_btn" style="width:140px"></p>
+            </form>
+        </div>
+        <hr />
         <?php } ?>
 
-		<!-- 输出管理员 -->
-		<p style="font-size:14px;font-weight:bold"><?php // if (isset($building)) { echo $building . '栋'; } ?> 管理员查看</p>
+        <!-- 输出管理员 -->
+        <p style="font-size:14px;font-weight:bold">
+        <?php // if (isset($building)) { echo $building . '栋'; } ?> 管理员查看</p>
 
-		<div class="add_line">
-			<table>
-				<tr width="980px" height="50px">
-					<th width="200px">管理员</th>
-					<th width="150px">级别</th>
-					<th width="200px">最近登录</th>
-					<?php if ($_SESSION['rank'] == 3) { ?>
-					<th width="200px">操作</th>
-					<?php } ?>
-				</tr>
-			</table>
-		</div>
+        <div class="add_line">
+            <table>
+                <tr width="980px" height="50px">
+                    <th width="200px">管理员</th>
+                    <th width="150px">级别</th>
+                    <th width="200px">最近登录</th>
+                    <?php if ($_SESSION['rank'] == 3) { ?>
+                    <th width="200px">操作</th>
+                    <?php } ?>
+                </tr>
+            </table>
+        </div>
 
         <volist name="admins" id="admin">
             <?php 
                 switch ($admin['rank']) {
                     case 1:
-                    	$rank = '分管理员';
-                    	break;
+                        $rank = '分管理员';
+                        break;
                     case 2:
                         $rank = '总管理员';
                         break; 
                     case 3:
-                    	$rank = '总部';
-                    	break;
+                        $rank = '总部';
+                        break;
                 }
 
-	            if ($admin['is_active']) { 
-	            	$status  = "不激活";
-	            	$operation = 'deactive';
-	            } else {
-	                $status = "激活";
-	                $operation = 'active';
-	            }            
+                if ($admin['is_active']) { 
+                    $status  = "不激活";
+                    $operation = 'deactive';
+                } else {
+                    $status = "激活";
+                    $operation = 'active';
+                }            
             ?>
 
-			<div class="add_line">
-				<table>
-					<tr width="980px" height="50px">
-						<th width="200px">
-							<a href="{:U('Admins/show', array('admin_id' => $admin['uuid']))}" target="_blank">{$admin['admin_name']}</a>
-						</th>
-						<th width="150px">{$rank}</th>
-						<th width="200px">{$admin['latest_login_at']}</th>
-						<th width="200px">
-							<?php if ($_SESSION['rank'] == 3) { ?>
-							<a href="{:U('Admins/update', array('admin_id' => $admin['uuid'], 'operation' => $operation, 'p' => $_GET['p']))}" onclick="return confirm('{$status}该管理员吗？')">{$status}</a>
-							<?php } ?>
-						</th>
-					</tr>
-				</table>
-			</div>
-	   </volist>
+        <div class="add_line">
+            <table>
+                <tr width="980px" height="50px">
+                    <th width="200px">
+                        <a href="{:U('Admins/show', array('admin_id' => $admin['uuid']))}" target="_blank">{$admin['admin_name']}</a>
+                    </th>
+                    <th width="150px">{$rank}</th>
+                    <th width="200px">{$admin['latest_login_at']}</th>
+                    <th width="200px">
+                        <?php if ($_SESSION['rank'] == 3) { ?>
+                        <a href="{:U('Admins/update', array('admin_id' => $admin['uuid'], 'operation' => $operation, 'p' => $_GET['p']))}" onclick="return confirm('{$status}该管理员吗？')">{$status}</a>
+                        <?php } ?>
+                    </th>
+                </tr>
+            </table>
+        </div>
+        </volist>
 
-		<!-- 分页系统 -->
-		<div class="add_line_page">
-			<div class="add_line_page_style">
+        <!-- 分页系统 -->
+        <div class="add_line_page">
+            <div class="add_line_page_style">
                 {$page}
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </div>
