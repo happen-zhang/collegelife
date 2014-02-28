@@ -1,80 +1,79 @@
 <present name="Think.get.status">
-	<if condition = "$Think.get.status eq 1">
-		<div class="add_shop_watch_style" style="color:red" id="error_show">* 您的信息已经有人注册了</div>
-		<script type="text/javascript" language="javascript">
-		$(document).ready(function(){
-			$("#error_show").fadeOut(5000);
-		})
-		</script>
+    <if condition = "$Think.get.status eq 1">
+        <div class="add_shop_watch_style" style="color:red" id="error_show">* 您的信息已经有人注册了</div>
+        <script type="text/javascript" language="javascript">
+        $(document).ready(function(){
+            $("#error_show").fadeOut(5000);
+        })
+        </script>
     <else />
-		<div class="add_shop_watch_style" style="color:red" id="error_show">* 对不起，系统出错了</div>
-		<script type="text/javascript" language="javascript">
-		$(document).ready(function(){
-			$("#error_show").fadeOut(5000);
-		})
-		</script>
-	</if>
+        <div class="add_shop_watch_style" style="color:red" id="error_show">* 对不起，系统出错了</div>
+        <script type="text/javascript" language="javascript">
+        $(document).ready(function(){
+            $("#error_show").fadeOut(5000);
+        })
+        </script>
+    </if>
 </present>
 
 <notpresent name="_SESSION['uid']">
-	<form action="{:U('Users/Create')}" method="POST">
-		<input type="hidden" value="{$__hash__}" name="__hash__" />
-		<div class="add_bar_style">必填信息：</div>
-		<center><input type="text" name="user[username]" class="add_bar" id="reg_name" onblur="if(this.value==''){this.value='您的昵称'};" onfocus="if(this.value=='您的昵称'){this.value=''};" value="您的昵称"/></center>
-		<center><input type="text" name="user[password]" class="add_bar" id="reg_psd" onblur="if(this.value==''){this.value='密码长度6-20位';this.type='text'};" onfocus="if(this.value=='密码长度6-20位'){this.value='';this.type='password'};" value="密码长度6-20位" /></center>
-		<center><input type="text" name="user[confirmation_password]" class="add_bar" id="reg_psd2" onblur="if(this.value==''){this.value='重复密码';this.type='text'};" onfocus="if(this.value=='重复密码'){this.value='';this.type='password'};" value="重复密码" /></center>
-		<center><input type="text" name="user[email]" class="add_bar" id="reg_email" onblur="if(this.value==''){this.value='邮箱'};" onfocus="if(this.value=='邮箱'){this.value=''};" value="邮箱"/></center>
-		<center><input type="text" name="user[real_name]" class="add_bar" id="reg_realname"  onblur="if(this.value==''){this.value='真实姓名'};" onfocus="if(this.value=='真实姓名'){this.value=''};" value="真实姓名"/></center>
-		<div class="add_bar_style">您的年级：</div>
-		<div><select name="user[grade]" class="add_bar">
-			<option value="2009">2009</option>
-			<option value="2010">2010</option>
-			<option value="2011">2011</option>
-			<option value="2012">2012</option>
-			<option value="2013">2013</option>
-		</select></div>
-		<div class="add_bar_style">联系方式：</div>
-		<div>
-			<select name="user[tel_type]" class="add_bar">
-				<option value="移动">移动</option>
-				<option value="联通">联通</option>
-			</select>
-		</div>
-		<center><input type="text" name="user[tel_full]" id="tel_full" class="add_bar" onblur="if(this.value==''){this.value='长号'};" onfocus="if(this.value=='长号'){this.value=''};" value="长号"/></center>
-		<center><input type="text" name="user[tel_brief]" id="tel_brief" class="add_bar" onblur="if(this.value==''){this.value='短号'};" onfocus="if(this.value=='短号'){this.value=''};" value="短号"/></center>
-		<div class="add_bar_style">宿舍地址：</div>
-		<div>
-			<select name="user[building_no]" class="add_bar">
-				<?php
-				for($i=1;$i<=41;$i++){
-				?>
-					<option value="<?php echo $i; ?>"><?php echo $i; ?>栋</option>
-				<?php
-				}
-				?>
-			</select>
-		</div>
-		<center><input type="text" name="user[dormitory_no]" id="dormitory_no" class="add_bar" onblur="if(this.value==''){this.value='宿舍号'};" onfocus="if(this.value=='宿舍号'){this.value=''};" value="宿舍号"/></center>
+    <form action="{:U('Users/Create')}" method="POST">
+        <input type="hidden" value="{$__hash__}" name="__hash__" />
+        <div class="add_bar_style">必填信息：</div>
+        <center><input type="text" name="user[username]" class="add_bar" id="reg_name" onblur="if(this.value==''){this.value='您的昵称'};" onfocus="if(this.value=='您的昵称'){this.value=''};" value="您的昵称"/></center>
+        <center><input type="text" name="user[password]" class="add_bar" id="reg_psd" onblur="if(this.value==''){this.value='密码长度6-20位';this.type='text'};" onfocus="if(this.value=='密码长度6-20位'){this.value='';this.type='password'};" value="密码长度6-20位" /></center>
+        <center><input type="text" name="user[confirmation_password]" class="add_bar" id="reg_psd2" onblur="if(this.value==''){this.value='重复密码';this.type='text'};" onfocus="if(this.value=='重复密码'){this.value='';this.type='password'};" value="重复密码" /></center>
+        <center><input type="text" name="user[email]" class="add_bar" id="reg_email" onblur="if(this.value==''){this.value='邮箱'};" onfocus="if(this.value=='邮箱'){this.value=''};" value="邮箱"/></center>
+        <center><input type="text" name="user[real_name]" class="add_bar" id="reg_realname"  onblur="if(this.value==''){this.value='真实姓名'};" onfocus="if(this.value=='真实姓名'){this.value=''};" value="真实姓名"/></center>
+        <div class="add_bar_style">您的年级：</div>
+        <div><select name="user[grade]" class="add_bar">
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+        </select></div>
+        <div class="add_bar_style">联系方式：</div>
+        <div>
+            <select name="user[tel_type]" class="add_bar">
+                <option value="移动">移动</option>
+                <option value="联通">联通</option>
+            </select>
+        </div>
+        <center><input type="text" name="user[tel_full]" id="tel_full" class="add_bar" onblur="if(this.value==''){this.value='长号'};" onfocus="if(this.value=='长号'){this.value=''};" value="长号"/></center>
+        <center><input type="text" name="user[tel_brief]" id="tel_brief" class="add_bar" onblur="if(this.value==''){this.value='短号'};" onfocus="if(this.value=='短号'){this.value=''};" value="短号"/></center>
+        <div class="add_bar_style">宿舍地址：</div>
+        <div>
+            <select name="user[building_no]" class="add_bar">
+                <?php
+                for($i=1;$i<=41;$i++){
+                ?>
+                    <option value="<?php echo $i; ?>"><?php echo $i; ?>栋</option>
+                <?php
+                }
+                ?>
+            </select>
+        </div>
+        <center><input type="text" name="user[dormitory_no]" id="dormitory_no" class="add_bar" onblur="if(this.value==''){this.value='宿舍号'};" onfocus="if(this.value=='宿舍号'){this.value=''};" value="宿舍号"/></center>
 
 
-			<div id="error_box_3" class="error_action">* 您的昵称不能为空</div>
-			<div id="error_box_4" class="error_action">* 您的密码不能为空</div>
-			<div id="error_box_5" class="error_action">* 密码长度不符合要求</div>
-			<div id="error_box_6" class="error_action">* 密码输入不一致</div>
-			<div id="error_box_7" class="error_action">* 您的邮箱不能为空</div>
-			<div id="error_box_8" class="error_action">* 您的真实姓名不能为空</div>
-			<div id="error_box_9" class="error_action">* 昵称长度必须在6~24个字符之间</div>
-			<div id="error_box_10" class="error_action">* 昵称只能包含字母和数字</div>
-			<div id="error_box_11" class="error_action">* 密码长度必须在6~24个字符之间</div>		
-	        <div id="error_box_12" class="error_action">* 密码只能包含字母和数字</div>	
-	        <div id="error_box_13" class="error_action">* 邮箱格式不正确</div>	
-	        <div id="error_box_14" class="error_action">* 真实姓名不能包含特殊字符</div>	
-	        <div id="error_box_15" class="error_action">* 请填写正确的长号</div>
-	        <div id="error_box_16" class="error_action">* 请填写正确的短号</div> 
-	        <div id="error_box_17" class="error_action">* 请填写正确的宿舍号</div> 
-
-		<center><input type="submit" value="注册" class="add_btn" onclick="return check_reg()"></center>
-	</form>
+            <div id="error_box_3" class="error_action">* 您的昵称不能为空</div>
+            <div id="error_box_4" class="error_action">* 您的密码不能为空</div>
+            <div id="error_box_5" class="error_action">* 密码长度不符合要求</div>
+            <div id="error_box_6" class="error_action">* 密码输入不一致</div>
+            <div id="error_box_7" class="error_action">* 您的邮箱不能为空</div>
+            <div id="error_box_8" class="error_action">* 您的真实姓名不能为空</div>
+            <div id="error_box_9" class="error_action">* 昵称长度必须在6~24个字符之间</div>
+            <div id="error_box_10" class="error_action">* 昵称只能包含字母和数字</div>
+            <div id="error_box_11" class="error_action">* 密码长度必须在6~24个字符之间</div>        
+            <div id="error_box_12" class="error_action">* 密码只能包含字母和数字</div>    
+            <div id="error_box_13" class="error_action">* 邮箱格式不正确</div>    
+            <div id="error_box_14" class="error_action">* 真实姓名不能包含特殊字符</div>    
+            <div id="error_box_15" class="error_action">* 请填写正确的长号</div>
+            <div id="error_box_16" class="error_action">* 请填写正确的短号</div> 
+            <div id="error_box_17" class="error_action">* 请填写正确的宿舍号</div> 
+        <center><input type="submit" value="注册" class="add_btn" onclick="return check_reg()"></center>
+    </form>
 <else />
-	<center><div class="add_shop_watch_style">您已经登录，请登出后再注册账号</div></center>
+    <center><div class="add_shop_watch_style">您已经登录，请登出后再注册账号</div></center>
 </notpresent>

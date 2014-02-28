@@ -1,34 +1,35 @@
 <div id="add_main_content">
-	<div class="add_style">
-		<p style="font-size:14px;font-weight:bold"><a href="{:U('Goods/index', array('category_id' => $goods['category']['id']))}">{$goods['category']['name']}&gt;</a> {$goods['name']}</p>
-		<hr />
-		<div class="add_style_inside">
-			<p>产品名称：{$goods['name']}</p>
-			<p>产品品牌：{$goods['brand']}</p>
-			<p>产品原价：{$goods['price']}</p>
-			<p>产品特惠价：{$goods['preferential']}</p>
-			<p>功&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;效：{$goods['feature']}</p>
-			<p>产品规格：{$goods['net_wt']}</p>
-			<p>原&nbsp;&nbsp;产&nbsp;地：{$goods['place_origin']}</p>
+    <div class="add_style">
+        <p style="font-size:14px;font-weight:bold"><a href="{:U('Goods/index', array('category_id' => $goods['category']['id']))}">{$goods['category']['name']}&gt;</a> {$goods['name']}</p>
+        <hr />
+        <div class="add_style_inside">
+            <p>产品名称：{$goods['name']}</p>
+            <p>产品品牌：{$goods['brand']}</p>
+            <p>产品原价：{$goods['price']}</p>
+            <p>产品特惠价：{$goods['preferential']}</p>
+            <p>功&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;效：{$goods['feature']}</p>
+            <p>产品规格：{$goods['net_wt']}</p>
+            <p>原&nbsp;&nbsp;产&nbsp;地：{$goods['place_origin']}</p>
             <p>保质期限：{$goods['qgp']}</p>
             <p>适用人群：{$goods['suitable']}</p>
             <p>特别说明：{$goods['remind']}</p>
             <p>产品描述：{$goods['description']}</p>
-		</div>
-		<p>&nbsp;</p>
-<!-- 		<p style="font-size:14px;font-weight:bold">该产品相关评论</p>
-		<hr />
+        </div>
+        <p>&nbsp;</p>
+        <!--    
+        <p style="font-size:14px;font-weight:bold">该产品相关评论</p>
+        <hr />
 
         <volist name="goods['comments']" id="comment">
-		<div class="add_line2">
-			<div class="add_line2_inside">
-				<p>{$comment[commenter_name]} 在 {$comment['created_at']} 评论：</p>
-				<p>{$comment['content']}</p>
-				<if condition="$_SESSION['rank'] eq 3">
-				<p><a href="{:U('Comments/destroy', array('comment_id' => $comment['id'], 'goods_id' => $goods['uuid']))}" onclick="return confirm('是否删除该评论？')">删除</a></p>
-			    </if>
-			</div>
-		</div>
+        <div class="add_line2">
+            <div class="add_line2_inside">
+                <p>{$comment[commenter_name]} 在 {$comment['created_at']} 评论：</p>
+                <p>{$comment['content']}</p>
+                <if condition="$_SESSION['rank'] eq 3">
+                <p><a href="{:U('Comments/destroy', array('comment_id' => $comment['id'], 'goods_id' => $goods['uuid']))}" onclick="return confirm('是否删除该评论？')">删除</a></p>
+                </if>
+            </div>
+        </div>
         </volist> -->
-	</div>
+    </div>
 </div>

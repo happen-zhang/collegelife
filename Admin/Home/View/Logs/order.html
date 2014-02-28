@@ -1,54 +1,54 @@
 <div id="add_main_content">
-	<div class="add_style">
-		<p style="font-size:14px;font-weight:bold">已处理订单： {$processedsCnt} 条</p>
-		<div class="add_line">
-			<table>
-				<tr width="980px" height="50px">
-					<th width="320px">订单号</th>
-					<th width="320px">交易金额</th>
-					<th width="320px">完成日期</th>
-				</tr>
-			</table>
-		</div>
+    <div class="add_style">
+        <p style="font-size:14px;font-weight:bold">已处理订单： {$processedsCnt} 条</p>
+        <div class="add_line">
+            <table>
+                <tr width="980px" height="50px">
+                    <th width="320px">订单号</th>
+                    <th width="320px">交易金额</th>
+                    <th width="320px">完成日期</th>
+                </tr>
+            </table>
+        </div>
 
         <volist name="processeds" id="processed">
-		<div class="add_line">
-			<table>
-				<tr width="980px" height="50px">
-					<th width="320px"><a href="{:U('Orders/show', array('order_id' => $processed['uuid']))}" target="_blank"><?php printf('%05d', $processed['id']) ?></a></th>
-					<th width="320px">{$processed['payment']}</th>
-					<th width="320px">{$processed['payment_at']}</th>
-				</tr>
-			</table>
-		</div>
-	    </volist>
+        <div class="add_line">
+            <table>
+                <tr width="980px" height="50px">
+                    <th width="320px"><a href="{:U('Orders/show', array('order_id' => $processed['uuid']))}" target="_blank"><?php printf('%05d', $processed['id']) ?></a></th>
+                    <th width="320px">{$processed['payment']}</th>
+                    <th width="320px">{$processed['payment_at']}</th>
+                </tr>
+            </table>
+        </div>
+        </volist>
 
-		<!-- 分页系统 -->
-		<div class="add_line_page">
-			<div class="add_line_page_style" style="float:right">
+        <!-- 分页系统 -->
+        <div class="add_line_page">
+            <div class="add_line_page_style" style="float:right">
                 {$p_page}
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 
-	<div class="add_style">
-		<p style="font-size:14px;font-weight:bold">待处理订单： {$nprocessedsCnt} 条</p>
-		<div class="add_line">
-			<table>
-				<tr width="980px" height="50px">
-					<th width="440px">订单号</th>
-					<th width="440px">订单状态</th>
-				</tr>
-			</table>
-		</div>
+    <div class="add_style">
+        <p style="font-size:14px;font-weight:bold">待处理订单： {$nprocessedsCnt} 条</p>
+        <div class="add_line">
+            <table>
+                <tr width="980px" height="50px">
+                    <th width="440px">订单号</th>
+                    <th width="440px">订单状态</th>
+                </tr>
+            </table>
+        </div>
 
         <volist name="nprocesseds" id="nprocessed">
-		<div class="add_line">
-			<table>
-				<tr width="980px" height="50px">
-					<th width="440px"><a href="{:U('Orders/show', array('order_id' => $nprocessed['uuid']))}" target="_blank"><?php printf('%05d', $nprocessed['id']) ?></a></th>
-					<th width="440px">
-					<?php
+        <div class="add_line">
+            <table>
+                <tr width="980px" height="50px">
+                    <th width="440px"><a href="{:U('Orders/show', array('order_id' => $nprocessed['uuid']))}" target="_blank"><?php printf('%05d', $nprocessed['id']) ?></a></th>
+                    <th width="440px">
+                    <?php
                         if ($nprocessed['confirm_status'] == 3) {
                             echo '订单尚未确认';
                         } else if ($nprocessed['confirm_status'] == 2) {
@@ -56,20 +56,17 @@
                         } else if ($nprocessed['confirm_status'] == 1) {
                             echo "正等待 <a href='" . U('Admins/show', array('admin_id' => $nprocessed['assigner']['uuid'])) . "' target='_blank'>". $nprocessed['assigner']['admin_name'] . "</a> 发货给用户";
                         }
-					?>
-					</th>
-				</tr>
-			</table>
-		</div>
+                    ?>
+                    </th>
+                </tr>
+            </table>
+        </div>
        </volist>
 
-		<!-- 分页系统 -->
-		<div class="add_line_page">
-			<div class="add_line_page_style" style="float:right">
+        <div class="add_line_page">
+            <div class="add_line_page_style" style="float:right">
                 {$np_page}
-			</div>
-		</div>
-	</div>
-
-
+            </div>
+        </div>
+    </div>
 </div>

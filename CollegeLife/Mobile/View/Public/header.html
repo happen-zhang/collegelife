@@ -1,59 +1,59 @@
 <h2>大学时光 <span style="font-size:12px;letter-spacing:1px">移动站</span></h2>
 
 <notpresent name="_SESSION['uid']">
-	<div id="add_menu">
-		<div class="lineStyle" onclick="url_change('{:U('Index/index')}')">
-			<div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Index/index') { ?>style="background-color:#3eb5d4"<?php } ?>>
-				<center><a href="{:U('Index/index')}">主页</a></center>
-			</div>
-		</div>
-		<div class="lineStyle" onclick="url_change('{:U('Users/build')}')">
-			<div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Users/build') { ?> style="background-color:#3eb5d4" <?php } ?>>
-				<center><a href="javascript:url_change('{:U('Users/build')}')">注册</a></center>
-			</div>
-		</div>
-		<div class="lineStyle" onclick="url_change('{:U('Index/shopCenter')}')">
-			<div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Index/shopCenter' || CONTROLLER_NAME == 'Goods') { ?>style="background-color:#3eb5d4"<?php } ?>>
-				<center><a href="javascript:url_change('{:U('Index/shopCenter')}')">商城</a></center>
-			</div>
-		</div>
-		<div class="lineStyle" onclick="url_change('{:U('Index/about')}')">
-			<div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Index/about') { ?>style="background-color:#3eb5d4"<?php } ?>>
-				<center><a href="javascript:url_change('{:U('Index/about')}')">关于</a></center>
-			</div>
-		</div>
-		<div class="lineStyle" onclick="url_change('{:U('Index/contact')}')">
-			<div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Index/contact') { ?>style="background-color:#3eb5d4"<?php } ?>>
-				<center><a href="javascript:url_change('{:U('Index/contact')}')">联系</a></center>
-			</div>
-		</div>
-	</div>
+    <div id="add_menu">
+        <div class="lineStyle" onclick="url_change('{:U('Index/index')}')">
+            <div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Index/index') { ?>style="background-color:#3eb5d4"<?php } ?>>
+                <center><a href="{:U('Index/index')}">主页</a></center>
+            </div>
+        </div>
+        <div class="lineStyle" onclick="url_change('{:U('Users/build')}')">
+            <div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Users/build') { ?> style="background-color:#3eb5d4" <?php } ?>>
+                <center><a href="javascript:url_change('{:U('Users/build')}')">注册</a></center>
+            </div>
+        </div>
+        <div class="lineStyle" onclick="url_change('{:U('Index/shopCenter')}')">
+            <div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Index/shopCenter' || CONTROLLER_NAME == 'Goods') { ?>style="background-color:#3eb5d4"<?php } ?>>
+                <center><a href="javascript:url_change('{:U('Index/shopCenter')}')">商城</a></center>
+            </div>
+        </div>
+        <div class="lineStyle" onclick="url_change('{:U('Index/about')}')">
+            <div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Index/about') { ?>style="background-color:#3eb5d4"<?php } ?>>
+                <center><a href="javascript:url_change('{:U('Index/about')}')">关于</a></center>
+            </div>
+        </div>
+        <div class="lineStyle" onclick="url_change('{:U('Index/contact')}')">
+            <div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Index/contact') { ?>style="background-color:#3eb5d4"<?php } ?>>
+                <center><a href="javascript:url_change('{:U('Index/contact')}')">联系</a></center>
+            </div>
+        </div>
+    </div>
 <else />
-	<div id="add_menu">
-		<div class="lineStyle" onclick="url_change('{:U('Index/index')}')">
-			<div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Index/index') { ?>style="background-color:#3eb5d4"<?php } ?>>
-				<center><a href="{:U('Index/index')}">主页</a></center>
-			</div>
-		</div>
-		<div class="lineStyle" onclick="url_change('{:U('Index/shopCenter')}')">
-			<div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Index/shopCenter' || CONTROLLER_NAME == 'Goods') { ?>style="background-color:#3eb5d4"<?php } ?>>
-				<center><a href="javascript:url_change('{:U('Index/shopCenter')}')">商城</a></center>
-			</div>
-		</div>
-		<div class="lineStyle" onclick="url_change('{:U('Orders/index')}')">
-			<div class="lineStyle_inside">
-				<center><a href="javascript:url_change('{:U('Orders/index')}')">订单</a></center>
-			</div>
-		</div>
-		<div class="lineStyle" onclick="url_change('{:U('Users/show')}')">
-			<div class="lineStyle_inside">
-				<center><a href="javascript:url_change('{:U('Users/show')}')">账户</a></center>
-			</div>
-		</div>
-		<div class="lineStyle" onclick="url_change('{:U('Public/logout')}')">
-			<div class="lineStyle_inside">
-				<center><a href="javascript:url_change('{:U('Public/logout')}')">登出</a></center>
-			</div>
-		</div>
-	</div>
+    <div id="add_menu">
+        <div class="lineStyle" onclick="url_change('{:U('Index/index')}')">
+            <div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Index/index') { ?>style="background-color:#3eb5d4"<?php } ?>>
+                <center><a href="{:U('Index/index')}">主页</a></center>
+            </div>
+        </div>
+        <div class="lineStyle" onclick="url_change('{:U('Index/shopCenter')}')">
+            <div class="lineStyle_inside" <?php if(CONTROLLER_NAME.'/'.ACTION_NAME == 'Index/shopCenter' || CONTROLLER_NAME == 'Goods') { ?>style="background-color:#3eb5d4"<?php } ?>>
+                <center><a href="javascript:url_change('{:U('Index/shopCenter')}')">商城</a></center>
+            </div>
+        </div>
+        <div class="lineStyle" onclick="url_change('{:U('Orders/index')}')">
+            <div class="lineStyle_inside">
+                <center><a href="javascript:url_change('{:U('Orders/index')}')">订单</a></center>
+            </div>
+        </div>
+        <div class="lineStyle" onclick="url_change('{:U('Users/show')}')">
+            <div class="lineStyle_inside">
+                <center><a href="javascript:url_change('{:U('Users/show')}')">账户</a></center>
+            </div>
+        </div>
+        <div class="lineStyle" onclick="url_change('{:U('Public/logout')}')">
+            <div class="lineStyle_inside">
+                <center><a href="javascript:url_change('{:U('Public/logout')}')">登出</a></center>
+            </div>
+        </div>
+    </div>
 </notpresent>

@@ -1,40 +1,41 @@
 <div id="add_main_content">
-	<div class="add_style">
-		<div class="add_style_inside">
-			<form action="{:U('Messages/create')}" method="POST" enctype="multipart/form-data">
-				<p>通知内容：<input type="text" name="message[content]" class="bar" style="width:400px" id="msg" /></p>
-				<p><input type="submit" onclick="return check_msg()" value="发布通知" class="add_btn"></p>
-			</form>
-		</div>
-
-
-		<hr />
-		<p style="font-size:14px;font-weight:bold">通知列表</p>
-		
-		<div class="add_line">
-			<table>
-				<tr width="980px" height="50px">
-					<th width="200px">通知标题</th><th width="200px">发布时间</th><th width="200px">发布人</th><th width="200px">操作</th>
-				</tr>
-			</table>
-		</div>
+    <div class="add_style">
+        <div class="add_style_inside">
+            <form action="{:U('Messages/create')}" method="POST" enctype="multipart/form-data">
+                <p>通知内容：<input type="text" name="message[content]" class="bar" style="width:400px" id="msg" /></p>
+                <p><input type="submit" onclick="return check_msg()" value="发布通知" class="add_btn"></p>
+            </form>
+        </div>
+        <hr />
+        <p style="font-size:14px;font-weight:bold">通知列表</p>
+        <div class="add_line">
+            <table>
+                <tr width="980px" height="50px">
+                    <th width="200px">通知标题</th>
+                    <th width="200px">发布时间</th>
+                    <th width="200px">发布人</th>
+                    <th width="200px">操作</th>
+                </tr>
+            </table>
+        </div>
 
         <volist name="messages" id="message">
-			<div class="add_line">
-				<table>
-					<tr width="980px" height="50px">
-						<th width="200px">{:strip_sql_injection($message['content'])}</th><th width="200px">{$message['created_at']}</th><th width="200px">{$message['admin']['admin_name']}</th><th width="200px"><a href="{:U('Messages/destroy', array('message_id' => $message['id'], 'p' => $_GET['p']))}" onclick="return confirm('是否确定删除该条通知？')">删除</a></th>
-					</tr>
-				</table>
-			</div>
+            <div class="add_line">
+                <table>
+                    <tr width="980px" height="50px">
+                        <th width="200px">{:strip_sql_injection($message['content'])}</th>
+                        <th width="200px">{$message['created_at']}</th>
+                        <th width="200px">{$message['admin']['admin_name']}</th>
+                        <th width="200px"><a href="{:U('Messages/destroy', array('message_id' => $message['id'], 'p' => $_GET['p']))}" onclick="return confirm('是否确定删除该条通知？')">删除</a></th>
+                    </tr>
+                </table>
+            </div>
         </volist>
 
-		<!-- 分页系统 -->
-		<div class="add_line_page">
-			<div class="add_line_page_style">
+        <div class="add_line_page">
+            <div class="add_line_page_style">
                 {$page}
-			</div>
-		</div>
-
-	</div>
+            </div>
+        </div>
+    </div>
 </div>

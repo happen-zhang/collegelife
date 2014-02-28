@@ -1,43 +1,55 @@
 <div id="add_main_content">
-	<div class="add_style">
-		<div class="add_style_inside" style="padding-top: 10px">
-			<form action="{:U('Applications/create')}" enctype="multipart/form-data" method="POST">
-				<p>产&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品：<select name="apply[goods_id]" style="width: 12em; height: 2.1em;">
-					<volist name="goods" id="item">
-						<option value="{$item['id']}">{$item['name']}</option>
-                    </volist>
-				</select>
-				</p>			
-				<p>提货数量：<input type="text" id="apply_cnt" name="apply[goods_count]" class="bar"></p>
-				<p><input type="submit" value="确认提货" class="add_btn" onclick="return check_apply()"></p>
-			</form>
-		</div>
+    <div class="add_style">
+        <div class="add_style_inside" style="padding-top: 10px">
+            <form action="{:U('Applications/create')}" enctype="multipart/form-data" method="POST">
+                <p>产&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品：
+                    <select name="apply[goods_id]" style="width: 12em; height: 2.1em;">
+                        <volist name="goods" id="item">
+                        <option value="{$item['id']}">{$item['name']}</option>
+                        </volist>
+                    </select>
+                </p>			
+                <p>提货数量：<input type="text" id="apply_cnt" name="apply[goods_count]" class="bar"></p>
+                <p><input type="submit" value="确认提货" class="add_btn" onclick="return check_apply()"></p>
+            </form>
+        </div>
+        <hr />
 
-		<!-- 输出产品 -->
-		<hr />
-		
-		<div class="add_line">
-			<table>
-				<tr width="980px" height="50px">
-					<th width="200px">产品名</th><th width="150px">提货数量</th><th width="200px">提货时间</th><th width="200px">提货状态</th>
-				</tr>
-			</table>
-		</div>
+        <div class="add_line">
+            <table>
+                <tr width="980px" height="50px">
+                    <th width="200px">产品名</th>
+                    <th width="150px">提货数量</th>
+                    <th width="200px">提货时间</th>
+                    <th width="200px">提货状态</th>
+                </tr>
+            </table>
+        </div>
 
         <volist name="applies" id="apply">
-			<div class="add_line">
-				<table>
-					<tr width="980px" height="50px">
-						<th width="200px"><a href="{:U('Goods/show', array('goods_id' => $apply['goods']['uuid']))}" target="_blank">{$apply['goods']['name']}</a></th><th width="150px">{$apply['goods_count']}</th><th width="200px">{$apply['applied_at']}</th><th width="200px"><?php if ($apply['is_delivey']) { echo '已发货款'; } else { echo '未发货款'; } ?></th>
-					</tr>
-				</table>
-			</div>
-		</volist>
+        <div class="add_line">
+            <table>
+                <tr width="980px" height="50px">
+                    <th width="200px"><a href="{:U('Goods/show', array('goods_id' => $apply['goods']['uuid']))}" target="_blank">{$apply['goods']['name']}</a></th>
+                    <th width="150px">{$apply['goods_count']}</th>
+                    <th width="200px">{$apply['applied_at']}</th>
+                    <th width="200px">
+                    <?php if ($apply['is_delivey']) {
+                             echo '已发货款';
+                          } else {
+                          	echo '未发货款';
+                          }
+                    ?>
+                    </th>
+                </tr>
+            </table>
+        </div>
+        </volist>
 
-		<div class="add_line_page">
-			<div class="add_line_page_style">
+        <div class="add_line_page">
+            <div class="add_line_page_style">
                 {$page}
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </div>

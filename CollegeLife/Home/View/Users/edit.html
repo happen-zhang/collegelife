@@ -1,83 +1,82 @@
 <div id="info">
-	<div id="info_box">
-		<div class="info_style">
-			<div class="info_title">个人账户&nbsp;&nbsp;&nbsp;
-				<present name="Think.get.status"> 
-					<if condition = "$Think.get.status eq 1">
-						<span style="font-size:12px;font-weight:normal;color:red">[修改成功]</span>
-					<elseif condition = "$Think.get.status eq 2" />
-						<span style="font-size:12px;font-weight:normal;color:red">[修改失败]</span>
-					<elseif condition = "$Think.get.status eq 3" />
-						<span style="font-size:12px;font-weight:normal;color:red">{$Think.get.errors}</span>
-					</if>
-				<else />
-					<span style="font-size:12px;font-weight:normal">[您可以修改自己的信息]</span>
-				</present>
-			</div>
+    <div id="info_box">
+        <div class="info_style">
+            <div class="info_title">个人账户&nbsp;&nbsp;&nbsp;
+                <present name="Think.get.status"> 
+                    <if condition = "$Think.get.status eq 1">
+                        <span style="font-size:12px;font-weight:normal;color:red">[修改成功]</span>
+                    <elseif condition = "$Think.get.status eq 2" />
+                        <span style="font-size:12px;font-weight:normal;color:red">[修改失败]</span>
+                    <elseif condition = "$Think.get.status eq 3" />
+                        <span style="font-size:12px;font-weight:normal;color:red">{$Think.get.errors}</span>
+                    </if>
+                <else />
+                    <span style="font-size:12px;font-weight:normal">[您可以修改自己的信息]</span>
+                </present>
+            </div>
 
-			<p style="font-size:14px;font-weight:bold;padding-top:10px">基本信息</p>
-			<div class="info_content">
+            <p style="font-size:14px;font-weight:bold;padding-top:10px">基本信息</p>
+            <div class="info_content">
+                <form action="{:U('Users/update')}" method="POST">
+                    <input type="hidden" name="info" value="metadata" />
+                    <input type="hidden" name="uid" value="{$user['uuid']}" />
+                    <input type="hidden" name="__hash__" value="{$__hash__}" />
+                    <input type="hidden" name="user[password]" value="autofill" />
+                    <p>真实姓名：<input type="text" name="user[real_name]" class="bar" id="real_name" value="{$user['real_name']}"> <span style="color:red">*</span></p>
+                    <p>电子邮箱：<input type="text" name="user[email]" class="bar" id="email" value="{$user['email']}"> <span style="color:red">*</span></p>
+                    <p>您的年级：<select name="user[grade]" class="bar">
+                        <?php
+                        for($i=2009;$i<2013;$i++){
+                        ?>
+                            <option value="<?php echo $i; ?>" <if condition = "$user['grade'] eq $i"> selected </if>><?php echo $i; ?></option>
+                        <?php    
+                        }
+                        ?>
+                    </select></p>
+                    <p>联系方式：<br />
+                    <select name="user[tel_type]" class="bar" style="width:60px">
+                        <option value="移动" <if condition = "$user['tel_type'] eq '移动'"> selected </if>>移动</option>
+                        <option value="联通" <if condition = "$user['tel_type'] eq '联通'"> selected </if>>联通</option>
+                    </select>
+                    长号：<input type="text" name="user[tel_full]" id="tel_full" class="bar" style="width:100px" value="{$user[tel_full]}">
+                    短号：<input type="text" name="user[tel_brief]" id="tel_brief" class="bar" style="width:68px" value="{$user[tel_brief]}">
+                    </p>
+                    <p>宿舍地址：<select name="user[building_no]" class="bar" style="width:80px">
+                        <?php
+                        for($i=1;$i<=41;$i++){
+                        ?>
+                            <option value="<?php echo $i; ?>" <if condition = "$user['building_no'] eq $i"> selected </if>><?php echo $i; ?>栋</option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                    宿舍号：<input type="text" name="user[dormitory_no]" id="dormitory_no" class="bar" style="width:115px" value="{$user['dormitory_no']}">
+                    </p>
+                    <p>
+                        <input type="submit" value="修改信息" class="btn" onclick="return check_info()" style="margin-left:90px">
+                    </p>
+                </form>
 
-				<form action="{:U('Users/update')}" method="POST">
-					<input type="hidden" name="info" value="metadata" />
-					<input type="hidden" name="uid" value="{$user['uuid']}" />
-					<input type="hidden" name="__hash__" value="{$__hash__}" />
-					<input type="hidden" name="user[password]" value="autofill" />
-					<p>真实姓名：<input type="text" name="user[real_name]" class="bar" id="real_name" value="{$user['real_name']}"> <span style="color:red">*</span></p>
-					<p>电子邮箱：<input type="text" name="user[email]" class="bar" id="email" value="{$user['email']}"> <span style="color:red">*</span></p>
-					<p>您的年级：<select name="user[grade]" class="bar">
-						<?php
-						for($i=2009;$i<2013;$i++){
-						?>
-							<option value="<?php echo $i; ?>" <if condition = "$user['grade'] eq $i"> selected </if>><?php echo $i; ?></option>
-						<?php	
-						}
-						?>
-					</select></p>
-					<p>联系方式：<br />
-					<select name="user[tel_type]" class="bar" style="width:60px">
-						<option value="移动" <if condition = "$user['tel_type'] eq '移动'"> selected </if>>移动</option>
-						<option value="联通" <if condition = "$user['tel_type'] eq '联通'"> selected </if>>联通</option>
-					</select>
-					长号：<input type="text" name="user[tel_full]" id="tel_full" class="bar" style="width:100px" value="{$user[tel_full]}">
-					短号：<input type="text" name="user[tel_brief]" id="tel_brief" class="bar" style="width:68px" value="{$user[tel_brief]}">
-					</p>
-					<p>宿舍地址：<select name="user[building_no]" class="bar" style="width:80px">
-						<?php
-						for($i=1;$i<=41;$i++){
-						?>
-							<option value="<?php echo $i; ?>" <if condition = "$user['building_no'] eq $i"> selected </if>><?php echo $i; ?>栋</option>
-						<?php
-						}
-						?>
-					</select>
-					宿舍号：<input type="text" name="user[dormitory_no]" id="dormitory_no" class="bar" style="width:115px" value="{$user['dormitory_no']}">
-					</p>
-					<p>
-						<input type="submit" value="修改信息" class="btn" onclick="return check_info()" style="margin-left:90px">
-					</p>
-				</form>
+            </div>
 
-			</div>
-
-			<p style="font-size:14px;font-weight:bold;padding-top:10px">修改密码</p>
-			<div class="info_content">
-				<form action="{:U('Users/update')}" method="POST">
-				    <input type="hidden" name="info" value="password" />	
-					<input type="hidden" name="uid" value="{$user['uuid']}" />
-					<input type="hidden" name="__hash__" value="{$__hash__}" />
-					<input type="hidden" name="user[email]" value="autofill@happen.com" />
-					<p>原&nbsp;密&nbsp;码&nbsp;：<input type="password" name="user[origin_password]" class="bar" id="origin_password"></p>
-					<p>新&nbsp;密&nbsp;码&nbsp;：<input type="password" name="user[password]" class="bar" id="password" onkeydown="index_show(4)"></p>
-					<div id="psd_forget" class="hide">
-						<div class="psd_forget_style">[密码长度为6-20位]</div>
-					</div>
-					<p>重复密码：<input type="password" class="bar" id="confirmation_password"></p>
-					<p>
-						<input type="submit" value="修改密码" class="btn" onclick="return check_psd()" style="margin-left:90px">
-					</p>
-				</form>
-			</div>
-		</div>
-	</div>
+            <p style="font-size:14px;font-weight:bold;padding-top:10px">修改密码</p>
+            <div class="info_content">
+                <form action="{:U('Users/update')}" method="POST">
+                    <input type="hidden" name="info" value="password" />    
+                    <input type="hidden" name="uid" value="{$user['uuid']}" />
+                    <input type="hidden" name="__hash__" value="{$__hash__}" />
+                    <input type="hidden" name="user[email]" value="autofill@happen.com" />
+                    <p>原&nbsp;密&nbsp;码&nbsp;：<input type="password" name="user[origin_password]" class="bar" id="origin_password"></p>
+                    <p>新&nbsp;密&nbsp;码&nbsp;：<input type="password" name="user[password]" class="bar" id="password" onkeydown="index_show(4)"></p>
+                    <div id="psd_forget" class="hide">
+                        <div class="psd_forget_style">[密码长度为6-20位]</div>
+                    </div>
+                    <p>重复密码：<input type="password" class="bar" id="confirmation_password"></p>
+                    <p>
+                        <input type="submit" value="修改密码" class="btn" onclick="return check_psd()" style="margin-left:90px">
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

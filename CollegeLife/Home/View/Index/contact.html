@@ -1,20 +1,28 @@
 <div id="shop_list">
-	<div class="about_style">
-		<div class="info_title" style="border:0px">如果您有什么意见和建议，请给我们留言</div>
-		<div class="about_style_content" style="border-top:1px solid #CCCCCC;padding-top:20px">
-			<form action="{:U('Suggestions/create')}" method="POST">
-				<input type="hidden" value="{$__hash__}" name="__hash__" />
-				<p style="padding-left:10px">您的称呼：<input type="text" name="suggestion[real_name]" class="bar" id="contact_name"></p>
-				<p style="padding-left:10px">联系方式：<input type="text" name="suggestion[tel]" class="bar" id="contact_num"></p>
-				<p style="padding-left:10px">您的建议：</p>
-				<p style="padding-left:10px"><textarea name="suggestion[content]" class="add_textarea_contact" id="contact_area"></textarea></p>
-				<p style="padding-left:10px">验&nbsp;证&nbsp;码：<input type="text" class="bar" id="input1">
-					<input type="button" id="checkCode" class="code" style="width:60px" onClick="createCode()" /> <a href="javascript:void(0);" onClick="createCode()">看不清楚</a></p>
-				<p style="padding-left:10px">
-					<input type="submit" value="提交" class="btn" onclick="return check_contact()">
-					<input type="reset" name="reset" value="重置" class="btn">
-				</p>
-			</form>
-		</div>
-	</div>
+    <div class="about_style">
+        <div class="info_title" style="border:0px">如果您有什么意见和建议，请给我们留言</div>
+        <div class="about_style_content" style="border-top:1px solid #CCCCCC;padding-top:20px">
+            <form action="{:U('Suggestions/create')}" method="POST">
+                <input type="hidden" value="{$__hash__}" name="__hash__" />
+                <p style="padding-left:10px">
+                    您的称呼：<input type="text" name="suggestion[real_name]" class="bar" id="contact_name">
+                </p>
+                <p style="padding-left:10px">
+                    联系方式：<input type="text" name="suggestion[tel]" class="bar" id="contact_num">
+                </p>
+                <p style="padding-left:10px">您的建议：</p>
+                <p style="padding-left:10px">
+                    <textarea name="suggestion[content]" class="add_textarea_contact" id="contact_area"></textarea>
+                </p>
+                <p style="padding-left:10px">
+                    验&nbsp;证&nbsp;码：<input type="text" class="bar" id="input1">
+                    <input type="button" id="checkCode" class="code" style="width:60px" onClick="createCode()" /> <a href="javascript:void(0);" onClick="createCode()">看不清楚</a>
+                </p>
+                <p style="padding-left:10px">
+                    <input type="submit" value="提交" class="btn" onclick="return check_contact()">
+                    <input type="reset" name="reset" value="重置" class="btn">
+                </p>
+            </form>
+        </div>
+    </div>
 </div>

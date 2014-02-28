@@ -1,23 +1,23 @@
 <div id="add_search">
-	<form action="{:U('Index/shopCenter')}" method="GET">
-		<input type="text" name="keyword" class="add_search_bar" onblur="if(this.value==''){this.value='商品名称'};" onfocus="if(this.value=='商品名称'){this.value=''};" value="商品名称">
-		<select name="category_id" class="add_search_select">
-			<volist name="categories" id="category">
-				<option value="{$category['uuid']}" <if condition = "$category['name'] eq $current_category['name']"> selected </if>>{$category['name']}</option>
-			</volist>
-		</select>		
-		<input type="submit" value="搜索" class="add_search_btn">
-	</form>
+    <form action="{:U('Index/shopCenter')}" method="GET">
+        <input type="text" name="keyword" class="add_search_bar" onblur="if(this.value==''){this.value='商品名称'};" onfocus="if(this.value=='商品名称'){this.value=''};" value="商品名称">
+        <select name="category_id" class="add_search_select">
+            <volist name="categories" id="category">
+            <option value="{$category['uuid']}" <if condition = "$category['name'] eq $current_category['name']"> selected </if>>{$category['name']}</option>
+            </volist>
+        </select>
+        <input type="submit" value="搜索" class="add_search_btn">
+    </form>
 </div>
 
 <volist name="goods" id="item">
-	<div class="add_line"></div>
-	<div class="add_img">
-		<a href="{:U('Orders/build', array('goods_id' => $item['uuid']))}"><img src="__PUBLIC__/images/uploads/{$item['logo']}" width="100%" border="0"></a>
-	</div>
-	<div class="add_shop_style">
-		<a href="{:U('Orders/build', array('goods_id' => $item['uuid']))}">{$item['name']}</a>
-		<p>类型：<a href="{:U('Index/shopCenter', array('category_id'=> $item['category']['uuid']))}">{$item['category']['name']}</a>
-		价格：<span style="color:#9e0000">&yen;{$item['preferential']}</span></p>
-	</div>
+<div class="add_line"></div>
+<div class="add_img">
+    <a href="{:U('Orders/build', array('goods_id' => $item['uuid']))}"><img src="__PUBLIC__/images/uploads/{$item['logo']}" width="100%" border="0"></a>
+</div>
+<div class="add_shop_style">
+    <a href="{:U('Orders/build', array('goods_id' => $item['uuid']))}">{$item['name']}</a>
+    <p>类型：<a href="{:U('Index/shopCenter', array('category_id'=> $item['category']['uuid']))}">{$item['category']['name']}</a>
+    价格：<span style="color:#9e0000">&yen;{$item['preferential']}</span></p>
+</div>
 </volist>

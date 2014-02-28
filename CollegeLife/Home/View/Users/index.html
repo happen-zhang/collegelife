@@ -1,17 +1,16 @@
 <div id="about">
-	<div id="reply">
-		<div class="reply_style">
+    <div id="reply">
+        <div class="reply_style">
+            <present name="Think.get.status">
+                注册成功！感谢您对大学时光的支持！
+                <p>您可以执行以下操作：</p>
+                <p><a href="{:U('Index/shopCenter')}">进入商城</a> <a href="{:U('Orders/index', array('uid' => $_SESSION['uid']))}">查看订单</a> <a href="{:U('Users/edit', array('uid' => $_SESSION['uid']))}">修改个人信息</a></p>
+            <else />
+                登录成功！欢迎您回来 <?php echo $name; ?>
+                <p>您可以执行以下操作：</p>
+                <p><a href="{:U('Index/shopCenter')}">进入商城</a> <a href="{:U('Orders/index', array('uid' => $_SESSION['uid']))}">查看订单</a> <a href="{:U('Users/edit', array('uid' => $_SESSION['uid']))}">修改个人信息</a></p>            
+            </present>
 
-			<present name="Think.get.status">
-				注册成功！感谢您对大学时光的支持！
-				<p>您可以执行以下操作：</p>
-				<p><a href="{:U('Index/shopCenter')}">进入商城</a> <a href="{:U('Orders/index', array('uid' => $_SESSION['uid']))}">查看订单</a> <a href="{:U('Users/edit', array('uid' => $_SESSION['uid']))}">修改个人信息</a></p>
-			<else />
-				登录成功！欢迎您回来 <?php echo $name; ?>
-				<p>您可以执行以下操作：</p>
-				<p><a href="{:U('Index/shopCenter')}">进入商城</a> <a href="{:U('Orders/index', array('uid' => $_SESSION['uid']))}">查看订单</a> <a href="{:U('Users/edit', array('uid' => $_SESSION['uid']))}">修改个人信息</a></p>			
-			</present>
-
-		</div>
-	</div>
+        </div>
+    </div>
 </div>

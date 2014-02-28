@@ -1,30 +1,35 @@
 <div id="shop_top">
-	<div class="shop_top_style">
-		<form action="{:U('Index/shopCenter')}" method="GET">
-			<input type="text" name="keyword" class="bar" onblur="if(this.value==''){this.value='商品名称'};" onfocus="if(this.value=='商品名称'){this.value=''};" value="商品名称">
-			<select name="category_id" class="selected">
-				<volist name="categories" id="category">
-					<option value="{$category['uuid']}" <if condition = "$category['name'] eq $current_category['name']"> selected </if>>{$category['name']}</option>
-				</volist>
-			</select>
-			<input type="submit" value="搜索商品" class="btn_shop" style="margin-left:10px">
-		</form>
-	</div>
+    <div class="shop_top_style">
+        <form action="{:U('Index/shopCenter')}" method="GET">
+            <input type="text" name="keyword" class="bar" onblur="if(this.value==''){this.value='商品名称'};" onfocus="if(this.value=='商品名称'){this.value=''};" value="商品名称">
+            <select name="category_id" class="selected">
+                <volist name="categories" id="category">
+                <option value="{$category['uuid']}" <if condition = "$category['name'] eq $current_category['name']"> selected </if>>{$category['name']}</option>
+                </volist>
+            </select>
+            <input type="submit" value="搜索商品" class="btn_shop" style="margin-left:10px">
+        </form>
+    </div>
 </div>
 
 <volist name="goods" id="item">
-	<div id="about_box">
-		<div id="about_box_img">
-			<a href="{:U('Orders/build', array('goods_id' => $item['uuid']))}" title="点击查看详情"><img src="__PUBLIC__/images/uploads/{$item['logo']}" width="180" height="210" border="0"></a>
-		</div>
-		<div id="about_box_content">
-			<div class="about_box_content_style">
-				<div class="about_box_content_style_price">&yen;{$item['preferential']}  <del style="font-size:12px;color:#999999">&yen;{$item['price']}</del></div>
-				<p><a href="{:U('Orders/build', array('goods_id' => $item['uuid']))}" title="点击查看详情">{$item['name']}</a></p>
-				<p>类型：<a href="{:U('Index/shopCenter', array('category_id'=> $item['category']['uuid']))}">{$item['category']['name']}</a>&nbsp;&nbsp;&nbsp;&nbsp;成交额：<span style="color:#9e0000">{$item['sold_count']}笔</span></p>
-			</div>
-		</div>
-	</div>
+    <div id="about_box">
+        <div id="about_box_img">
+            <a href="{:U('Orders/build', array('goods_id' => $item['uuid']))}" title="点击查看详情"><img src="__PUBLIC__/images/uploads/{$item['logo']}" width="180" height="210" border="0"></a>
+        </div>
+        <div id="about_box_content">
+            <div class="about_box_content_style">
+                <div class="about_box_content_style_price">&yen;{$item['preferential']}  <del style="font-size:12px;color:#999999">&yen;{$item['price']}</del>
+                </div>
+                <p>
+                    <a href="{:U('Orders/build', array('goods_id' => $item['uuid']))}" title="点击查看详情">{$item['name']}</a>
+                </p>
+                <p>
+                    类型：<a href="{:U('Index/shopCenter', array('category_id'=> $item['category']['uuid']))}">{$item['category']['name']}</a>&nbsp;&nbsp;&nbsp;&nbsp;成交额：<span style="color:#9e0000">{$item['sold_count']}笔</span>
+                </p>
+            </div>
+        </div>
+    </div>
 </volist>
 
 <div id="shop_box"></div>

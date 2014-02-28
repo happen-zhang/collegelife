@@ -1,28 +1,29 @@
 <div id="add_main_content">
-	<div class="add_style">
-		<div class="add_style_inside">
-			<form action="{:U('Goods/update')}" enctype="multipart/form-data" method="POST">
-				<input type="hidden" name="goods_id" value="{$goods['uuid']}" />
-				<p>产品名称：<input type="text" name="goods[name]" value="{$goods['name']}" class="bar"></p>
-				<p>产品类型：<select name="goods[category_id]" style="width: 23.3em; height: 2.1em;">
-				<volist name="categories" id="category">
-					<option value="{$category['id']}" <if condition="$category['id'] eq $goods['category']['id']">selected</if>>{$category['name']}</option>
-                </volist>
-				</select>
-				</p>
-				<p>产品描述：<textarea name="goods[description]" style="margin-bottom: -2px; width: 23em; height: 5em;">{$goods['description']}</textarea>
-				<p>产品品牌：<input type="text" name="goods[brand]" value="{$goods['brand']}" class="bar"></p>
-				<p>产品功效：<input type="text" name="goods[feature]" value="{$goods['feature']}" class="bar"></p>
-				<p>产品尺寸：<input type="text" name="goods[net_wt]" value="{$goods['net_wt']}" class="bar"></p>
-	            <p>产品产地：<input type="text" name="goods[place_origin]" value="{$goods['place_origin']}" class="bar"></p>
-				<p> 保质期&nbsp;&nbsp;&nbsp;&nbsp;：<input type="text" name="goods[qgp]" value="{$goods['qgp']}" class="bar"></p>
-				<p>适应人群：<input type="text" name="goods[suitable]" value="{$goods['suitable']}" class="bar"></p>
-				<p>特别说明：<input type="text" name="goods[remind]" value="{$goods['remind']}" class="bar"></p>
-				<p>产品原价：<input type="text" name="goods[price]" value="{$goods['price']}" class="bar"></p>
-				<p>特惠价格：<input type="text" name="goods[preferential]" value="{$goods['preferential']}" class="bar"></p>
-				<p>库存数量：<input type="text" name="goods[stock]" value="{$goods['stock']}" class="bar"></p>
-				<p><input type="submit" value="确认修改" class="add_btn"></p>
-			</form>
-		</div>
-	</div>
+    <div class="add_style">
+        <div class="add_style_inside">
+            <form action="{:U('Goods/update')}" enctype="multipart/form-data" method="POST">
+                <input type="hidden" name="goods_id" value="{$goods['uuid']}" />
+                <p>产品名称：<input type="text" name="goods[name]" value="{$goods['name']}" class="bar"></p>
+                <p>产品类型：
+                    <select name="goods[category_id]" style="width: 23.3em; height: 2.1em;">
+                        <volist name="categories" id="category">
+                        <option value="{$category['id']}" <if condition="$category['id'] eq $goods['category']['id']">selected</if>>{$category['name']}</option>
+                        </volist>
+                </select>
+                </p>
+                <p>产品描述：<textarea name="goods[description]" style="margin-bottom: -2px; width: 23em; height: 5em;">{$goods['description']}</textarea>
+                <p>产品品牌：<input type="text" name="goods[brand]" value="{$goods['brand']}" class="bar"></p>
+                <p>产品功效：<input type="text" name="goods[feature]" value="{$goods['feature']}" class="bar"></p>
+                <p>产品尺寸：<input type="text" name="goods[net_wt]" value="{$goods['net_wt']}" class="bar"></p>
+                <p>产品产地：<input type="text" name="goods[place_origin]" value="{$goods['place_origin']}" class="bar"></p>
+                <p> 保质期&nbsp;&nbsp;&nbsp;&nbsp;：<input type="text" name="goods[qgp]" value="{$goods['qgp']}" class="bar"></p>
+                <p>适应人群：<input type="text" name="goods[suitable]" value="{$goods['suitable']}" class="bar"></p>
+                <p>特别说明：<input type="text" name="goods[remind]" value="{$goods['remind']}" class="bar"></p>
+                <p>产品原价：<input type="text" name="goods[price]" value="{$goods['price']}" class="bar"></p>
+                <p>特惠价格：<input type="text" name="goods[preferential]" value="{$goods['preferential']}" class="bar"></p>
+                <p>库存数量：<input type="text" name="goods[stock]" value="{$goods['stock']}" class="bar"></p>
+                <p><input type="submit" value="确认修改" class="add_btn"></p>
+            </form>
+        </div>
+    </div>
 </div>

@@ -1,39 +1,47 @@
 <present name="Think.get.status">
-	<if condition = "$Think.get.status eq 1">
-		<div class="add_shop_watch_style" style="color:red" id="error_show">* 操作成功</div>
-		<script type="text/javascript" language="javascript">
-		$(document).ready(function(){
-			$("#error_show").fadeOut(5000);
-		})
-		</script>
-	<elseif condition = "$Think.get.status eq 2" />
-		<div class="add_shop_watch_style" style="color:red" id="error_show">* 操作失败</div>
-		<script type="text/javascript" language="javascript">
-		$(document).ready(function(){
-			$("#error_show").fadeOut(5000);
-		})
-		</script>
-	</if>
+    <if condition = "$Think.get.status eq 1">
+        <div class="add_shop_watch_style" style="color:red" id="error_show">* 操作成功</div>
+        <script type="text/javascript" language="javascript">
+        $(document).ready(function(){
+            $("#error_show").fadeOut(5000);
+        })
+        </script>
+    <elseif condition = "$Think.get.status eq 2" />
+        <div class="add_shop_watch_style" style="color:red" id="error_show">* 操作失败</div>
+        <script type="text/javascript" language="javascript">
+        $(document).ready(function(){
+            $("#error_show").fadeOut(5000);
+        })
+        </script>
+    </if>
 </present>
 
 <div id="shop_list_box">
-	<div class="shop_list_box_style">
-		<table>
-			<tr width="100%" height="60px">
-				<th width="200px">订单名称</th><th width="200px">状态</th><th width="200px">支付状态</th><th width="200px">下单时间</th><th width="200px">操作</th>
-			</tr>
-		</table>
-	</div>
+    <div class="shop_list_box_style">
+        <table>
+            <tr width="100%" height="60px">
+                <th width="200px">订单名称</th>
+                <th width="200px">状态</th>
+                <th width="200px">支付状态</th>
+                <th width="200px">下单时间</th>
+                <th width="200px">操作</th>
+            </tr>
+        </table>
+    </div>
 </div>
 
 <volist name="orders" id="order">
-	<div id="shop_list_box">
-		<div class="shop_list_box_style">
-			<table>
-				<tr width="100%" height="60px" align="center">
-					<td width="200px"><a href="{:U('Orders/show', array('order_id' => $order[uuid]))}"><?php printf('%05d', $order['id']); ?>号订单</a></td><td width="200px">{$order['order_status']}</td><td width="200px">{$order['payment_status']}</td><td width="200px">2012-12-12 12:12</td><td width="200px"><span onclick="check_list('<?php printf('%05d', $order['id']); ?>', '{:U('Orders/destory', array('order_id' => $order[uuid], 'hash' => $__hash__))}')">取消订单</span></td>
-				</tr>
-			</table>
-		</div>
-	</div>
+<div id="shop_list_box">
+    <div class="shop_list_box_style">
+        <table>
+            <tr width="100%" height="60px" align="center">
+                <td width="200px"><a href="{:U('Orders/show', array('order_id' => $order[uuid]))}"><?php printf('%05d', $order['id']); ?>号订单</a></td>
+                <td width="200px">{$order['order_status']}</td>
+                <td width="200px">{$order['payment_status']}</td>
+                <td width="200px">2012-12-12 12:12</td>
+                <td width="200px"><span onclick="check_list('<?php printf('%05d', $order['id']); ?>', '{:U('Orders/destory', array('order_id' => $order[uuid], 'hash' => $__hash__))}')">取消订单</span></td>
+            </tr>
+        </table>
+    </div>
+</div>
 </volist>

@@ -1,21 +1,20 @@
 <div id="add_main_content">
-	<div class="add_style">
-		<volist name="suggestions" id="suggestion">
-			<div class="add_line2">
-				<div class="add_line2_inside">
-					<p>{:strip_sql_injection($suggestion['real_name'])} 在 {$suggestion['created_at']} 发布：</p>
-					<p>联系方式：{:strip_sql_injection($suggestion['tel'])}</p>
-					<p>{:strip_sql_injection($suggestion['content'])}</p>
-					<p><a href="{:U('Suggestions/destroy', array('suggestion_id' => $suggestion['id'], 'p' => $_GET['p']))}"  onclick="return confirm('是否确定删除该条建议？')">删除</a></p>
-				</div>
-			</div>
+    <div class="add_style">
+        <volist name="suggestions" id="suggestion">
+            <div class="add_line2">
+                <div class="add_line2_inside">
+                    <p>{:strip_sql_injection($suggestion['real_name'])} 在 {$suggestion['created_at']} 发布：</p>
+                    <p>联系方式：{:strip_sql_injection($suggestion['tel'])}</p>
+                    <p>{:strip_sql_injection($suggestion['content'])}</p>
+                    <p><a href="{:U('Suggestions/destroy', array('suggestion_id' => $suggestion['id'], 'p' => $_GET['p']))}"  onclick="return confirm('是否确定删除该条建议？')">删除</a></p>
+                </div>
+            </div>
         </volist>
 
-		<div class="add_line_page">
-			<div class="add_line_page_style">
+        <div class="add_line_page">
+            <div class="add_line_page_style">
                 {$page}
-			</div>
-		</div>
-
-	</div>
+            </div>
+        </div>
+    </div>
 </div>

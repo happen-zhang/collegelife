@@ -1,86 +1,88 @@
 <div id="add_main_content">
-	<div class="add_style">
-		<p style="font-size:14px;font-weight:bold">订单管理</p>
-		<div class="add_line">
-			<table>
-				<tr width="980px" height="50px">
-					<th width="120px">用户名</th>
-          <th width="120px">订单号</th>
-          <th width="120px">订单状态</th>
-          <th width="120px">交付状态</th>
-          <th width="120px">用户下单时间</th>
-          <th width="120px">发货时间</th>
-          <th width="120px">订单确认状态</th>
-          <?php if ($_SESSION['rank'] != 2) { ?>
-          <th width="120px">操作</th>
-          <?php } ?>
-				</tr>
-			</table>
-		</div>
- 
-		<volist name="orders" id="order">
-			<div class="add_line">
-				<table>
-					<tr width="980px" height="50px">
-						<th width="120px"><a href="{:U('Users/show', array('user_id' => $order['user']['id']))}" target="_blank">{$order['user']['username']}</a></th>
-						<th width="120px"><a href="{:U('Orders/show', array('order_id' => $order['uuid']))}" target="_blank"><?php printf('%05d', $order['id']) ?></a></th>
-						<th width="120px">{$order['order_status']}</th>
-						<th width="120px">{$order['payment_status']}</th>
-						<th width="120px">{$order['created_at']}</th>
-						<th width="120px"><?php echo ($order['consignment_at'] == '0000-00-00 00:00:00')? '暂未发货' : $order['consignment_at']; ?></th>
+    <div class="add_style">
+        <p style="font-size:14px;font-weight:bold">订单管理</p>
+        <div class="add_line">
+        <table>
+              <tr width="980px" height="50px">
+                 <th width="120px">用户名</th>
+                 <th width="120px">订单号</th>
+                 <th width="120px">订单状态</th>
+                 <th width="120px">交付状态</th>
+                 <th width="120px">用户下单时间</th>
+                 <th width="120px">发货时间</th>
+                 <th width="120px">订单确认状态</th>
+                 <?php if ($_SESSION['rank'] != 2) { ?>
+                 <th width="120px">操作</th>
+                 <?php } ?>
+            </tr>
+        </table>
+    </div>
 
-						<!-- 订单确认 -->
-            <th width="120px">
-            <?php if ($_SESSION['rank'] == 1) {
-                      if ($order['is_cancel']) {
-                        echo '订单已取消';
-                      } else if ($order['confirm_status'] == 3) {
-                      	echo '订单正等待确认';
-                          // echo '正等待总部确认订单'; 
-                      } else if ($order['confirm_status'] == 2) {
-                          echo '正等待总代理发货';
-                      } else if ($order['confirm_status'] == 1) {
-                          if ($order['assigner']['id'] === $_SESSION['id']) {
-                              echo '进行发货或者收款操作';
-                          } else {
-                              echo '正等待 ' . $order['assigner']['admin_name'] . ' 发货给用户';
+    <volist name="orders" id="order">
+    <div class="add_line">
+        <table>
+            <tr width="980px" height="50px">
+                <th width="120px"><a href="{:U('Users/show', array('user_id' => $order['user']['id']))}" target="_blank">{$order['user']['username']}</a></th>
+                <th width="120px"><a href="{:U('Orders/show', array('order_id' => $order['uuid']))}" target="_blank"><?php printf('%05d', $order['id']) ?></a></th>
+                <th width="120px">{$order['order_status']}</th>
+                <th width="120px">{$order['payment_status']}</th>
+                <th width="120px">{$order['created_at']}</th>
+                <th width="120px">
+                  <?php echo ($order['consignment_at'] == '0000-00-00 00:00:00')? '暂未发货' : $order['consignment_at'];
+                  ?>
+                </th>
+    						<!-- 订单确认 -->
+                <th width="120px">
+                <?php if ($_SESSION['rank'] == 1) {
+                          if ($order['is_cancel']) {
+                            echo '订单已取消';
+                          } else if ($order['confirm_status'] == 3) {
+                            echo '订单正等待确认';
+                              // echo '正等待总部确认订单'; 
+                          } else if ($order['confirm_status'] == 2) {
+                              echo '正等待总代理发货';
+                          } else if ($order['confirm_status'] == 1) {
+                              if ($order['assigner']['id'] === $_SESSION['id']) {
+                                  echo '进行发货或者收款操作';
+                              } else {
+                                  echo '正等待 ' . $order['assigner']['admin_name'] . ' 发货给用户';
+                              }
+                          } else if ($order['confirm_status'] == 0){
+                              echo '订单已完成';
                           }
-                      } else if ($order['confirm_status'] == 0){
-                          echo '订单已完成';
                       }
-                  }
-            ?>
+                ?>
 
-            <?php
-                // 总代理选择一个分代理发货
-                if ($_SESSION['rank'] == 2) {
-                      if ($order['is_cancel']) {
-                        echo '订单已取消';
-                      } else if ($order['confirm_status'] == 2) {
-            ?>
-                    <select onchange="return confirmOperation(options[selectedIndex].value)">
-                    	<option value="#">选择分管理员</option>
-                    <?php 
-                    foreach ($order['admin_names'] as $key => $admin_name) { ?>
-                        <option value="<?php echo U('Orders/assignOrder', array('order_id' => $order['uuid'], 'assign_to' => $order['admin_uuids'][$key], 'p' => $_GET['p'])); ?>"><?php echo $admin_name; ?></option>
-                    <?php } ?>
-                    </select>
-            <?php   
-                    } else if ($order['confirm_status'] == 3) {
-            ?>
-                      <select onchange="return confirmOperation(options[selectedIndex].value)">
-                        <option value="#">选择操作</option>
-                        <option value="<?php echo U('Orders/confirmOrder', array('order_id' => $order['uuid'], 'p' => $_GET['p'])); ?>">确认订单</option>
-                      </select>
-            <?php
-                    } else if ($order['confirm_status'] == 1) {
-                        echo '分代理已发货';
-                        // echo "正等待 <a href='" . U('Admins/show', array('admin_id' => $order['assigner']['uuid'])) . "' target='_blank'>". $order['assigner']['admin_name'] . "</a> 发货给用户";
-                    } else if ($order['confirm_status'] == 0){
-                        echo '订单已完成';
+                <?php
+                    // 总代理选择一个分代理发货
+                    if ($_SESSION['rank'] == 2) {
+                          if ($order['is_cancel']) {
+                            echo '订单已取消';
+                          } else if ($order['confirm_status'] == 2) {
+                ?>
+                        <select onchange="return confirmOperation(options[selectedIndex].value)">
+                          <option value="#">选择分管理员</option>
+                        <?php 
+                        foreach ($order['admin_names'] as $key => $admin_name) { ?>
+                            <option value="<?php echo U('Orders/assignOrder', array('order_id' => $order['uuid'], 'assign_to' => $order['admin_uuids'][$key], 'p' => $_GET['p'])); ?>"><?php echo $admin_name; ?></option>
+                        <?php } ?>
+                        </select>
+                <?php   
+                        } else if ($order['confirm_status'] == 3) {
+                ?>
+                          <select onchange="return confirmOperation(options[selectedIndex].value)">
+                            <option value="#">选择操作</option>
+                            <option value="<?php echo U('Orders/confirmOrder', array('order_id' => $order['uuid'], 'p' => $_GET['p'])); ?>">确认订单</option>
+                          </select>
+                <?php
+                        } else if ($order['confirm_status'] == 1) {
+                            echo '分代理已发货';
+                            // echo "正等待 <a href='" . U('Admins/show', array('admin_id' => $order['assigner']['uuid'])) . "' target='_blank'>". $order['assigner']['admin_name'] . "</a> 发货给用户";
+                        } else if ($order['confirm_status'] == 0){
+                            echo '订单已完成';
+                        }
                     }
-                }
-            ?>
+                ?>
 
             <?php
                 // 总部确认订单
@@ -90,7 +92,7 @@
                     } else if ($order['confirm_status'] == 3) {
                       echo '订单正等待确认';
                     } else if ($order['confirm_status'] == 2) {
-            	        // echo '订单已确认';
+                      // echo '订单已确认';
                       echo '正等待总管理发货给分管理'; 
                       // echo "正等待 <a href='" . U('Admins/show', array('admin_id' => $order['senior']['uuid'])) . "' target='_blank'>" . $order['senior']['admin_name'] . " </a>发货到分管理";
                     } else if ($order['confirm_status'] == 1) {
@@ -104,51 +106,52 @@
             </th>
 
             <!-- 订单操作 -->
-						<?php if ($_SESSION['rank'] != 2) { ?>
-						<th width="120px">
-							<select onchange="return confirmOperation(options[selectedIndex].value)">
-								<option value="#">选择状态</option>
-								<?php
-								// 总部才可以取消订单
-								if ($_SESSION['rank'] == 3) {
-                  // 总部确认订单或者未确认订单时可以进行取消操作
-							    if ($order['confirm_status'] == 3 && !$order['is_cancel']) { ?>
-									<option value="<?php echo U('Orders/cancel', array('order_id' => $order['uuid'], 'p' => $_GET['p'])); ?>">取消订单</option>
-								<?php
-								    }
-							    }
-								?>
+            <?php if ($_SESSION['rank'] != 2) { ?>
+            <th width="120px">
+                <select onchange="return confirmOperation(options[selectedIndex].value)">
+                    <option value="#">选择状态</option>
+                    <?php
+                    // 总部才可以取消订单
+                    if ($_SESSION['rank'] == 3) {
+                    // 总部确认订单或者未确认订单时可以进行取消操作
+                    if ($order['confirm_status'] == 3 && !$order['is_cancel']) { ?>
+                    <option value="<?php echo U('Orders/cancel', array('order_id' => $order['uuid'], 'p' => $_GET['p'])); ?>">取消订单</option>
+                    <?php
+                      }
+                    }
+                    ?>
                 
-								<?php
-								if ($_SESSION['rank'] == 1
-									&& $order['confirm_status'] == 1
-									&& $order['assigner']['id'] === $_SESSION['id']) {
-								    if ($order['order_status'] == '未发货') { 
-								?>
-								    <option value="{:U('Orders/update', array('operation' => 'consignment', 'order_id' => $order['uuid'], 'p' => $_GET['p']))}">正在发货</option>	
-								<?php 
-							        } else { 
-								        if ($order['payment_status'] == '未收款') {
-							    ?>
-									    <option value="{:U('Orders/update', array('operation' => 'collect', 'order_id' => $order['uuid'], 'p' => $_GET['p']))}">已收款</option>
-								<?php
-							            }
-							        }
-							    }
-							    ?>
-							</select>
-						</th>
-						<?php } ?>
-					</tr>
-				</table>
-			</div>
-		</volist>
+                <?php
+                if ($_SESSION['rank'] == 1
+                  && $order['confirm_status'] == 1
+                  && $order['assigner']['id'] === $_SESSION['id']) {
+                    if ($order['order_status'] == '未发货') { 
+                ?>
+                    <option value="{:U('Orders/update', array('operation' => 'consignment', 'order_id' => $order['uuid'], 'p' => $_GET['p']))}">正在发货</option>	
+                <?php 
+                      } else { 
+                        if ($order['payment_status'] == '未收款') {
+                  ?>
+                      <option value="{:U('Orders/update', array('operation' => 'collect', 'order_id' => $order['uuid'], 'p' => $_GET['p']))}">已收款</option>
+                <?php
+                          }
+                      }
+                  }
+                  ?>
+              </select>
+            </th>
+            <?php } ?>
+          </tr>
+        </table>
+      </div>
+    </volist>
 
-		<!-- 分页系统 -->
-		<div class="add_line_page">
-			<div class="add_line_page_style">
-                {$page}
-			</div>
-		</div>
-	</div>
+    <!-- 分页系统 -->
+    <div class="add_line_page">
+        <div class="add_line_page_style">
+            {$page}
+        </div>
+    </div>
+  </div>
 </div>
+

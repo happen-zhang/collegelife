@@ -1,23 +1,23 @@
 <div id="shop_list">
-	<div class="shop_list_style">
-			<div class="info_title" style="border:0px"><?php printf('%05d', $order['id']); ?>号订单</div>
+    <div class="shop_list_style">
+            <div class="info_title" style="border:0px"><?php printf('%05d', $order['id']); ?>号订单</div>
 
-			<div id="shop_list_box_watch">
-				<div class="shop_list_box_style">
-					<p>下单时间：{$order['created_at']}</p>
-					<p>订单状态：<span style="color:#e5443c;font-weight:bold">{$order['order_status']}</span></p>
-					<p>预期总额：&yen;{$order['payment']}</p>
-					<p>&nbsp;</p>
+            <div id="shop_list_box_watch">
+                <div class="shop_list_box_style">
+                    <p>下单时间：{$order['created_at']}</p>
+                    <p>订单状态：<span style="color:#e5443c;font-weight:bold">{$order['order_status']}</span></p>
+                    <p>预期总额：&yen;{$order['payment']}</p>
+                    <p>&nbsp;</p>
 
-					<volist name="goods" id="item">
-						<p>商品名称：{$item['name']}</p>
-						<p>类型：{$item['category']}</p>
-						<p>单价：&yen;{$item['preferential']}</p>
-						<p>数量：{$item['count']}</p>
-						<p>产品链接：<a href="{:U('Orders/build', array('goods_id' => $item['uuid']))}">点击查看</a></p>
-						<br/>
-					</volist>
-				</div>
-			</div>
-	</div>
+                    <volist name="goods" id="item">
+                        <p>商品名称：{$item['name']}</p>
+                        <p>类型：{$item['category']}</p>
+                        <p>单价：&yen;{$item['preferential']}</p>
+                        <p>数量：{$item['count']}</p>
+                        <p>产品链接：<a href="{:U('Orders/build', array('goods_id' => $item['uuid']))}">点击查看</a></p>
+                        <br/>
+                    </volist>
+                </div>
+            </div>
+    </div>
 </div>

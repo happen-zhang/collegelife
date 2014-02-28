@@ -1,43 +1,43 @@
 <div class="add_line"></div>
 <div class="add_img">
-	<img src="__PUBLIC__/images/uploads/{$goods['logo']}" width="100%" border="0">
+    <img src="__PUBLIC__/images/uploads/{$goods['logo']}" width="100%" border="0">
 </div>
 <div class="add_shop_style">
-	{$goods['name']}
-	<p>类型：<a href="{:U('Index/shopCenter', array('category_id' => $goods['category']['uuid']))}">{$goods['category']['name']}</a>
-	品牌：{$goods['brand']} </p>
+    {$goods['name']}
+    <p>类型：<a href="{:U('Index/shopCenter', array('category_id' => $goods['category']['uuid']))}">{$goods['category']['name']}</a>
+    品牌：{$goods['brand']} </p>
 </div>
 
 <div id="add_shop_watch_box">
-	<div class="add_shop_watch_box_style">
-		<span style="font-size:14px">促销价：</span>&yen;{$goods['preferential']}
-		<p style="font-size:14px">原价<del>&yen;{$goods['price']}</del>，现<?php echo (int)(($goods['preferential'] / $goods['price'])*10)  ; ?>折促销，为您节省&yen;<?php printf('%.2f', $goods['price'] - $goods['preferential']); ?>，送货上门</p>
-	</div>
+    <div class="add_shop_watch_box_style">
+        <span style="font-size:14px">促销价：</span>&yen;{$goods['preferential']}
+        <p style="font-size:14px">原价<del>&yen;{$goods['price']}</del>，现<?php echo (int)(($goods['preferential'] / $goods['price'])*10)  ; ?>折促销，为您节省&yen;<?php printf('%.2f', $goods['price'] - $goods['preferential']); ?>，送货上门</p>
+    </div>
 </div>
 
 <div class="add_shop_watch_style">
     {$goods['description']}
 
-	<p><span style="font-weight:bold">商品名称：</span>{$goods['name']}</p>
-	<p><span style="font-weight:bold">品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌：</span>{$goods['brand']}</p>
-	<p><span style="font-weight:bold">分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类：</span>{$goods['category']['name']}</p>
-	<p><span style="font-weight:bold">功&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;效：</span>{$goods['feature']}</p>
-	<p><span style="font-weight:bold">产品规格：</span>{$goods['net_wt']}</p>
-	<p><span style="font-weight:bold">原&nbsp;&nbsp;产&nbsp;地：</span>{$goods['place_origin']}</p>
-	<p><span style="font-weight:bold">保质期限：</span>{$goods['qgp']}</p>
-	<p><span style="font-weight:bold">适用人群：</span>{$goods['suitable']}</p>
-	<p><span style="font-weight:bold">特别说明：</span>{$goods['remind']}</p>
+    <p><span style="font-weight:bold">商品名称：</span>{$goods['name']}</p>
+    <p><span style="font-weight:bold">品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌：</span>{$goods['brand']}</p>
+    <p><span style="font-weight:bold">分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类：</span>{$goods['category']['name']}</p>
+    <p><span style="font-weight:bold">功&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;效：</span>{$goods['feature']}</p>
+    <p><span style="font-weight:bold">产品规格：</span>{$goods['net_wt']}</p>
+    <p><span style="font-weight:bold">原&nbsp;&nbsp;产&nbsp;地：</span>{$goods['place_origin']}</p>
+    <p><span style="font-weight:bold">保质期限：</span>{$goods['qgp']}</p>
+    <p><span style="font-weight:bold">适用人群：</span>{$goods['suitable']}</p>
+    <p><span style="font-weight:bold">特别说明：</span>{$goods['remind']}</p>
 </div>
 
 <form action="{:U('Orders/create')}" method="POST">
     <input type="hidden" name="goods_id" value="{$goods['id']}" />
-	<input type="hidden" name="__hash__" value="{$__hash__}" />
-	<center><input type="text" name="goods_count" id="shop_num" class="add_bar" onblur="if(this.value==''){ this.value='数量' };" onfocus="if(this.value=='数量'){this.value=''};" value="数量"></center>
+    <input type="hidden" name="__hash__" value="{$__hash__}" />
+    <center><input type="text" name="goods_count" id="shop_num" class="add_bar" onblur="if(this.value==''){ this.value='数量' };" onfocus="if(this.value=='数量'){this.value=''};" value="数量"></center>
 
     <present name="_SESSION['uid']">
-		<center><input type="submit" name="submit" value="立即购买" class="add_btn_2" onclick="return check_buy()"></center>
+        <center><input type="submit" name="submit" value="立即购买" class="add_btn_2" onclick="return check_buy()"></center>
     <else />
-		<center><input type="submit" name="submit" value="立即购买" class="add_btn_2" onclick="return unvalid()"></center>
+        <center><input type="submit" name="submit" value="立即购买" class="add_btn_2" onclick="return unvalid()"></center>
     </present>
 
 </form>

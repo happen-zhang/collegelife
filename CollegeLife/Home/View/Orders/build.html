@@ -1,44 +1,44 @@
 <div id="shop_top" style="height:55px">
-	<div class="shop_top_style">
-		<a href="{:U('Index/shopCenter')}">返回商城 &gt;</a> <a href="{:U('Index/shopCenter', array('category_id' => $goods['uuid']))}">{$goods['category']['name']} &gt;</a> {$goods['name']}
-	</div>
+    <div class="shop_top_style">
+        <a href="{:U('Index/shopCenter')}">返回商城 &gt;</a> <a href="{:U('Index/shopCenter', array('category_id' => $goods['uuid']))}">{$goods['category']['name']} &gt;</a> {$goods['name']}
+    </div>
 </div>
 
 <div id="shop_watch">
-	<div id="shop_watch_left">
-		<img src="__PUBLIC__/images/uploads/{$goods['logo']}" width="330px" height="400px" border="0">
-	</div>
-	<div id="shop_watch_right">
-		<div class="shop_watch_right_style">
-			<div class="shop_watch_right_style_title">{$goods['name']}</div>
-			<div class="shop_watch_right_style_content">
-			类型：<a href="{:U('Index/shopCenter', array('category_id' => $goods['category']['uuid']))}">{$goods['category']['name']}</a> &nbsp;&nbsp;&nbsp; 品牌：{$goods['brand']}<br /> 
-			<p style="color:#333333">{$goods['description']}</p>
-			</div>
-			<div class="shop_watch_right_box">
-				<div class="shop_watch_right_box_style">
-					<span style="font-size:14px">促销价：</span>&yen;{$goods['preferential']}
-					<p style="font-size:14px">原价<del>&yen;{$goods['price']}</del>，现<?php echo (int)(($goods['preferential'] / $goods['price'])*10)  ; ?>折促销，为您节省&yen;<?php printf('%.2f', $goods['price'] - $goods['preferential']); ?>，送货上门</p>
-				</div>
-			</div>
-			<div class="shop_watch_right_style_content">
-				<form action="{:U('Orders/create')}" method="POST">
-					<input type="hidden" id="app_url" value="{:U('Comments/create')}">
-					数量：<input type="text" class="shop_watch_right_num" value="1" id="shop_num" disabled="disabled" />
-					<input type="button" id="check_left" value="&lt;" class="check_btn" onclick="check_shop_btn(1)">
-					<input type="button" id="check_right" value="&gt;" class="check_btn" onclick="check_shop_btn(2)">
-					<input type="hidden" name="goods_id" value="{$goods['id']}" />
-					<input type="hidden" name="goods_count" id="goods_count" value="1" />
-					<input type="hidden" name="__hash__" value="{$__hash__}" />
-					<present name="Think.session.username">
-						<input type="submit" value="立即购买" class="btn_shop" onclick="return check_shop()">
-					<else/>
-						<input type="submit" value="立即购买" class="btn_shop" onclick="return unvalid()">
-					</present>
-					&nbsp;&nbsp;&nbsp;[成交额：{$goods['sold_count']}笔]
-				</form>
-			</div>
-				<p><div id="ckepop" style="padding-top:10px">
+    <div id="shop_watch_left">
+        <img src="__PUBLIC__/images/uploads/{$goods['logo']}" width="330px" height="400px" border="0">
+    </div>
+    <div id="shop_watch_right">
+        <div class="shop_watch_right_style">
+            <div class="shop_watch_right_style_title">{$goods['name']}</div>
+            <div class="shop_watch_right_style_content">
+            类型：<a href="{:U('Index/shopCenter', array('category_id' => $goods['category']['uuid']))}">{$goods['category']['name']}</a> &nbsp;&nbsp;&nbsp; 品牌：{$goods['brand']}<br /> 
+            <p style="color:#333333">{$goods['description']}</p>
+            </div>
+            <div class="shop_watch_right_box">
+                <div class="shop_watch_right_box_style">
+                    <span style="font-size:14px">促销价：</span>&yen;{$goods['preferential']}
+                    <p style="font-size:14px">原价<del>&yen;{$goods['price']}</del>，现<?php echo (int)(($goods['preferential'] / $goods['price'])*10)  ; ?>折促销，为您节省&yen;<?php printf('%.2f', $goods['price'] - $goods['preferential']); ?>，送货上门</p>
+                </div>
+            </div>
+            <div class="shop_watch_right_style_content">
+                <form action="{:U('Orders/create')}" method="POST">
+                    <input type="hidden" id="app_url" value="{:U('Comments/create')}">
+                    数量：<input type="text" class="shop_watch_right_num" value="1" id="shop_num" disabled="disabled" />
+                    <input type="button" id="check_left" value="&lt;" class="check_btn" onclick="check_shop_btn(1)">
+                    <input type="button" id="check_right" value="&gt;" class="check_btn" onclick="check_shop_btn(2)">
+                    <input type="hidden" name="goods_id" value="{$goods['id']}" />
+                    <input type="hidden" name="goods_count" id="goods_count" value="1" />
+                    <input type="hidden" name="__hash__" value="{$__hash__}" />
+                    <present name="Think.session.username">
+                        <input type="submit" value="立即购买" class="btn_shop" onclick="return check_shop()">
+                    <else/>
+                        <input type="submit" value="立即购买" class="btn_shop" onclick="return unvalid()">
+                    </present>
+                    &nbsp;&nbsp;&nbsp;[成交额：{$goods['sold_count']}笔]
+                </form>
+            </div>
+                <p><div id="ckepop" style="padding-top:10px">
                        <a class="jiathis_button_tsina">新浪微博</a>
                        <a class="jiathis_button_tqq">腾讯微博</a> <a class="jiathis_button_renren">人人网</a>
                        <a class="jiathis_button_kaixin001">开心网</a> <a class="jiathis_button_qzone">QQ空间</a> 
@@ -48,62 +48,62 @@
                </div></p>
                <script type="text/javascript" src="http://v2.jiathis.com/code/jia.js" charset="utf-8"></script> 
             
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 
 <div id="commend" style="background-color:#9cb80c">
-	<div class="shop_watch_main_style" style="color:white;font-weight:bold">
-		产品参数
-	</div>
+    <div class="shop_watch_main_style" style="color:white;font-weight:bold">
+        产品参数
+    </div>
 </div>
 <div id="shop_watch_main">
-	<div class="shop_watch_main_style">
-		<p><span style="font-weight:bold;padding-left:10px">商品名称：</span>{$goods['name']}</p>
-		<p><span style="font-weight:bold;padding-left:10px">品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌：</span>{$goods['brand']}</p>
-		<p><span style="font-weight:bold;padding-left:10px">分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类：</span>{$goods['category']['name']}</p>
-		<p><span style="font-weight:bold;padding-left:10px">功&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;效：</span>{$goods['feature']}</p>
-		<p><span style="font-weight:bold;padding-left:10px">产品规格：</span>{$goods['net_wt']}</p>
-		<p><span style="font-weight:bold;padding-left:10px">原&nbsp;&nbsp;产&nbsp;地：</span>{$goods['place_origin']}</p>
-		<p><span style="font-weight:bold;padding-left:10px">保质期限：</span>{$goods['qgp']}</p>
-		<p><span style="font-weight:bold;padding-left:10px">适用人群：</span>{$goods['suitable']}</p>
-		<p><span style="font-weight:bold;padding-left:10px">特别说明：</span>{$goods['remind']}</p>
+    <div class="shop_watch_main_style">
+        <p><span style="font-weight:bold;padding-left:10px">商品名称：</span>{$goods['name']}</p>
+        <p><span style="font-weight:bold;padding-left:10px">品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌：</span>{$goods['brand']}</p>
+        <p><span style="font-weight:bold;padding-left:10px">分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类：</span>{$goods['category']['name']}</p>
+        <p><span style="font-weight:bold;padding-left:10px">功&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;效：</span>{$goods['feature']}</p>
+        <p><span style="font-weight:bold;padding-left:10px">产品规格：</span>{$goods['net_wt']}</p>
+        <p><span style="font-weight:bold;padding-left:10px">原&nbsp;&nbsp;产&nbsp;地：</span>{$goods['place_origin']}</p>
+        <p><span style="font-weight:bold;padding-left:10px">保质期限：</span>{$goods['qgp']}</p>
+        <p><span style="font-weight:bold;padding-left:10px">适用人群：</span>{$goods['suitable']}</p>
+        <p><span style="font-weight:bold;padding-left:10px">特别说明：</span>{$goods['remind']}</p>
 
-	</div>
+    </div>
 </div>
 
 <!-- 商品评论 -->
 <!-- <div id="commend_boxs" onclick="show_commend()">
-	<div class="shop_watch_main_style" style="color:white;font-weight:bold" id="msg_commend">
-		评论消息▼
-	</div>
+    <div class="shop_watch_main_style" style="color:white;font-weight:bold" id="msg_commend">
+        评论消息▼
+    </div>
 </div>
 <div id="commend">
-	<div class="shop_watch_main_style">
-		<input type="text" name="comment_content" id="comment_content" class="bar" style="width:400px;height:25px" onblur="if(this.value==''){this.value='发表评论'};" onfocus="if(this.value=='发表评论'){this.value=''};" value="发表评论">
-		<input type="button" value="评论" class="btn" onclick="submit_comment()"/>
-	</div>
+    <div class="shop_watch_main_style">
+        <input type="text" name="comment_content" id="comment_content" class="bar" style="width:400px;height:25px" onblur="if(this.value==''){this.value='发表评论'};" onfocus="if(this.value=='发表评论'){this.value=''};" value="发表评论">
+        <input type="button" value="评论" class="btn" onclick="submit_comment()"/>
+    </div>
 </div>
 
 
 <div id="all_comment_line">
     <volist name="goods['comments']" id="comment">
-		<div id="commend_line">
-			<div class="shop_watch_main_style_commend">
-				<strong>{$comment['commenter_name']}</strong> 在 <span style="color:#999999">{$comment['created_at']}</span> 发表：
-				<p>{:strip_sql_injection($comment['content'])}</p>
-			</div>
-		</div>    	
+        <div id="commend_line">
+            <div class="shop_watch_main_style_commend">
+                <strong>{$comment['commenter_name']}</strong> 在 <span style="color:#999999">{$comment['created_at']}</span> 发表：
+                <p>{:strip_sql_injection($comment['content'])}</p>
+            </div>
+        </div>        
     </volist>
 </div> -->
 
 
 <div id="shop_watch_main" style="margin-bottom:0px">
-	<center>
-		<div class="shop_watch_main_style">
-			<volist name="goods['images']" id="image">
-			    <img src="__PUBLIC__/images/uploads/{$image['path']}" width="1035" />
-			</volist>
-		</div>		
-	</center>
+    <center>
+        <div class="shop_watch_main_style">
+            <volist name="goods['images']" id="image">
+            <img src="__PUBLIC__/images/uploads/{$image['path']}" width="1035" />
+            </volist>
+        </div>
+    </center>
 </div>
