@@ -20,7 +20,12 @@ function animation_top_start(){
     $(document).ready(function(){
         $("#top").slideToggle("slow");
     })
-    createCode();
+
+    var checkCode = document.getElementById("checkCode");
+    if (checkCode) {
+        createCode();
+    }
+    
     index_bg(1);
 }
 
