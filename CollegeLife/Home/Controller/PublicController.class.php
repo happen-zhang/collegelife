@@ -16,7 +16,7 @@ class PublicController extends CommonController {
         if (true == $userService->login($_POST['user'])) {
             $this->redirect('Users/index');
         } else {
-            $this->error('登录失败，用户名或者密码错误！');
+            $this->error('登录失败，用户名或者密码错误！', 'Index/index');
         }
     }
 

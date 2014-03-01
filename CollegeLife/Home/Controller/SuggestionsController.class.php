@@ -20,6 +20,6 @@ class SuggestionsController extends CommonController {
         }
 
         $this->destroyToken();
-        $this->success('谢谢您的建议，我们将尽快处理！', 'Index/index');
+        $this->success('谢谢您的建议，我们将尽快处理！', 'Index/index', 5);
     }
 }
