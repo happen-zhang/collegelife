@@ -18,6 +18,9 @@ if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 define('APP_PATH', './Admin/');
 define('THINK_PATH', realpath('./ThinkPHP') . '/');
 
+// 运行缓存目录
+define("RUNTIME_PATH", dirname(__FILE__) . '/' . "Cache/Runtime/Admin/");
+
 // 开启调试
 define('APP_DEBUG', true);
 
