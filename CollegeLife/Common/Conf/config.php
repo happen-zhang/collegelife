@@ -20,8 +20,8 @@ $appConfig =  array(
     'LAYOUT_NAME' => 'Public/layout',
 
     // error和success重定向
-    // 'TMPL_ACTION_ERROR' => 'Public:error',
-    // 'TMPL_ACTION_SUCCESS' => 'Public:success',
+    'TMPL_ACTION_ERROR' => 'Public:error',
+    'TMPL_ACTION_SUCCESS' => 'Public:success',
 );
 
 return array_merge($appConfig,
