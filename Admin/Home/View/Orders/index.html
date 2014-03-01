@@ -4,12 +4,13 @@
         <div class="add_line">
         <table>
               <tr width="980px" height="50px">
-                 <th width="120px">用户名</th>
-                 <th width="120px">订单号</th>
-                 <th width="120px">订单状态</th>
-                 <th width="120px">交付状态</th>
+                 <th width="90px">用户名</th>
+                 <th width="90px">订单号</th>
+                 <th width="90px">订单状态</th>
+                 <th width="90px">交付状态</th>
                  <th width="120px">用户下单时间</th>
                  <th width="120px">发货时间</th>
+                 <th width="120px">配货状态</th>
                  <th width="120px">订单确认状态</th>
                  <?php if ($_SESSION['rank'] != 2) { ?>
                  <th width="120px">操作</th>
@@ -22,16 +23,39 @@
     <div class="add_line">
         <table>
             <tr width="980px" height="50px">
-                <th width="120px"><a href="{:U('Users/show', array('user_id' => $order['user']['id']))}" target="_blank">{$order['user']['username']}</a></th>
-                <th width="120px"><a href="{:U('Orders/show', array('order_id' => $order['uuid']))}" target="_blank"><?php printf('%05d', $order['id']) ?></a></th>
-                <th width="120px">{$order['order_status']}</th>
-                <th width="120px">{$order['payment_status']}</th>
+                <th width="90px"><a href="{:U('Users/show', array('user_id' => $order['user']['id']))}" target="_blank">{$order['user']['username']}</a></th>
+                <th width="90px"><a href="{:U('Orders/show', array('order_id' => $order['uuid']))}" target="_blank"><?php printf('%05d', $order['id']) ?></a></th>
+                <th width="90px">{$order['order_status']}</th>
+                <th width="90px">{$order['payment_status']}</th>
                 <th width="120px">{$order['created_at']}</th>
                 <th width="120px">
                   <?php echo ($order['consignment_at'] == '0000-00-00 00:00:00')? '暂未发货' : $order['consignment_at'];
                   ?>
                 </th>
-    						<!-- 订单确认 -->
+                <th width="120px">
+                <?php 
+                if (!$order['is_cancel']) {
+                    if (!empty($order['dispatched_by'])) {
+                        if ($_SESSION['rank'] == 1) {
+                            echo $order['dispatcher']['admin_name'] . " 已配货";
+                        } else {
+                          if ($_SESSION['id'] == $order['dispatched_by']) {
+                              echo '已配货';
+                          } else {
+                              echo "<a href='" . U('Admins/show', array('admin_id' => $order['dispatcher']['uuid'])) . "' target='_blank'>". $order['dispatcher']['admin_name'] . "</a> 已配货";
+                          }
+                        }
+                    } else {
+                        if ($_SESSION['rank'] == 2) {
+                            echo '请进行配货';
+                        } else {
+                            echo '正等待总管理员配货';
+                        }
+                    }
+                }
+                ?>
+                </th>
+                <!-- 订单确认 -->
                 <th width="120px">
                 <?php if ($_SESSION['rank'] == 1) {
                           if ($order['is_cancel']) {
@@ -76,8 +100,7 @@
                           </select>
                 <?php
                         } else if ($order['confirm_status'] == 1) {
-                            echo '分代理已发货';
-                            // echo "正等待 <a href='" . U('Admins/show', array('admin_id' => $order['assigner']['uuid'])) . "' target='_blank'>". $order['assigner']['admin_name'] . "</a> 发货给用户";
+                            echo "正等待 <a href='" . U('Admins/show', array('admin_id' => $order['assigner']['uuid'])) . "' target='_blank'>". $order['assigner']['admin_name'] . "</a> 发货给用户";
                         } else if ($order['confirm_status'] == 0){
                             echo '订单已完成';
                         }
@@ -96,8 +119,8 @@
                       echo '正等待总管理发货给分管理'; 
                       // echo "正等待 <a href='" . U('Admins/show', array('admin_id' => $order['senior']['uuid'])) . "' target='_blank'>" . $order['senior']['admin_name'] . " </a>发货到分管理";
                     } else if ($order['confirm_status'] == 1) {
-                    	echo '分代理已发货';
-                        // echo "正等待 <a href='" . U('Admins/show', array('admin_id' => $order['assigner']['uuid'])) . "' target='_blank'>". $order['assigner']['admin_name'] . "</a> 发货给用户";
+                    	// echo '分代理已发货';
+                      echo "正等待 <a href='" . U('Admins/show', array('admin_id' => $order['assigner']['uuid'])) . "' target='_blank'>". $order['assigner']['admin_name'] . "</a> 发货给用户";
                     } else if ($order['confirm_status'] == 0){
                         echo '订单已完成';
                     }
@@ -154,4 +177,3 @@
     </div>
   </div>
 </div>
-

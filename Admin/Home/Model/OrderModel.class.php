@@ -29,6 +29,14 @@ class OrderModel extends RelationModel {
             'mapping_type' => HAS_ONE,
             'class_name' => 'transaction',
             'foreign_key' => 'order_id'
+        ),
+
+        // 配货的总管理
+        'dispatcher' => array(
+            'mapping_type' => BELONGS_TO,
+            'class_name' => 'Admin',
+            'foreign_key' => 'dispatched_by',
+            'mapping_fields' => 'admin_name, uuid',
         )
     );
 }

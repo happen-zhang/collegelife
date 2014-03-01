@@ -170,13 +170,16 @@ class OrdersController extends CommonController {
      */
     public function assignOrder() {
         if (!isset($_GET['order_id'])
-            || !isset($_GET['assign_to'])) {
+            || !isset($_GET['assign_to'])
+            || $_SESSION['rank'] != 2) {
             $this->error('无效的操作！');
         }
 
         $orderService = D('Order', 'Service');
-        if ($orderService->assignTo($_GET['order_id'], $_GET['assign_to'])
-            === false) {
+        $flag = $orderService->assignTo($_GET['order_id'],
+                                        $_GET['assign_to'],
+                                        $_SESSION['id']);
+        if (false === $flag) {
             $this->error('系统出错了！');
         }
 

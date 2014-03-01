@@ -272,20 +272,27 @@ class OrderService extends CommonService {
 
     /**
      * 订单分配给指定的分管理
-     * @param  string $uuid
-     * @return fixed
+     * @param  string $orderUUID
+     * @param  string $adminUUID
+     * @param  string $dispatchedBy
+     * @return boolean
      */
-    public function assignTo($orderUUID, $adminUUID) {
+    public function assignTo($orderUUID, $adminUUID, $dispatchedBy) {
         $admin = M('Admin')->where(array('uuid' => $adminUUID))->find();
+
+        // 配货管理员
+        $update['assign_to'] = $admin['id'];
+        $update['dispatched_by'] = $dispatchedBy;
 
         if (false === $this->getM()
                            ->where(array('uuid' => $orderUUID))
-                           ->save(array('assign_to' => $admin['id']))) {
+                           ->save($update)) {
             return false;
         }
 
         // 记录日志
         $this->orderLog($orderUUID, "分配到 $admin[admin_name]");
+        return true;
     }
 
     /**
