@@ -16,4 +16,12 @@ class CategoryModel extends RelationModel {
             'foreign_key' => 'category_id',
         ),
     );
+
+    // 自动完成
+    protected $_auto = array(
+        array('uuid', 'uuid', 1, 'function'),
+        array('name', 'filterSpecialChars', 3, 'function'),
+        array('created_at', 'datetime', 1, 'function'),
+        array('updated_at', 'datetime', 3, 'function'),
+    );
 }

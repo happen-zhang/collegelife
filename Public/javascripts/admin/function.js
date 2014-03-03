@@ -98,6 +98,15 @@ function check_msg() {
     return true;
 }
 
+function check_category() {
+    var name = document.getElementById("category_name").value.trim();
+
+    if (name == "") {
+        alert("分类名称不能为空！");
+        return false;
+    }
+}
+
 function createFile(value) {
     var reg = /[0-9]/;
     var num = value.trim();

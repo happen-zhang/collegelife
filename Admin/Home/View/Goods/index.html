@@ -31,8 +31,9 @@
         <hr />
         <p style="font-size:14px;font-weight:bold">产品类型：
         <volist name="categories" id="category">
-            <a href="{:U('Goods/index', array('category_id' => $category['id']))}" <?php if (isset($_GET['category_id'])) { if ($_GET['category_id'] == $category['id']) { echo "style='color:#ff9900;'"; }} else if ($i == 1) { echo "style='color:#ff9900;'"; } ?>> &nbsp;&nbsp;&nbsp;{$category['name']}</a>
+            <a href="{:U('Goods/index', array('category_id' => $category['id']))}" <?php if (isset($_GET['category_id'])) { if ($_GET['category_id'] == $category['id']) { echo "style='color:#ff9900;'"; }} else if ($i == 1) { echo "style='color:#ff9900;'"; } ?>>{$category['name']}</a> &nbsp;&nbsp;&nbsp;
         </volist>
+        &nbsp;&nbsp;&nbsp;[<a href="{:U('Categories/index')}"> 分类管理 </a>]
         </p>
 		
         <div class="add_line">

@@ -11,7 +11,7 @@
             <a href="{:U('Logs/index')}" <if condition="CONTROLLER_NAME eq 'Logs'"> style="background-color:#00CCFF;color:white" </if>>信息统计</a>
             </if>
             <if condition="$_SESSION['rank'] eq 3">
-            <a href="{:U('Goods/index')}" <if condition="CONTROLLER_NAME eq 'Goods'"> style="background-color:#00CCFF;color:white" </if>>产品管理</a>
+            <a href="{:U('Goods/index')}" <if condition="CONTROLLER_NAME eq 'Goods' or CONTROLLER_NAME eq 'Categories' "> style="background-color:#00CCFF;color:white" </if>>产品管理</a>
             </if>
             <if condition="$_SESSION['rank'] eq 3">
             <a href="{:U('Users/index')}" <if condition="CONTROLLER_NAME eq 'Users'"> style="background-color:#00CCFF;color:white" </if>>用户管理</a>
