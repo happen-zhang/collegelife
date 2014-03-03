@@ -98,13 +98,21 @@ function check_msg() {
     return true;
 }
 
-function createFile() {
-    var num = document.getElementById("select_num").value.trim();
-    $(".display_img").remove();
-    
-    var field = "<p><input type='file' name='imgs[]' class='display_img' style='margin-left: 4.3em;' /><p>";
-    for (var i = 0; i < num; i++) {
-        $("#select_num").after(field);
+function createFile(value) {
+    var reg = /[0-9]/;
+    var num = value.trim();
+
+    if (reg.test(num)) {
+        if (confirm("确定添加" + num + "张图片吗？")) {
+            $(".display_img").remove();
+            
+            var field = "<p><input type='file' name='imgs[]' class='display_img' style='margin-left: 4.3em;' /><p>";
+            for (var i = 0; i < num; i++) {
+                $("#images_num").after(field);
+            }
+        }
+    } else {
+        alert("图片数量只能为整数");
     }
 }
 

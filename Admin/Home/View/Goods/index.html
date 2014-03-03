@@ -22,15 +22,7 @@
                 <p>库存数量：<input type="text" name="goods[stock]" class="bar"></p>
 
                 <p>商品图标：<input type="file" name="logo" /></p>
-                <p>展示图片：<select id="select_num" onchange="createFile()" style="width: 23em; height: 2.3em;">
-                    <option value="0" selected>0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select></p>
-
+                <p>图片数量：<input type="text" id="images_num"  class="bar" onblur="createFile(this.value)" /></p>
                 <p><input type="submit" value="添加产品" class="add_btn"></p>
             </form>
         </div>
