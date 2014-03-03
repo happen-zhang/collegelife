@@ -1,0 +1,32 @@
+<div id="add_main_top_right" <?php  if ($_SESSION['rank'] == 3) { echo 'style="width: 800px"'; }?>>
+    <div class="style">
+        <a href="{:U('Orders/index')}" <?php if (CONTROLLER_NAME == 'Orders' && ACTION_NAME != 'transaction') { ?> style="background-color:#00CCFF;color:white" <?php } ?>>订单管理</a>
+        <if condition="$_SESSION['rank'] eq 3">
+        <a href="{:U('Logs/index')}" <if condition="CONTROLLER_NAME eq 'Logs'"> style="background-color:#00CCFF;color:white" </if>>信息统计</a>
+        </if>
+        <if condition="$_SESSION['rank'] eq 3">
+        <a href="{:U('Goods/index')}" <if condition="CONTROLLER_NAME eq 'Goods' or CONTROLLER_NAME eq 'Categories' "> style="background-color:#00CCFF;color:white" </if>>产品管理</a>
+        </if>
+        <if condition="$_SESSION['rank'] eq 3">
+        <a href="{:U('Users/index')}" <if condition="CONTROLLER_NAME eq 'Users'"> style="background-color:#00CCFF;color:white" </if>>用户管理</a>
+        </if>
+        <if condition="$_SESSION['rank'] eq 3">
+        <a href="{:U('Messages/index')}" <if condition="CONTROLLER_NAME eq 'Messages'"> style="background-color:#00CCFF;color:white" </if>>通知管理</a>
+        </if>
+        <a href="{:U('Suggestions/index')}" <if condition="CONTROLLER_NAME eq 'Suggestions'"> style="background-color:#00CCFF;color:white" </if>>建议管理</a>
+        <!--        
+        <if condition="$_SESSION['rank'] eq 2">
+        <a href="{:U('Applications/edit')}" <if condition="CONTROLLER_NAME eq 'Applications'"> style="background-color:#00CCFF;color:white" </if>>处理货款</a>
+        </if>
+        -->
+        <if condition="$_SESSION['rank'] neq 1">
+        <a href="{:U('Admins/index')}" <?php if (CONTROLLER_NAME == 'Admins' && ACTION_NAME != 'edit') { ?> style="background-color:#00CCFF;color:white" <?php } ?>>管理员</a>
+        </if>
+         <if condition="$_SESSION['rank'] neq 3">
+         <a href="{:U('Orders/transaction')}" <?php if (CONTROLLER_NAME == 'Orders' && ACTION_NAME == 'transaction') { ?> style="background-color:#00CCFF;color:white" <?php } ?>>转账操作</a>
+        <!--<a href="{:U('Applications/index')}" <if condition="CONTROLLER_NAME eq 'Applications'"> style="background-color:#00CCFF;color:white" </if>>申请货款</a>-->            
+        </if> 
+        <a href="{:U('Admins/edit')}" <?php if (CONTROLLER_NAME == 'Admins' && ACTION_NAME == 'edit') { ?> style="background-color:#00CCFF;color:white" <?php } ?>>修改密码</a>            
+        <a href="{:U('Public/logout')}">登出</a>
+    </div>
+</div>
