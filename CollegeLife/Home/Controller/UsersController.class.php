@@ -66,10 +66,14 @@ class UsersController extends CommonController {
         $User = M('User');
         $user = $User->where(array('uuid' => $uuid))->find();
 
+        $universities = M('University')->select();
+
         if ($user) {
+            $user['address'] = strip_sql_injection($user['address']);
             // 生成用户信息和token
             $this->assign(C('TOKEN_NAME'), get_token(C('TOKEN_NAME')));
             $this->assign('user', $user);
+            $this->assign('universities', $universities);
             $this->display();
         } else {
             $this->error('您指定的用户不存在！');

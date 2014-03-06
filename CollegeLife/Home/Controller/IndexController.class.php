@@ -10,8 +10,11 @@ class IndexController extends CommonController {
      * @return
      */
     public function index(){
-        // 只有在首页时才显示“登陆”和“注册”
+        // 学校信息
+        $universities = M('University')->select();
+
         $this->assign('home', 'home');
+        $this->assign('universities', $universities);
         $this->assignToken();
         $this->display('index');
     }

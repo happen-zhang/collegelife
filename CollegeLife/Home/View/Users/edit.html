@@ -41,6 +41,7 @@
                     长号：<input type="text" name="user[tel_full]" id="tel_full" class="bar" style="width:100px" value="{$user[tel_full]}">
                     短号：<input type="text" name="user[tel_brief]" id="tel_brief" class="bar" style="width:68px" value="{$user[tel_brief]}">
                     </p>
+                    <!--
                     <p>宿舍地址：<select name="user[building_no]" class="bar" style="width:80px">
                         <?php
                         for($i=1;$i<=41;$i++){
@@ -52,6 +53,15 @@
                     </select>
                     宿舍号：<input type="text" name="user[dormitory_no]" id="dormitory_no" class="bar" style="width:115px" value="{$user['dormitory_no']}">
                     </p>
+                    -->
+                    <p>所在院校：
+                        <select name="user[university_id]" class="bar">
+                            <volist name="universities" id="university">
+                            <option value="{$university['id']}" <if condition = "$user['university_id'] eq $university['id']"> selected </if>>{$university['name']}</option>
+                            </volist>
+                        </select>
+                    </p>
+                    <p>详细地址：<input type="text" name="user[address]" class="bar" id="address" value="{$user['address']}"></p>
                     <p>
                         <input type="submit" value="修改信息" class="btn" onclick="return check_info()" style="margin-left:90px">
                     </p>

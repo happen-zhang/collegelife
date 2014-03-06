@@ -73,9 +73,11 @@ class UserModel extends RelationModel {
         // 短号数字验证，不为空时验证
         array('tel_brief', 'number', '号码必须是数字！', 2, 'regex', 3),
         // 楼号数字验证，不为空时验证
-        array('building_no', 'number', '楼号必须是数字！', 2, 'regex', 3),
+        // array('building_no', 'number', '楼号必须是数字！', 2, 'regex', 3),
         // 宿舍号数字验证，不为空时验证
-        array('dormitory_no', 'number', '宿舍号必须是数字！', 2, 'regex', 3),
+        // array('dormitory_no', 'number', '宿舍号必须是数字！', 2, 'regex', 3),
+        // 所在院校不能为空
+        array('university_id', 'require', '所在院校不能为空！', 1, 'regex', 3),
     );
 
     // 自动完成
@@ -91,6 +93,7 @@ class UserModel extends RelationModel {
         array('username', 'filterSpecialChars', 3, 'function'),
         array('password', 'filterSpecialChars', 3, 'function'),
         array('real_name', 'filterSpecialChars', 3, 'function'),
+        array('address', 'filterSpecialChars', 3, 'function'),
         // 密码md5
         array('password', 'md5', 3, 'function'),
     );
