@@ -107,6 +107,15 @@ function check_category() {
     }
 }
 
+function check_university() {
+    var name = document.getElementById("university_name").value.trim();
+
+    if (name == "") {
+        alert("学校名称不能为空！");
+        return false;
+    }
+}
+
 function createFile(value) {
     var reg = /[0-9]/;
     var num = value.trim();

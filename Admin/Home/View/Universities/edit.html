@@ -1,0 +1,11 @@
+<div id="add_main_content">
+    <div class="add_style">
+        <div class="add_style_inside">
+            <form action="{:U('Universities/update')}" enctype="multipart/form-data" method="POST">
+                <input type="hidden" name="university_id" value="{$university['id']}" />
+                <p>学校名称：<input type="text" name="university[name]" value="{$university['name']}" class="bar"></p>
+                <p><input type="submit" value="确认修改" class="add_btn"></p>
+            </form>
+        </div>
+    </div>
+</div>

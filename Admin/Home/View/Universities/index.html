@@ -1,0 +1,48 @@
+<div id="add_main_content">
+    <div class="add_style">
+        <div class="add_style_inside">
+            <form action="{:U('Universities/create')}" enctype="multipart/form-data" method="POST">
+                <p>学校名称：<input type="text" name="university[name]" id="university_name" class="bar"></p>
+                <p><input type="submit" value="添加学校" class="add_btn" onclick="return check_university()"></p>
+            </form>
+        </div>
+
+        <!-- 输出产品 -->
+        <hr />
+        <div class="add_line">
+            <table>
+                <tr width="980px" height="50px">
+                    <th width="200px">学校名称</th>
+                    <th width="200px">分管理员数</th>
+                    <th width="200px">总管理员数</th>
+                    <th width="200px">操作</th>
+                </tr>
+            </table>
+        </div>
+
+        <volist name="universities" id="university">
+            <div class="add_line">
+                <table>
+                    <tr width="980px" height="50px">
+                        <th width="200px">{$university['name']}<th>
+                        <th width="200px">32</th>
+                        <th width="200px">42</th>
+                        <th width="200px">
+                            <select onchange="return confirmOperation(options[selectedIndex].value)">
+                                <option value="#">选择操作</option>
+                                <option value="{:U('Universities/edit', array('university_id' => $university['id'], 'p' => $_GET['p']))}">修改分类</option>
+                                <option value="{:U('Universities/destroy', array('university_id' => $university['id'], 'p' => $_GET['p']))}">删除分类</option>
+                            </select>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+        </volist>
+
+        <div class="add_line_page">
+            <div class="add_line_page_style">
+                {$page}
+            </div>
+        </div>
+    </div>
+</div>
