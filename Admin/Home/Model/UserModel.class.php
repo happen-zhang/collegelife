@@ -18,5 +18,12 @@ class UserModel extends RelationModel {
             'class_name' => 'order',
             'foreign_key' => 'user_id',
         ),
+
+        // 一个用户对应一个学院
+        'university' => array(
+            'mapping_type' => BELONGS_TO,
+            'class_name' => 'university',
+            'foreign_key' => 'university_id',
+        )
     );
 }

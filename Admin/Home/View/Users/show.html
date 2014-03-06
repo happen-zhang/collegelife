@@ -7,8 +7,11 @@
             <p>用户昵称：{$user['username']}</p>
             <p>用户邮箱：{$user['email']}</p>
             <p>年级：{$user['grade']}</p>
-            <p>联系方式：{$user['tel_type']} {$user['tel_full']} {$user['tel_brief']}</p>
-            <p>宿舍地址：{$user['building_no']}栋 {$user['dormitory_no']}</p>
+            <p>联系方式：{$user['tel_type']}</p>
+            <p>短号：{$user['tel_brief']}</p>
+            <p>长号：{$user['tel_full']}</p>
+            <p>所在院校：{$user['university']['name']}</p>
+            <p>详细地址：{:strip_sql_injection($user['address'])}</p>
             <p style="font-size:14px;font-weight:bold;margin-top:25px">该用户订单情况：</p>
         </div>
 

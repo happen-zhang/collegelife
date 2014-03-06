@@ -22,8 +22,8 @@
             <p>号码类型：{$user['tel_type']}</p>
             <p>长号：{$user['tel_full']}</p>
             <p>短号：{$user['tel_brief']}</p>
-            <p>楼房栋号：{$user['building_no']}</p>
-            <p>宿舍号码：{$user['dormitory_no']}</p>
+            <p>所在院校：{$user['university']['name']}</p>
+            <p>详细地址：{:strip_sql_injection($user['address'])}</p>
             <br/>
 
             <p style="font-size:14px;font-weight:bold;margin-top:25px">订单操作状态：</p>

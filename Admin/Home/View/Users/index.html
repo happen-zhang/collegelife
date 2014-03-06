@@ -5,6 +5,11 @@
                 <tr width="980px" height="50px">
                     <th width="200px">用户名</th>
                     <th width="150px">真实姓名</th>
+                    <?php 
+                        if ($_SESSION['rank'] == 3) {
+                            echo '<th width="150px">所在院校</th>';
+                        }
+                    ?>
                     <th width="200px">注册时间</th>
                     <th width="200px">操作</th>
                 </tr>
@@ -27,6 +32,11 @@
                     <tr width="980px" height="50px">
                         <th width="200px"><a href="{:U('Users/show', array('user_id' => $user['id']))}" target="_blank">{$user['username']}</a></th>
                         <th width="150px">{$user['real_name']}</th>
+                        <?php 
+                            if ($_SESSION['rank'] == 3) {
+                                echo "<th width='150px'>" . $user['university']['name'] . "</th>";
+                            }
+                        ?>
                         <th width="200px">{$user['created_at']}</th>
                         <th width="200px">
                         	<select onchange="return confirmOperation(options[selectedIndex].value)">

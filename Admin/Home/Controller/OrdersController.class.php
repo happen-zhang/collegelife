@@ -67,11 +67,14 @@ class OrdersController extends CommonController {
             $this->error('您查看的订单不存在！');
         }
 
+        $universityId = $order['user']['university_id'];
+        $user = D('User')->relation(true)->getByUniversityId($universityId);
+
         // 订单日志
         $doOrders = $orderService->getAdminDoOrder($_GET['order_id']);
 
         $this->assign('order', $order);
-        $this->assign('user', $order['user']);
+        $this->assign('user', $user);
         $this->assign('goods', $order['goods']);
         $this->assign('doOrders', $doOrders);
         $this->display();
