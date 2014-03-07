@@ -1,0 +1,61 @@
+<div id="add_main_content">
+    <div class="add_style">
+        <p style="font-size:14px;font-weight:bold">{$university['name']}</p>
+        <div class="add_line">
+            <table>
+                <tr width="980px" height="50px">
+                    <th width="150px">管理员</th>
+                    <th width="150px">级别</th>
+                    <th width="200px">最近登录</th>
+                    <th width="200px">操作</th>
+                </tr>
+            </table>
+        </div>
+
+        <volist name="admins" id="admin">
+            <?php 
+                switch ($admin['rank']) {
+                    case 1:
+                        $rank = '分管理员';
+                        break;
+                    case 2:
+                        $rank = '总管理员';
+                        break; 
+                    case 3:
+                        $rank = '总部';
+                        break;
+                }
+
+                if ($admin['is_active']) { 
+                    $status  = "不激活";
+                    $operation = 'deactive';
+                } else {
+                    $status = "激活";
+                    $operation = 'active';
+                }            
+            ?>
+
+        <div class="add_line">
+            <table>
+                <tr width="980px" height="50px">
+                    <th width="150px">
+                        <a href="{:U('Admins/show', array('admin_id' => $admin['uuid']))}" target="_blank">{$admin['admin_name']}</a>
+                    </th>
+                    <th width="150px">{$rank}</th>
+                    <th width="200px">{$admin['latest_login_at']}</th>
+                    <th width="200px">
+                        <a href="{:U('Admins/update', array('admin_id' => $admin['uuid'], 'operation' => $operation, 'p' => $_GET['p']))}" onclick="return confirm('{$status}该管理员吗？')">{$status}</a>
+                    </th>
+                </tr>
+            </table>
+        </div>
+        </volist>
+
+        <!-- 分页系统 -->
+        <div class="add_line_page">
+            <div class="add_line_page_style">
+                {$page}
+            </div>
+        </div>
+    </div>
+</div>

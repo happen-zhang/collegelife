@@ -23,12 +23,51 @@ class UniversitiesController extends CommonController {
 
         $universities = $result['data'];
         unset($result['data']);
-        // foreach ($categories as $key => $category) {
-        //     $categories[$key]['goods_cnt'] = count($category['goods']);
-        // }
+        foreach ($universities as $key => $university) {
+            $where['university_id'] = $university['id'];
+            $where['rank'] = 1;
+            $subAdminCnt = M('Admin')->where($where)->count();
+
+            $where['rank'] = 2;
+            $seniorAdminCnt = M('Admin')->where($where)->count();
+
+            $universities[$key]['sub_cnt'] = $subAdminCnt;
+            $universities[$key]['sen_cnt'] = $seniorAdminCnt;
+        }
 
         $this->assign('universities', $universities);
         $this->assign('page', $result['show']);
+        $this->display();
+    }
+
+    /**
+     * 院校管理员信息
+     * @return
+     */
+    public function show() {
+        if (!isset($_GET['rank']) || !isset($_GET['university_id'])) {
+            $this->error('您查看的院校不存在！');
+        }
+
+        $where['university_id'] = $_GET['university_id'];
+        $university = M('University')->where($where)->find();
+
+        $Admin = M('Admin');
+        $where['rank'] = $_GET['rank'];
+        $totalCount = $Admin->where($where)->count();
+        $page = new \Org\Util\Page($totalCount, C('PAGINATION_NUM'));
+        $result['show'] = $page->show();
+        $data = $Admin->where($where)
+                      ->limit($page->firstRow . ',' . $page->listRows)
+                      ->select();
+        $result['data'] = $data;
+
+        if (empty($data)) {
+            $this->error('您查看的院校暂无信息！');
+        }
+
+        $this->assign('university', $university);
+        $this->assign('admins', $result['data']);
         $this->display();
     }
 

@@ -7,7 +7,6 @@
             </form>
         </div>
 
-        <!-- 输出产品 -->
         <hr />
         <div class="add_line">
             <table>
@@ -25,8 +24,8 @@
                 <table>
                     <tr width="980px" height="50px">
                         <th width="200px">{$university['name']}<th>
-                        <th width="200px">32</th>
-                        <th width="200px">42</th>
+                        <th width="200px"><a href="{:U('Universities/show', array('university_id' => $university['id'], 'rank' => 1))}">{$university['sub_cnt']}</a></th>
+                        <th width="200px"><a href="{:U('Universities/show', array('university_id' => $university['id'], 'rank' => 2))}">{$university['sen_cnt']}</a></th>
                         <th width="200px">
                             <select onchange="return confirmOperation(options[selectedIndex].value)">
                                 <option value="#">选择操作</option>
