@@ -20,7 +20,7 @@
         </if>
         -->
         <if condition="$_SESSION['rank'] neq 1">
-        <a href="{:U('Admins/index')}" <?php if (CONTROLLER_NAME == 'Admins' && ACTION_NAME != 'edit') { ?> style="background-color:#00CCFF;color:white" <?php } ?>>管理员</a>
+        <a href="{:U('Admins/index')}" <?php if (CONTROLLER_NAME == 'Universities' || (CONTROLLER_NAME == 'Admins' && ACTION_NAME != 'edit')) { ?> style="background-color:#00CCFF;color:white" <?php } ?>>管理员</a>
         </if>
          <if condition="$_SESSION['rank'] neq 3">
          <a href="{:U('Orders/transaction')}" <?php if (CONTROLLER_NAME == 'Orders' && ACTION_NAME == 'transaction') { ?> style="background-color:#00CCFF;color:white" <?php } ?>>转账操作</a>
