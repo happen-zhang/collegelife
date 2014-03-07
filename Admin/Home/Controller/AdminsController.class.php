@@ -38,7 +38,10 @@ class AdminsController extends CommonController {
         //     $this->assign('building', $buildings[0]);
         // }
 
+        $universities = M('University')->select();
+
         // $this->assign('buildings', $buildings);
+        $this->assign('universities', $universities);
         $this->assign('page', $result['show']);
         $this->assign('admins', $result['data']);
         $this->display();
@@ -84,9 +87,14 @@ class AdminsController extends CommonController {
             // 不是分管理员则不能拥有楼房管理权限
         //    unset($admin['buildings']);
         // }
+        
+        if ($_SESSION['rank'] == 2) {
+            $admin['university_id'] = $_SESSION['university_id'];
+        }
 
         if ($admin = $Admin->create($admin)) {
             if (false === $Admin->add($admin)) {
+                $this->error($Admin->getDbError());
                 $this->error('系统出错了！');
             } else {
                 $this->redirect('Admins/index');

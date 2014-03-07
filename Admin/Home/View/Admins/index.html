@@ -13,8 +13,7 @@
                         <?php } ?>
                     </select>
                 </p>
-                <div class="buildings">
-                <!--
+                <!--<div class="buildings">
                 <p> 管理楼层分配：
                     <select name="admin[buildings][]">
                     <?php
@@ -28,8 +27,19 @@
                     ?>
                     </select>
                 </p>
-                -->
+                </div>-->
+
+                <?php if ($_SESSION['rank'] == 3) { ?>
+                <div>
+                    <p> 所管理院校：
+                        <select name="admin[university_id]" class="bar" style="height:30px">
+                            <volist name="universities" id="university">
+                                <option value="{$university['id']}">{$university['name']}</option>
+                            </volist>
+                        </select>
+                    </p>
                 </div>
+                <?php } ?>
                 <p><input type="submit" value="添加管理员" class="add_btn" style="width:140px"></p>
             </form>
         </div>
@@ -43,12 +53,13 @@
         <div class="add_line">
             <table>
                 <tr width="980px" height="50px">
-                    <th width="200px">管理员</th>
+                    <th width="150px">管理员</th>
                     <th width="150px">级别</th>
                     <th width="200px">最近登录</th>
-                    <?php if ($_SESSION['rank'] == 3) { ?>
-                    <th width="200px">操作</th>
-                    <?php } ?>
+                    <?php if ($_SESSION['rank'] == 3) { 
+                        echo '<th width="200px">所管理院校</th><th width="200px">操作</th>';
+                    } 
+                    ?>
                 </tr>
             </table>
         </div>
@@ -79,16 +90,17 @@
         <div class="add_line">
             <table>
                 <tr width="980px" height="50px">
-                    <th width="200px">
+                    <th width="150px">
                         <a href="{:U('Admins/show', array('admin_id' => $admin['uuid']))}" target="_blank">{$admin['admin_name']}</a>
                     </th>
                     <th width="150px">{$rank}</th>
                     <th width="200px">{$admin['latest_login_at']}</th>
+                    <?php if ($_SESSION['rank'] == 3) { ?>
+                    <th width="200px">{$admin['university']['name']}</th>
                     <th width="200px">
-                        <?php if ($_SESSION['rank'] == 3) { ?>
                         <a href="{:U('Admins/update', array('admin_id' => $admin['uuid'], 'operation' => $operation, 'p' => $_GET['p']))}" onclick="return confirm('{$status}该管理员吗？')">{$status}</a>
-                        <?php } ?>
                     </th>
+                    <?php } ?>
                 </tr>
             </table>
         </div>

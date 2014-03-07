@@ -33,6 +33,7 @@ class AdminService extends CommonService {
             $_SESSION['aid'] = $result['uuid'];
             $_SESSION['id'] = $result['id'];
             $_SESSION['rank'] = $result['rank'];
+            $_SESSION['university_id'] = $result['university_id'];
 
             return true;
         } else {
@@ -147,10 +148,13 @@ class AdminService extends CommonService {
             // $buildings = $this->getAdminBuildings($_SESSION['id']);
             // return $this->getAdmins($firstRow, $listRows, $buildings[0], 1);
             
-            return $this->getAdmins($firstRow, $listRows, null, 1);
+            return $this->getAdmins($firstRow,
+                                    $listRows,
+                                    $_SESSION['university_id'], 1);
         }
 
         return $this->getD()
+                    ->relation(true)
                     ->order('latest_login_at DESC')
                     ->where(array('id' => array('neq', $_SESSION['id'])))
                     ->limit($firstRow . ',' . $listRows)
@@ -182,13 +186,38 @@ class AdminService extends CommonService {
      * @param  int $rank
      * @return array
      */
-    public function getAdmins($firstRow, $listRows, $buildings, $rank) {
+    // public function getAdmins($firstRow, $listRows, $buildings, $rank) {
+    //     $where = array();
+    //     if (isset($buildings)) {
+    //         $where['buildings'] = $buildings;
+    //     }
+
+    //     if (isset($rank)) {
+    //         $where['rank'] = 1;
+    //     }
+
+    //     return $this->getD()
+    //                 ->order('latest_login_at DESC')
+    //                 ->where($where)
+    //                 ->limit($firstRow . ',' . $listRows)
+    //                 ->select();
+    // }
+
+    /**
+     * 得到管理员
+     * @param  int $uity_id
+     * @param  int $rank
+     * @return array
+     */
+    public function getAdmins($firstRow, $listRows, $uity_id, $rank) {
         $where = array();
-        if (isset($buildings)) {
-            $where['buildings'] = $buildings;
+        if (isset($uity_id)) {
+            $where['university_id'] = $uity_id;
         }
 
         if (isset($rank)) {
+            $where['rank'] = $rank;
+        } else {
             $where['rank'] = 1;
         }
 
@@ -196,7 +225,7 @@ class AdminService extends CommonService {
                     ->order('latest_login_at DESC')
                     ->where($where)
                     ->limit($firstRow . ',' . $listRows)
-                    ->select();
+                    ->select();        
     }
 
     /**
@@ -362,6 +391,6 @@ class AdminService extends CommonService {
     }
 
     protected function isRelation() {
-        return false;
+        return true;
     }
 }

@@ -18,6 +18,12 @@ class AdminModel extends RelationModel {
             'class_name' => 'order',
             'foregin_key' => 'admin_id',
         ),
+
+        'university' => array(
+            'mapping_type' => BELONGS_TO,
+            'class_name' => 'university',
+            'foreign_key' => 'university_id',
+        )
     );
 
     // 自动验证
