@@ -5,7 +5,7 @@
                 <?php if ($_SESSION['rank'] == 2
                           || $_SESSION['rank'] == 3) { ?>
                 管&nbsp;理&nbsp;员&nbsp;&nbsp;：
-                <select name="sub_admin">
+                <select name="sub_admin" class="bar" style="height:30px">
                     <option value="">选择管理员</option>
                     <volist name="subAdmins" id="subAdmin">
                     <option value="{$subAdmin['uuid']}">{$subAdmin['admin_name']}</option>

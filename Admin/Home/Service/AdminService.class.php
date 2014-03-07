@@ -221,11 +221,16 @@ class AdminService extends CommonService {
             $where['rank'] = 1;
         }
 
-        return $this->getD()
-                    ->order('latest_login_at DESC')
-                    ->where($where)
-                    ->limit($firstRow . ',' . $listRows)
-                    ->select();        
+        $queryObject = $this->getD()
+                      ->order('latest_login_at DESC')
+                      ->where($where);
+
+        if (!$firstRow || !$listRows) {
+            return $queryObject->select();
+        }
+
+        return $queryObject->limit($firstRow . ',' . $listRows)
+                           ->select();        
     }
 
     /**

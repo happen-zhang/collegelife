@@ -140,7 +140,10 @@ class AdminsController extends CommonController {
         if ($_SESSION['rank'] == 3) {
             $subAdmins = $adminService->findByRank(2);
         } else if ($_SESSION['rank'] == 2) {
-            $subAdmins = $adminService->findByRank(1);
+            $subAdmins = $adminService->getAdmins(null,
+                                                  null,
+                                                  $_SESSION['university_id'],
+                                                  1);
         }
 
         $this->assign('subAdmins', $subAdmins);
