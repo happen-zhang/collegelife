@@ -116,25 +116,6 @@ class OrderService extends CommonService {
 
         return $order;
     }
-    
-    /**
-     * 分管理员按楼栋数管理订单
-     * @return array
-     */
-    // public function getCount() {
-    //     if ($_SESSION['rank'] == 3 || $_SESSION['rank'] == 2) {
-    //         return parent::getCount();
-    //     }
-
-    //     // 获取管理员所管理的用户的id
-    //     $userIds = D('Admin', 'Service')->getUseridByAdmin($_SESSION['id']);
-
-    //     // 用户的订单数
-    //     $where['user_id'] = array('in', $userIds);
-    //     $orderCnt = M('Order')->where($where)->count();
-
-    //     return $orderCnt;
-    // }
 
     /**
      * 记录订单状态
@@ -376,6 +357,43 @@ class OrderService extends CommonService {
         return $result;
     }
 
+    // public function getCount() {
+    //     if ($_SESSION['rank'] == 3 || $_SESSION['rank'] == 2) {
+    //         return parent::getCount();
+    //     }
+
+    //     // 获取管理员所管理的用户的id
+    //     $userIds = D('Admin', 'Service')->getUseridByAdmin($_SESSION['id']);
+
+    //     // 用户的订单数
+    //     $where['user_id'] = array('in', $userIds);
+    //     $orderCnt = M('Order')->where($where)->count();
+
+    //     return $orderCnt;
+    // }
+
+    public function getCount() {
+        if ($_SESSION['rank'] == 3) {
+            return parent::getCount();
+        }
+
+        if ($_SESSION['rank'] == 1) {
+            $where['assign_to'] = $_SESSION['id'];
+            return M('Order')->where($where)->count();
+        }
+
+        $userIds = array();
+        $where = array('university_id' => $_SESSION['university_id']);
+        $users = M('User')->where($where)->select();
+        foreach ($users as $user) {
+            $userIds[] = $user['id'];
+        }
+
+        $userIds = implode(',', $userIds);
+        $where['user_id'] = array('in', $userIds);
+        return M('Order')->where($where)->count();
+    }
+
     /**
      * 
      * @param  int $firstRow
@@ -399,6 +417,35 @@ class OrderService extends CommonService {
 
     //     return $orders;
     // }
+
+    public function getPagination($firstRow, $listRows) {
+        if ($_SESSION['rank'] == 3) {
+            return parent::getPagination($firstRow, $listRows);
+        }
+
+        if ($_SESSION['rank'] == 1) {
+            $where['assign_to'] = $_SESSION['id'];
+            return D('Order')->relation(true)
+                             ->where($where)->order('id DESC')
+                             ->limit($firstRow . ',' . $listRows)
+                             ->select();
+        }
+
+        $userIds = array();
+        $where = array('university_id' => $_SESSION['university_id']);
+        $users = M('User')->where($where)->select();
+        foreach ($users as $user) {
+            $userIds[] = $user['id'];
+        }
+        $userIds = implode(',', $userIds);
+        $where['user_id'] = array('in', $userIds);
+
+        return D('Order')->relation(true)
+                         ->where($where)
+                         ->order('id DESC')
+                         ->limit($firstRow . ',' . $listRows)
+                         ->select();
+    }
 
     protected function getM() {
         return M('Order');

@@ -31,7 +31,10 @@ class OrdersController extends CommonController {
                     // 总管理员选择分管理员
                     // $admins = $adminService
                     //            ->getOneAdminsByBuilding($building, 1);
-                    $admins = $adminService->findByRank(1);
+                    // $admins = $adminService->findByRank(1);
+                    
+                    $uity = $_SESSION['university_id'];
+                    $admins = $adminService->getAdmins(null, null, $uity, 1);
 
                     foreach ($admins as $admin) {
                         $orders[$key]['admin_names'][] = $admin['admin_name'];
