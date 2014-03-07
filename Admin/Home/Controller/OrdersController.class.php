@@ -215,7 +215,9 @@ class OrdersController extends CommonController {
             $orders = $orderService->getTransactionOrders($_SESSION['id'],
                                                           $page->firstRow,
                                                           $page->listRows);
-            $admins = $adminService->findByRank(2);
+            $admins = $adminService->getAdmins(null,
+                                               null,
+                                               $_SESSION['university_id'], 2);
         } else if ($_SESSION['rank'] == 2) {
             $transactions = $transactionService
                              ->findByAssigner($_SESSION['id']);
