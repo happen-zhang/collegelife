@@ -38,9 +38,8 @@ class UsersController extends \Home\Controller\UsersController {
                 $this->redirect('Users/build', array('status' => 2));
             }
         } else {
-            var_dump($User->getError());
             // 数据验证错误
-            // $this->redirect('Users/build', array('status' => 1));
+            $this->redirect('Users/build', array('status' => 1));
         }
     }
 
